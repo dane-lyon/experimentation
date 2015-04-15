@@ -3,20 +3,20 @@
 # ==>>> Ce script n'est pas encore finalisé, ne pas utiliser tant que vous voyez ce message !!!
 
 #############################################################################
-XUBUNTU 14.04 LTS CUSTOMISE (by Simon.B)
+#XUBUNTU 14.04 LTS CUSTOMISE (by Simon.B)
 #############################################################################
-Ce script a pour but d'obtenir un Xubuntu pleinement fonctionnel et customisé
-pour être jolie de base, il vous permet notamment :
-- d'avoir un dock en bas du bureau avec des raccourcis déjà défini (comme avec Mac OS X)
-- un wallpaper agréable dès le départ
-- un thème graphique agréable avec notamment la transparence sur le menu en haut pré-activé
-- de nombreux logiciels pré-installé (liste a définir ici.....)
-- les logiciels inutiles de Xubuntu supprimé par le script
-- les addons/extra de Xubuntu installé
-- LibreOffice en branche 4.4 a la place de la 4.2 (PPA)
-- La présence de Teamviewer V8 version linux en version portable dans le perso de l'admin
-pour l'assistance pédagogique du poste sous linux (il suffit de lancer le fichier ........)
-- des raccourcis sur le bureau 
+#Ce script a pour but d'obtenir un Xubuntu pleinement fonctionnel et customisé
+#pour être jolie de base, il vous permet notamment :
+#- d'avoir un dock en bas du bureau avec des raccourcis déjà défini (comme avec Mac OS X)
+#- un wallpaper agréable dès le départ
+#- un thème graphique agréable avec notamment la transparence sur le menu en haut pré-activé
+#- de nombreux logiciels pré-installé (liste a définir ici.....)
+#- les logiciels inutiles de Xubuntu supprimé par le script
+#- les addons/extra de Xubuntu installé
+#- LibreOffice en branche 4.4 a la place de la 4.2 (PPA)
+#- La présence de Teamviewer V8 version linux en version portable dans le perso de l'admin
+#pour l'assistance pédagogique du poste sous linux (il suffit de lancer le fichier ........)
+#- des raccourcis sur le bureau 
 
 
 ######### Intégration client scribe 2.3 pour Xubuntu14.04 LTS - script CUSTOM #########
@@ -382,6 +382,16 @@ mv /etc/xdg/autostart/nm-applet.desktop /etc/xdg/autostart/nm-applet.old
 #suppression du menu messages
 ########################################################################
 apt-get remove indicator-messages -y
+
+
+########################################################################
+# Création du profil par défaut via /etc/skel (bureau customisé)
+########################################################################
+wget http://lien-url-de-larchive/skel_custom.tar.gz ### a modifier !!!
+tar xzvf skel_custom.tar.gz
+cd skel_custom
+mv * /etc/skel/ && mv .* /etc/skel
+cd .. && rm -rf skel_custom && rm -rf skel_custom.tar.gz
 
 ########################################################################
 #nettoyage station avant clonage
