@@ -17,6 +17,8 @@
 #- La présence de Teamviewer V8 version linux en version portable dans le perso de l'admin
 #pour l'assistance pédagogique du poste sous linux (il suffit de lancer le fichier ........)
 #- des raccourcis sur le bureau 
+#- Ce script étant déjà customisé avec pleins de logiciel supplémentaire, c'est inutile
+#de lancer les scripts "postinstall" par la suite.
 
 
 ######### Intégration client scribe 2.3 pour Xubuntu14.04 LTS - script CUSTOM #########
@@ -137,11 +139,39 @@ apt-get -y remove abiword gnumeric
 add-apt-repository -y ppa:libreoffice/libreoffice-4-4
 apt-get update
 apt-get -y install libreoffice libreoffice-l10n-fr libreoffice-help-fr hyphen-fr
+apt-get -y install libreoffice-dmaths libreoffice-ogltrans libreoffice-templates openclipart-libreoffice
 
 # Dock (Plank)
 add-apt-repository -y ppa:ricotz/docky
 apt-get update
 apt-get -y install plank
+
+# Autres logiciels utiles dans un établissement scolaire 
+
+# [[ MULTIMEDIA ]]
+apt-get -y install pinta imagination openshot audacity inkscape gthumb vlc x264 ffmpeg2theora oggvideotools mplayer hugin gimp ogmrip flac vorbis-tools lame mypaint libdvdread4
+
+# [[ SYSTEME ]]
+apt-get -y install htop gparted vim pyrenamer rar unrar
+
+# [[ WEB ]]
+apt-get -y install chromium-browser chromium-browser-l10n flashplugin-installer pepperflashplugin-nonfree
+
+# [[ BUREAUTIQUE ]]
+apt-get -y install ttf-mscorefonts-installer freeplane shutter scribus
+
+# [[ MATH ]]
+apt-get -y install geogebra algobox carmetal
+
+# [[ SCIENCES ]]
+apt-get -y install stellarium celestia avogadro
+# Google Earth
+apt-get -y install libfontconfig1:i386 libx11-6:i386 libxrender1:i386 libxext6:i386 libgl1-mesa-glx:i386 libglu1-mesa:i386 libglib2.0-0:i386 libsm6:i386 ;
+wget http://dl.google.com/dl/earth/client/current/google-earth-stable_current_i386.deb && dpkg -i google-earth-stable_current_i386.deb ;
+apt-get -fy install ;
+
+# [[ PROGRAMMATION ]]
+apt-get -y install scratch idle-python2.7 vim anjuta bluefish
 
 ########################################################################
 # Optimisation / Finalisation Xubuntu
@@ -387,11 +417,11 @@ apt-get remove indicator-messages -y
 ########################################################################
 # Création du profil par défaut via /etc/skel (bureau customisé)
 ########################################################################
-wget http://lien-url-de-larchive/skel_custom.tar.gz ### a modifier !!!
-tar xzvf skel_custom.tar.gz
-cd skel_custom
-mv * /etc/skel/ && mv .* /etc/skel
-cd .. && rm -rf skel_custom && rm -rf skel_custom.tar.gz
+#wget http://lien-url-de-larchive/skel_custom.tar.gz ### a modifier !!!
+#tar xzvf skel_custom.tar.gz
+#cd skel_custom
+#mv * /etc/skel/ && mv .* /etc/skel
+#cd .. && rm -rf skel_custom && rm -rf skel_custom.tar.gz
 
 ########################################################################
 #nettoyage station avant clonage
