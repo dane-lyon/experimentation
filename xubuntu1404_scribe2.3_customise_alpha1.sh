@@ -20,7 +20,8 @@
 #- Ce script étant déjà customisé avec pleins de logiciel supplémentaire, c'est inutile
 #de lancer les scripts "postinstall" par la suite.
 
-
+#note
+#squeak (dev) bug => a supprimer
 ######### Intégration client scribe 2.3 pour Xubuntu14.04 LTS - script CUSTOM #########
 
 ###########################################################################
@@ -129,7 +130,7 @@ apt-get install -y ldap-auth-client libpam-mount cifs-utils nscd numlockx unatte
 ###################################################################################
 #Désinstallation de paquet pré-installé de Xubuntu
 ###################################################################################
-apt-get -y remove abiword gnumeric
+apt-get -y remove abiword gnumeric gnome-sudoku gnome-mines xchat
 
 ########################################################################
 # Installation de paquet 
