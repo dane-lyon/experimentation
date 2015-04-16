@@ -417,11 +417,9 @@ apt-get remove indicator-messages -y
 ########################################################################
 # Création du profil par défaut via /etc/skel (bureau customisé)
 ########################################################################
-#wget http://lien-url-de-larchive/skel_custom.tar.gz ### a modifier !!!
-#tar xzvf skel_custom.tar.gz
-#cd skel_custom
-#mv * /etc/skel/ && mv .* /etc/skel
-#cd .. && rm -rf skel_custom && rm -rf skel_custom.tar.gz
+wget http://nux87.online.fr/xubuntu-customise/skel_custom.tar.gz
+tar xzvf skel_custom.tar.gz -C /etc
+rm -rf skel_custom.tar.gz
 
 ########################################################################
 #nettoyage station avant clonage
