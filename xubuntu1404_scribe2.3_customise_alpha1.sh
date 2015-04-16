@@ -7,18 +7,16 @@
 #############################################################################
 #Ce script a pour but d'obtenir un Xubuntu pleinement fonctionnel et customisé
 #pour être jolie de base, il vous permet notamment :
-#- d'avoir un dock en bas du bureau avec des raccourcis déjà défini (comme avec Mac OS X)
-#- un wallpaper agréable dès le départ
-#- un thème graphique agréable avec notamment la transparence sur le menu en haut pré-activé
-#- de nombreux logiciels pré-installé (liste a définir ici.....)
-#- les logiciels inutiles de Xubuntu supprimé par le script
-#- les addons/extra de Xubuntu installé
-#- LibreOffice en branche 4.4 a la place de la 4.2 (PPA)
-#- La présence de Teamviewer V8 version linux en version portable dans le perso de l'admin
-#pour l'assistance pédagogique du poste sous linux (il suffit de lancer le fichier ........)
-#- des raccourcis sur le bureau 
-#- Ce script étant déjà customisé avec pleins de logiciel supplémentaire, c'est inutile
-#de lancer les scripts "postinstall" par la suite.
+
+#- dock (Plank) en bas du bureau avec les raccourcis des principales applications (firefox, chromium, libreoffice...) pour plus de confort
+#- raccourcis du dossier perso et des partages directement sur le bureau
+#- changement du wallpaper par défaut
+#- marque-page des moteurs de recherche google + ixquick intégré dans Firefox + barre des raccourci activé
+#- thème graphique modifié et transparence activé sur le menu en haut
+#- la toute dernière version de LibreOffice intégré (via PPA) (4.4.2.X actuellement) + bonus libreoffice : modèle présentation supplémentaire etc...
+#- les logiciels utiles pour un établissement scolaire déjà intégré (pas besoin de passer le script post install après)
+#- les logiciels inutile de xubuntu pour un établissement scolaire (comme jeu de mines, sudoku, xchat) désinstallé
+#- les addons/extra (xubuntu-restricted-extra) installé (flash, java, codec...)
 
 #note
 #squeak (dev) bug => a supprimer
@@ -137,7 +135,7 @@ apt-get -y remove abiword gnumeric gnome-sudoku gnome-mines xchat
 ########################################################################
 
 # LibreOffice 4.4
-add-apt-repository -y ppa:libreoffice/libreoffice-4-4
+add-apt-repository -y ppa:libreoffice/ppa
 apt-get update
 apt-get -y install libreoffice libreoffice-l10n-fr libreoffice-help-fr hyphen-fr
 apt-get -y install libreoffice-ogltrans libreoffice-templates openclipart-libreoffice
