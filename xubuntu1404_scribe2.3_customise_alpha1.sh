@@ -140,7 +140,7 @@ apt-get -y remove abiword gnumeric gnome-sudoku gnome-mines xchat
 add-apt-repository -y ppa:libreoffice/libreoffice-4-4
 apt-get update
 apt-get -y install libreoffice libreoffice-l10n-fr libreoffice-help-fr hyphen-fr
-apt-get -y install libreoffice-dmaths libreoffice-ogltrans libreoffice-templates openclipart-libreoffice
+apt-get -y install libreoffice-ogltrans libreoffice-templates openclipart-libreoffice
 
 # Dock (Plank)
 add-apt-repository -y ppa:ricotz/docky
