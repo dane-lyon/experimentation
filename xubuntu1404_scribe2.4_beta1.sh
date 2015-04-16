@@ -29,6 +29,7 @@
 #Cédric Frayssinet - Mission Tice Ac-lyon
 #Xavier GAREL - Mission Tice Ac-lyon
 #Simon BERNARD - Dane Réseau - Lyon
+#Jean-Francois MAI - Professeur de l'académie de Nantes
 
 #############################################
 #Script d'integration de station Xubuntu 14.04 sur un scribe 2.4
