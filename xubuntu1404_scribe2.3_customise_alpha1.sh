@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# ==>>> Ce script n'est pas encore finalisé, ne pas utiliser tant que vous voyez ce message !!!
-
 #############################################################################
 #XUBUNTU 14.04 LTS CUSTOMISE (by Simon.B)
 #############################################################################
