@@ -4,7 +4,7 @@
 #XUBUNTU 14.04 LTS CUSTOMISE (by Simon.B)
 #############################################################################
 #Ce script a pour but d'obtenir un Xubuntu pleinement fonctionnel et customisé
-#pour être jolie de base, il vous permet notamment :
+#pour être jolie de base, nouveauté par rapport au script non customisé :
 
 #- dock (Plank) en bas du bureau avec les raccourcis des principales applications (firefox, chromium, libreoffice...) pour plus de confort
 #- raccourcis du dossier perso et des partages directement sur le bureau
