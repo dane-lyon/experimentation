@@ -1,6 +1,6 @@
 #!/bin/bash
 
-###### Intégration client scribe 2.4 pour Ubuntu 14.04 LTS (Unity) ###### 
+###### Intégration client scribe 2.4 pour Ubuntu 14.04 LTS (UI : Unity) ###### 
 
 #### changement apporté pour la version 14.04 (simon) ####
 # - valeur de vérification 12.04 remplacé par 14.04
@@ -12,7 +12,6 @@
 #Xavier GAREL - Mission Tice Ac-lyon
 #############################################
 #Script d'integration de station ubuntu 12.04 sur un scribe 2.x
-#testé avec Scribe 2.3
 #############################################
 # version 1.1 (avec proxy system)
 
@@ -196,13 +195,38 @@ chmod +x /etc/lightdm/logoffscript.sh
 #Paramétrage pour remplir pam_mount.conf
 ########################################################################
 
-eclairng="<volume user=\"*\" fstype=\"cifs\" server=\"$ip_scribe\" path=\"eclairng\" mountpoint=\"/media/Serveur_Scribe\" />"
-grep "/media/Serveur_Scribe" /etc/security/pam_mount.conf.xml  >/dev/null
+#eclairng="<volume user=\"*\" fstype=\"cifs\" server=\"$ip_scribe\" path=\"eclairng\" mountpoint=\"/media/Serveur_Scribe\" />"
+#grep "/media/Serveur_Scribe" /etc/security/pam_mount.conf.xml  >/dev/null
+#if [ $? != 0 ]
+#then
+#  sed -i "/<\!-- Volume definitions -->/a\ $eclairng" /etc/security/pam_mount.conf.xml
+#else
+#  echo "eclairng deja present"
+#fi
+
+
+commun="<volume user=\"*\" fstype=\"cifs\" server=\"$ip_scribe\" path=\"commun\" mountpoint=\"/media/commun\" />"
+grep "mountpoint=\"~\"" /etc/security/pam_mount.conf.xml  >/dev/null
 if [ $? != 0 ]
-then
-  sed -i "/<\!-- Volume definitions -->/a\ $eclairng" /etc/security/pam_mount.conf.xml
+then sed -i "/<\!-- Volume definitions -->/a\ $commun" /etc/security/pam_mount.conf.xml
 else
-  echo "eclairng deja present"
+  echo "commun deja present"
+fi
+
+groupes="<volume user=\"*\" fstype=\"cifs\" server=\"$ip_scribe\" path=\"groupes\" mountpoint=\"/media/groupes\" />"
+grep "mountpoint=\"~\"" /etc/security/pam_mount.conf.xml  >/dev/null
+if [ $? != 0 ]
+then sed -i "/<\!-- Volume definitions -->/a\ $groupes" /etc/security/pam_mount.conf.xml
+else
+  echo "groupes deja present"
+fi
+
+professeurs="<volume user=\"*\" fstype=\"cifs\" server=\"$ip_scribe\" path=\"professeurs\" mountpoint=\"/media/professeurs\" />"
+grep "mountpoint=\"~\"" /etc/security/pam_mount.conf.xml  >/dev/null
+if [ $? != 0 ]
+then sed -i "/<\!-- Volume definitions -->/a\ $professeurs" /etc/security/pam_mount.conf.xml
+else
+  echo "professeurs deja present"
 fi
 
 homes="<volume user=\"*\" fstype=\"cifs\" server=\"$ip_scribe\" path=\"perso\" mountpoint=\"~/Documents\" />"
@@ -229,6 +253,10 @@ then
 else
   echo "mount.cifs deja present"
 fi
+
+
+
+
 
 ########################################################################
 #/etc/profile
