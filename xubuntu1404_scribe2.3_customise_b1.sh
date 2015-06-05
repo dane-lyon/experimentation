@@ -123,16 +123,16 @@ apt-get update && apt-get -y dist-upgrade
 ## Installation paquet ldap pour rejoindre le domaine 
 apt-get install -y ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
 
-###################################################################################
-#Désinstallation de paquet pré-installé de Xubuntu
-###################################################################################
-apt-get -y remove abiword gnumeric gnome-sudoku gnome-mines xchat
+######################################################################################
+#Désinstallation de paquet pré-installé de Xubuntu mais inutile dans le cadre scolaire
+######################################################################################
+apt-get -y remove abiword gnumeric gnome-sudoku gnome-mines xchat gmusicbrowser parole transmission-gtk 
 
 ########################################################################
 # Installation de paquet 
 ########################################################################
 
-# LibreOffice 4.4
+# Dernière version de LibreOffice
 add-apt-repository -y ppa:libreoffice/ppa
 apt-get update
 apt-get -y install libreoffice libreoffice-l10n-fr libreoffice-help-fr hyphen-fr
