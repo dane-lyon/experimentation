@@ -11,7 +11,8 @@
 cd /home/backup/base_sacoche
 
 # Lancement avec le compte postgres
-su postgres -c "pg_dumpall > backup_sacoche.out 
+# remplacer {mdp_BDD} par le mdp de la base "sacoche"
+mysql -h localhost -u sacoche -p {mdp_BDD} sacoche > backup_sacoche.out
 
 # Compression du fichier de sauvegarde avec la date du jour
 tar czvf backup_sacoche-`date +%Y-%m-%d`.tar.gz backup_sacoche.out
