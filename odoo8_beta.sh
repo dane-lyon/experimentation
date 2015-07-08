@@ -25,13 +25,18 @@
 
 #### on rajoute le dépôt open erp dans la source.list
 
-touch /etc/apt/sources.list.d/odoo8.list
-wget --no-check-certificate -O - https://nightly.odoo.com/odoo.key | apt-key add -
-echo "deb https://nightly.odoo.com/8.0/nightly/deb/ ./" >> /etc/apt/sources.list.d/odoo8.list
-apt-get update
+#touch /etc/apt/sources.list.d/odoo8.list
+#wget --no-check-certificate -O - https://nightly.odoo.com/odoo.key | apt-key add -
+#echo "deb https://nightly.odoo.com/8.0/nightly/deb/ ./" >> /etc/apt/sources.list.d/odoo8.list
+#apt-get update
 
 ##### on installe Odoo
-apt-get install odoo
+#apt-get install odoo
+apt-get -y install postgresql
+wget http://nightly.odoo.com/8.0/nightly/deb/odoo_8.0.20150708_all.deb
+dpkg -i odoo_8.0.20150708_all.deb
+apt-get -fy install
+
 
 #### ouverture des ports sur le scribe , en fait ce fichier devrRA REDESCENDRE VIA LA VARIANTE ET C'EST INUTILE DE LE CREER SI TU NE RECONFIGURE PAS, LE FICHIER NE SERA PAS TRAITE DONC PAS DE REGLES.
 echo "allow_src(interface='eth0', ip='0/0', port='8069')
@@ -44,16 +49,16 @@ allow_src(interface='eth0', ip='0/0', port='5432')" > /usr/share/eole/firewall/0
 #### paramétrage de postgres pour le rendre accessible depuis le réseau
 ### on remplace #listen_addresses = 'localhost' par listen_addresses = '*' dans ####le fichier de conf pour que le serveur écoute
 
-sed -i.BAK  "s/^\#listen_addresses =.*/listen_addresses = '*'/g" /etc/postgresql/8.4/main/postgresql.conf
+sed -i.BAK  "s/^\#listen_addresses =.*/listen_addresses = '*'/g" /etc/postgresql/9.1/main/postgresql.conf
 ### modification du fichier pg_hba.conf
 
 #### attention je passe par un numéro de ligne donc cette opération peut échouer
-sed -i.BAK "85i\host    all        all    0.0.0.0/0    trust" /etc/postgresql/8.4/main/pg_hba.conf
+sed -i.BAK "85i\host    all        all    0.0.0.0/0    trust" /etc/postgresql/9.1/main/pg_hba.conf
 
 #### on redémarre postgresql et openerp pour que la config remonte
 
-service postgresql-8.4 restart
-service openerp restart
+service postgresql restart
+service odoo restart
 
 ###### on rajoute la base postgresql dans la sauvegarde bacula
 ###### on crée le fichier avec touch et on écrit dedans
@@ -89,8 +94,6 @@ chmod +x /usr/share/eole/diagnose/module/151-openerp
 #### le dépot openerp-6.1-nightly.list n'a pas de signature et fait échouer la maj des scribes
 #### on supprime donc le fichier et on relance un apt-get update
 
-#rm /etc/apt/sources.list.d/openerp-6.1-nightly.list
-#apt-get update
 
 #### message de fin d'installation
 
@@ -112,22 +115,22 @@ Les anciens fichiers de configuration ont une extension en .BAK. Vous pouvez tou
 ##### Nouvelle fonction ####
 
 # Ajout d'un cron pour redémarrer chaque jour les services pour OpenERP 
-echo "30 23 * * * root /etc/init.d/postgresql-8.4 restart" > /etc/cron.d/openerp_restart
-echo "35 23 * * * root /etc/init.d/openerp restart" >> /etc/cron.d/openerp_restart
+echo "30 23 * * * root /etc/init.d/postgresql restart" > /etc/cron.d/odoo_restart
+echo "35 23 * * * root /etc/init.d/odoo restart" >> /etc/cron.d/odoo_restart
 
 # Déporte les bases d'OpenERP dans le home
 
-/etc/init.d/postgresql-8.4 stop
-/etc/init.d/openerp stop
+/etc/init.d/postgresql stop
+/etc/init.d/odoo stop
 
-mkdir /home/openerp_bdd
-mv /var/lib/postgresql/8.4/main/base /home/openerp_bdd
-ln -s /home/openerp_bdd/base /var/lib/postgresql/8.4/main/base
-chown -R postgres:postgres /home/openerp_bdd/base
-chmod -R u=rwx /home/openerp_bdd/base
+mkdir /home/odoo_base
+mv /var/lib/postgresql/9.1/main/base /home/odoo_base
+ln -s /home/odoo_base /var/lib/postgresql/9.1/main/base
+chown -R postgres:postgres /home/odoo_base
+chmod -R u=rwx /home/odoo_base
 
-/etc/init.d/postgresql-8.4 start
-/etc/init.d/openerp start
+/etc/init.d/postgresql start
+/etc/init.d/odoo start
 
 exit 0
 #fi
