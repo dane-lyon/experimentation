@@ -12,16 +12,21 @@ cd /home/backup/base_sacoche
 
 # Lancement avec le compte postgres
 # remplacer {mdp_BDD} par le mdp de la base "sacoche"
-mysql -h localhost -u sacoche -p {mdp_BDD} sacoche > backup_sacoche.out
+mysql -h localhost -u sacoche -p{mdp_BDD} sacoche > backup_sacoche.sql
 
 # Compression du fichier de sauvegarde avec la date du jour
-tar czvf backup_sacoche-`date +%Y-%m-%d`.tar.gz backup_sacoche.out
-rm -f backup_sacoche.out
+tar czvf backup_sacoche-`date +%Y-%m-%d`.tar.gz backup_sacoche.sql
+rm -f backup_sacoche.sql
 
 # Placement du backup au bon endroit
 mv -f *.tar.gz /home/backup/base_sacoche/
 
 # Purge des anciens backups OpenERP qui ont plus de 30 jours
 find /home/backup/base_sacoche/backup_sacoche-* -type f -mtime +30 -exec rm -rf {} \;
+
+
+### Info pour restaurer :
+# tar xzvf archive.tar.gz
+# mysql -h localhost -u sacoche -p{mdp_BDD} sacoche < backup_sacoche.sql
 
 exit
