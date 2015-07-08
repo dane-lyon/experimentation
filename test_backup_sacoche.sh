@@ -21,7 +21,7 @@ rm -f backup_sacoche.sql
 # Placement du backup au bon endroit
 mv -f *.tar.gz /home/backup/base_sacoche/
 
-# Purge des anciens backups OpenERP qui ont plus de 30 jours
+# Purge des anciens backups qui ont plus de 30 jours
 find /home/backup/base_sacoche/backup_sacoche-* -type f -mtime +30 -exec rm -rf {} \;
 
 
