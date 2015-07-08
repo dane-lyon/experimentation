@@ -15,7 +15,7 @@
 
 
 #### on rajoute les outils eole pour lancer postgresql et openerp
-. /usr/share/eole/FonctionsEoleNg
+#. /usr/share/eole/FonctionsEoleNg
 
 # Install manuel car dépot obsolète
 #apt-get -y install postgresql
@@ -26,12 +26,12 @@
 #### on rajoute le dépôt open erp dans la source.list
 
 touch /etc/apt/sources.list.d/odoo8.list
-echo deb http://nightly.odoo.com/8.0/nightly/deb ./ > /etc/apt/sources.list.d/odoo8.list
-echo deb http://nightly.odoo.com/8.0/nightly/deb ./ > /etc/apt/sources.list.d/odoo8.list
+wget --no-check-certificate -O - https://nightly.odoo.com/odoo.key | apt-key add -
+echo "deb https://nightly.odoo.com/8.0/nightly/deb/ ./" >> /etc/apt/sources.list.d/odoo8.list
+apt-get update
 
-##### on installe openerp et on met à jour les paquets
-#apt-get update
-#apt-get install openerp
+##### on installe Odoo
+apt-get install odoo
 
 #### ouverture des ports sur le scribe , en fait ce fichier devrRA REDESCENDRE VIA LA VARIANTE ET C'EST INUTILE DE LE CREER SI TU NE RECONFIGURE PAS, LE FICHIER NE SERA PAS TRAITE DONC PAS DE REGLES.
 echo "allow_src(interface='eth0', ip='0/0', port='8069')
