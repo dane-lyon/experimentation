@@ -1,31 +1,33 @@
 #! /bin/bash
 
-#### script pour installer Open Erp sur scribe 2.3 #######
+#### script pour installer Odoo 8 sur scribe 2.4 #######
 #### DANE rectorat de lyon ######
 #### Fait par Dominique Jassin #####
 #### Modifié par Simon.B et Jean-Philippe.P ####
-#### Version 3 ######
+#### Version 4 ######
 
 #### on teste si le paquet est présent inutile d'aller plus loin si c'est la cas
-dpkg -s openerp &>/dev/null
-if [ $? -eq 0 ] ; then
-	echo "openerp est déjà présent"
-	exit 0
-else
+#dpkg -s openerp &>/dev/null
+#if [ $? -eq 0 ] ; then
+#	echo "openerp est déjà présent"
+#	exit 0
+#else
+
+
 #### on rajoute les outils eole pour lancer postgresql et openerp
 . /usr/share/eole/FonctionsEoleNg
 
 # Install manuel car dépot obsolète
-apt-get -y install postgresql
-wget http://nightly.odoo.com/old/openerp-6.1/6.1.20140804/openerp_6.1-20140804-233536-1_all.deb
-dpkg -i openerp_6.1-20140804-233536-1_all.deb
-apt-get -fy install
+#apt-get -y install postgresql
+#wget http://nightly.odoo.com/old/openerp-6.1/6.1.20140804/openerp_6.1-20140804-233536-1_all.deb
+#dpkg -i openerp_6.1-20140804-233536-1_all.deb
+#apt-get -fy install
 
 #### on rajoute le dépôt open erp dans la source.list
 
-#touch /etc/apt/sources.list.d/openerp-6.1-nightly.list
-#echo deb http://nightly.openerp.com/6.1/nightly/deb ./ > /etc/apt/sources.list.d/openerp-6.1-nightly.list
-#echo deb http://nightly.odoo.com/6.1/nightly/deb ./ > /etc/apt/sources.list.d/openerp-6.1-nightly.list
+touch /etc/apt/sources.list.d/odoo8.list
+echo deb http://nightly.odoo.com/8.0/nightly/deb ./ > /etc/apt/sources.list.d/odoo8.list
+echo deb http://nightly.odoo.com/8.0/nightly/deb ./ > /etc/apt/sources.list.d/odoo8.list
 
 ##### on installe openerp et on met à jour les paquets
 #apt-get update
@@ -128,4 +130,4 @@ chmod -R u=rwx /home/openerp_bdd/base
 /etc/init.d/openerp start
 
 exit 0
-fi
+#fi
