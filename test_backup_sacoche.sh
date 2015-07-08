@@ -29,4 +29,6 @@ find /home/backup/base_sacoche/backup_sacoche-* -type f -mtime +30 -exec rm -rf 
 # tar xzvf archive.tar.gz
 # mysql -h localhost -u sacoche -p{mdp_BDD} sacoche < backup_sacoche.sql
 
+# + pour inclure dossier dans bacula, rajouter dans la liste d'inclusion ici : /etc/bacula/listefichiersperso.conf
+
 exit
