@@ -1,2 +1,2 @@
 # experimentation
-Script en version béta successible d'être buggé et instable, ne pas utiliser en production !
+Scripts en version béta susceptibles d'être bugués et instables, ne pas utiliser en production !
