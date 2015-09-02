@@ -19,8 +19,8 @@
 
 ## Nouveaux changement spécifique avec un Scribe 2.4
 
-# - Les partages eclairng ne fonctionnent pas avec un Scribe 2.4, changement de méthode
-#{a editer}
+# a ajouter sur serveur dans /etc/samba/conf.d : 
+# https://raw.githubusercontent.com/sibe39/fichier2config/master/partage-linux.conf
 
 ###########################################################################
 
