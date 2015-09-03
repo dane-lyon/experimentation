@@ -2,8 +2,8 @@
 ## ne surtout pas utiliser ce script !
 
 # prérequis
-apt-get -y install sudo
-
+apt-get update && apt-get -y dist-upgrade
+apt-get -y install sudo ntpdate numlockx libnss-ldap libpam-mount cifs-utils
 
 
 scribe_def_ip="172.16.0.241"
@@ -44,10 +44,27 @@ else
 fi
 
 ########################################################################
-#rendre debconf silencieux
+#debconf
 ########################################################################
-export DEBIAN_FRONTEND="noninteractive"
-export DEBIAN_PRIORITY="critical"
+export DEBIAN_FRONTEND="dialog"
+export DEBIAN_PRIORITY="high"
+
+# Joindre Scribe
+move /etc/ldap ldap.conf &&  
+sed -i -e "s/arg1/$ip_scribe/" /etc/ldap/ldap.conf &&
+move /etc/security group.conf && 
+move /etc libnss-ldap.conf &&
+sed -i -e "s/arg1/$ip_scribe:389/" /etc/libnss-ldap.conf &&
+move /etc pam_ldap.conf &&
+sed -i -e "s/arg1/$ip_scribe:389/" /etc/pam_ldap.conf &&
+move /etc nsswitch.conf && 
+move /etc/pam.d common-password &&   
+move /etc/pam.d common-session &&
+
+# partage
+
+move /etc/security pam_mount.conf.xml
+sed -i -e "s/arg1/$ip_scribe/g" /etc/security/pam_mount.conf.xml
 
 ########################################################################
 #Mettre la station à l'heure à partir du serveur Scribe
@@ -59,8 +76,6 @@ ntpdate $ip_scribe
 #numlockx pour le verrouillage du pave numerique
 #unattended-upgrades pour forcer les mises à jour de sécurité à se faire
 ########################################################################
-apt-get update
-apt-get install -y ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
 
 
 
