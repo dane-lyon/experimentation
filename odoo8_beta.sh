@@ -21,7 +21,7 @@
 ##### on installe Odoo
 apt-get -y install postgresql
 wget http://nightly.odoo.com/8.0/nightly/deb/odoo_8.0.20150908_all.deb
-dpkg -i odoo_8.0.20150708_all.deb
+dpkg -i odoo_8.0.20150908_all.deb
 apt-get -fy install
 
 #### ouverture des ports sur le scribe , en fait ce fichier devrRA REDESCENDRE VIA LA VARIANTE ET C'EST INUTILE DE LE CREER SI TU NE RECONFIGURE PAS, LE FICHIER NE SERA PAS TRAITE DONC PAS DE REGLES.
