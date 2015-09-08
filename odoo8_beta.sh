@@ -20,7 +20,7 @@
 
 ##### on installe Odoo
 apt-get -y install postgresql
-wget http://nightly.odoo.com/8.0/nightly/deb/odoo_8.0.20150708_all.deb
+wget http://nightly.odoo.com/8.0/nightly/deb/odoo_8.0.20150908_all.deb
 dpkg -i odoo_8.0.20150708_all.deb
 apt-get -fy install
 
