@@ -2,14 +2,13 @@
 
 #### script pour installer Odoo 8 sur scribe 2.4 #######
 #### DANE rectorat de lyon ######
-#### Fait par Dominique Jassin #####
-#### Modifié par Simon.B et Jean-Philippe.P ####
+#### Dominique J, Simon B, Jean-Philippe.P ####
 #### Version 4 ######
 
 #### on teste si le paquet est présent inutile d'aller plus loin si c'est la cas
-#dpkg -s openerp &>/dev/null
+#dpkg -s odoo &>/dev/null
 #if [ $? -eq 0 ] ; then
-#	echo "openerp est déjà présent"
+#	echo "odoo est déjà présent"
 #	exit 0
 #else
 
@@ -17,11 +16,7 @@
 #### on rajoute les outils eole pour lancer postgresql et openerp
 #. /usr/share/eole/FonctionsEoleNg
 
-# Install manuel car dépot obsolète
-#apt-get -y install postgresql
-#wget http://nightly.odoo.com/old/openerp-6.1/6.1.20140804/openerp_6.1-20140804-233536-1_all.deb
-#dpkg -i openerp_6.1-20140804-233536-1_all.deb
-#apt-get -fy install
+
 
 #### on rajoute le dépôt open erp dans la source.list
 
@@ -36,7 +31,6 @@ apt-get -y install postgresql
 wget http://nightly.odoo.com/8.0/nightly/deb/odoo_8.0.20150708_all.deb
 dpkg -i odoo_8.0.20150708_all.deb
 apt-get -fy install
-
 
 #### ouverture des ports sur le scribe , en fait ce fichier devrRA REDESCENDRE VIA LA VARIANTE ET C'EST INUTILE DE LE CREER SI TU NE RECONFIGURE PAS, LE FICHIER NE SERA PAS TRAITE DONC PAS DE REGLES.
 echo "allow_src(interface='eth0', ip='0/0', port='8069')
@@ -73,14 +67,14 @@ echo "#! /bin/bash
 . /etc/eole/containers.conf
 . ParseDico
 if [ \$activer_mysql == 'oui' ]; then
-EchoGras \"*** OpenERP\"
+EchoGras \"*** Odoo\"
 TestPid PostgreSql postgres
 fi
 
 if [ \"\$activer_apache\" != \"non\" ];then
 	. /usr/share/eole/FonctionsEoleNg
 	if [ \$adresse_ip_web = '127.0.0.1' ];then
-	TestHTTPPage OpenERP http://\$adresse_ip_eth0:8069
+	TestHTTPPage Odoo http://\$adresse_ip_eth0:8069
 	else
 	TestService Web \$container_ip_web:80
 	fi
@@ -88,27 +82,20 @@ if [ \"\$activer_apache\" != \"non\" ];then
 fi
 exit 0 " > /usr/share/eole/diagnose/module/151-openerp
 chmod +x /usr/share/eole/diagnose/module/151-openerp
-####sed -i.BAK "/TestService/a \TestPid PostgreSql postgres" /usr/share/eole/diagnose/module/151-mysql
-#####sed -i.BAK "/ TestService Web \$adresse/a \TestHTTPPage OpenERP http://\$adresse_ip_eth0:8069" /usr/share/eole/diagnose/module/151-web
-
-#### le dépot openerp-6.1-nightly.list n'a pas de signature et fait échouer la maj des scribes
-#### on supprime donc le fichier et on relance un apt-get update
-
 
 #### message de fin d'installation
 
 echo "L'installation est terminée. Il faut faire un reconfigure et un diagnose pour vérifier que tout est ok. Attention le reconfigure coupera l'accès au réseau temporairement !!!"
-echo "un log contenant les dossiers modifiés est disponible sur le perso de l'admin. Ce log s'appelle InstallationOpenERP.log"
+echo "un log contenant les dossiers modifiés est disponible sur le perso de l'admin. Ce log s'appelle InstallationOdoo.log"
 
 echo "les fichiers modifiés par cette installation sont:
-/etc/apt/sources.list.d/openerp-6.1-nightly.list
 /usr/share/eole/firewall/00_root_openerp.fw
 /etc/postgresql/8.4/main/postgresql.conf
 /etc/postgresql/8.4/main/pg_hba.conf
-/etc/bacula/baculafichiers.d/openerp.conf
-/usr/share/eole/diagnose/module/151-openerp
+/etc/bacula/baculafichiers.d/odoo.conf
+/usr/share/eole/diagnose/module/151-odoo
 
-Les anciens fichiers de configuration ont une extension en .BAK. Vous pouvez toujours utiliser cp pour les remettre en place en cas de problème " > /home/a/admin/perso/InstallationOpenERP.log
+Les anciens fichiers de configuration ont une extension en .BAK. Vous pouvez toujours utiliser cp pour les remettre en place en cas de problème " > /home/a/admin/perso/InstallationOdoo.log
 
 
 
