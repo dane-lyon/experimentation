@@ -54,6 +54,7 @@ File = /var/lib/postgresql
 }" /etc/bacula/baculafichiers.d/openerp.conf
 
 #### on rajoute les tests dans le diagnose
+# bon de toute façon cette partie ça peux pas marcher pour odoo pour le diagnose pour l'instant...
 echo "#! /bin/bash
 . /usr/share/eole/FonctionsEoleNg
 . /etc/eole/containers.conf
@@ -72,8 +73,8 @@ if [ \"\$activer_apache\" != \"non\" ];then
 	fi
 	echo
 fi
-exit 0 " > /usr/share/eole/diagnose/module/151-openerp
-chmod +x /usr/share/eole/diagnose/module/151-openerp
+exit 0 " > /usr/share/eole/diagnose/module/151-odoo
+chmod +x /usr/share/eole/diagnose/module/151-odoo
 
 #### message de fin d'installation
 
