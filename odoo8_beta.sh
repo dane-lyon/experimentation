@@ -24,7 +24,7 @@ wget http://nightly.odoo.com/8.0/nightly/deb/odoo_8.0.20150908_all.deb
 dpkg -i odoo_8.0.20150908_all.deb
 apt-get -fy install
 
-#### ouverture des ports sur le scribe , en fait ce fichier devrRA REDESCENDRE VIA LA VARIANTE ET C'EST INUTILE DE LE CREER SI TU NE RECONFIGURE PAS, LE FICHIER NE SERA PAS TRAITE DONC PAS DE REGLES.
+#### ouverture des ports sur le scribe, penser au reconfigure a la fin
 echo "allow_src(interface='eth0', ip='0/0', port='8069')
 allow_src(interface='eth0', ip='0/0', port='5432')" > /usr/share/eole/firewall/00_root_odoo.fw
 #donc on ajoute les autorisations à la volée
