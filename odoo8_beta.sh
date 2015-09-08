@@ -51,7 +51,7 @@ service odoo restart
 
 echo "Include {
 File = /var/lib/postgresql
-}" /etc/bacula/baculafichiers.d/openerp.conf
+}" /etc/bacula/baculafichiers.d/odoo.conf
 
 #### on rajoute les tests dans le diagnose
 # bon de toute façon cette partie ça peux pas marcher pour odoo pour le diagnose pour l'instant...
@@ -82,7 +82,7 @@ echo "L'installation est terminée. Il faut faire un reconfigure et un diagnose 
 echo "un log contenant les dossiers modifiés est disponible sur le perso de l'admin. Ce log s'appelle InstallationOdoo.log"
 
 echo "les fichiers modifiés par cette installation sont:
-/usr/share/eole/firewall/00_root_openerp.fw
+/usr/share/eole/firewall/00_root_odoo.fw
 /etc/postgresql/8.4/main/postgresql.conf
 /etc/postgresql/8.4/main/pg_hba.conf
 /etc/bacula/baculafichiers.d/odoo.conf
@@ -94,11 +94,11 @@ Les anciens fichiers de configuration ont une extension en .BAK. Vous pouvez tou
 
 ##### Nouvelle fonction ####
 
-# Ajout d'un cron pour redémarrer chaque jour les services pour OpenERP 
+# Ajout d'un cron pour redémarrer chaque jour les services pour Odoo
 echo "30 23 * * * root /etc/init.d/postgresql restart" > /etc/cron.d/odoo_restart
 echo "35 23 * * * root /etc/init.d/odoo restart" >> /etc/cron.d/odoo_restart
 
-# Déporte les bases d'OpenERP dans le home
+# Déporte les bases d'Odoo dans le home
 
 /etc/init.d/postgresql stop
 /etc/init.d/odoo stop
