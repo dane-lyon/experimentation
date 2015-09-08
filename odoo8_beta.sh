@@ -14,7 +14,8 @@
 
 
 #### on rajoute les outils eole pour lancer postgresql et Odoo
-. /usr/share/eole/FonctionsEoleNg
+# désactivé pour scribe 2.4 car message indique que ça ne doit plus être utilisé
+#. /usr/share/eole/FonctionsEoleNg
 
 
 ##### on installe Odoo
