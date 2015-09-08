@@ -13,20 +13,11 @@
 #else
 
 
-#### on rajoute les outils eole pour lancer postgresql et openerp
-#. /usr/share/eole/FonctionsEoleNg
+#### on rajoute les outils eole pour lancer postgresql et Odoo
+. /usr/share/eole/FonctionsEoleNg
 
-
-
-#### on rajoute le dépôt open erp dans la source.list
-
-#touch /etc/apt/sources.list.d/odoo8.list
-#wget --no-check-certificate -O - https://nightly.odoo.com/odoo.key | apt-key add -
-#echo "deb https://nightly.odoo.com/8.0/nightly/deb/ ./" >> /etc/apt/sources.list.d/odoo8.list
-#apt-get update
 
 ##### on installe Odoo
-#apt-get install odoo
 apt-get -y install postgresql
 wget http://nightly.odoo.com/8.0/nightly/deb/odoo_8.0.20150708_all.deb
 dpkg -i odoo_8.0.20150708_all.deb
@@ -34,7 +25,7 @@ apt-get -fy install
 
 #### ouverture des ports sur le scribe , en fait ce fichier devrRA REDESCENDRE VIA LA VARIANTE ET C'EST INUTILE DE LE CREER SI TU NE RECONFIGURE PAS, LE FICHIER NE SERA PAS TRAITE DONC PAS DE REGLES.
 echo "allow_src(interface='eth0', ip='0/0', port='8069')
-allow_src(interface='eth0', ip='0/0', port='5432')" > /usr/share/eole/firewall/00_root_openerp.fw
+allow_src(interface='eth0', ip='0/0', port='5432')" > /usr/share/eole/firewall/00_root_odoo.fw
 #donc on ajoute les autorisations à la volée
 /sbin/iptables -I wide-root -p tcp -m state --state NEW -m tcp --dport 8069 --tcp-flags FIN,SYN,RST,ACK SYN -j ACCEPT
 /sbin/iptables -I wide-root -p tcp -m state --state NEW -m tcp --dport 5432 --tcp-flags FIN,SYN,RST,ACK SYN -j ACCEPT
@@ -49,7 +40,7 @@ sed -i.BAK  "s/^\#listen_addresses =.*/listen_addresses = '*'/g" /etc/postgresql
 #### attention je passe par un numéro de ligne donc cette opération peut échouer
 sed -i.BAK "85i\host    all        all    0.0.0.0/0    trust" /etc/postgresql/9.1/main/pg_hba.conf
 
-#### on redémarre postgresql et openerp pour que la config remonte
+#### on redémarre postgresql et odoo pour que la config remonte
 
 service postgresql restart
 service odoo restart
