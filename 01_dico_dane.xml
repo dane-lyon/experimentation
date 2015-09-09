@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<creole>
+
+    <files>
+        <service>odoo</service>
+        <service_access service='odoo-server'>
+            <port>8069</port>
+            <port>5432</port>
+        </service_access>
+    </files>
+</creole>
