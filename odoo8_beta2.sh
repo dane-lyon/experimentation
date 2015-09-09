@@ -32,11 +32,11 @@ apt-get -fy install
 #### paramétrage de postgres pour le rendre accessible depuis le réseau
 ### on remplace #listen_addresses = 'localhost' par listen_addresses = '*' dans ####le fichier de conf pour que le serveur écoute
 
-sed -i.BAK  "s/^\#listen_addresses =.*/listen_addresses = '*'/g" /etc/postgresql/9.1/main/postgresql.conf
+#sed -i.BAK  "s/^\#listen_addresses =.*/listen_addresses = '*'/g" /etc/postgresql/9.1/main/postgresql.conf
 
 ### modification du fichier pg_hba.conf
 #### attention je passe par un numéro de ligne donc cette opération peut échouer
-sed -i.BAK "85i\host    all        all    0.0.0.0/0    trust" /etc/postgresql/9.1/main/pg_hba.conf
+#sed -i.BAK "85i\host    all        all    0.0.0.0/0    trust" /etc/postgresql/9.1/main/pg_hba.conf
 
 #### on redémarre postgresql et odoo pour que la config remonte
 
@@ -111,4 +111,4 @@ chmod -R u=rwx /home/odoo_base
 /etc/init.d/odoo start
 
 exit 0
-#fi
+fi
