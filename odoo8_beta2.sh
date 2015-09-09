@@ -46,32 +46,33 @@ service odoo restart
 ###### on rajoute la base postgresql dans la sauvegarde bacula
 ###### on crée le fichier avec touch et on écrit dedans
 
-## cette partie ne fonctionne pas sur 2.4 !
+## cette partie ne fonctionne pas sur 2.4 pour l'instant
+
 #echo "Include {
 #File = /var/lib/postgresql
 #}" /etc/bacula/baculafichiers.d/odoo.conf
 
 #### on rajoute les tests dans le diagnose
-echo "#! /bin/bash
-. /usr/lib/eole/ihm.sh
-. /etc/eole/containers.conf
+#echo "#! /bin/bash
+#. /usr/lib/eole/ihm.sh
+#. /etc/eole/containers.conf
 
-if [ \$activer_mysql == 'oui' ]; then
-EchoGras \"*** Odoo\"
-TestPid PostgreSql postgres
-fi
-
-if [ \"\$activer_apache\" != \"non\" ];then
-	. /usr/lib/eole/ihm.sh
-	if [ \$adresse_ip_web = '127.0.0.1' ];then
-	TestHTTPPage Odoo http://\$adresse_ip_eth0:8069
-	else
-	TestService Web \$container_ip_web:80
-	fi
-	echo
-fi
-exit 0 " > /usr/share/eole/diagnose/151-odoo
-chmod +x /usr/share/eole/diagnose/151-odoo
+#if [ \$activer_mysql == 'oui' ]; then
+#EchoGras \"*** Odoo\"
+#TestPid PostgreSql postgres
+#fi
+#
+#if [ \"\$activer_apache\" != \"non\" ];then
+#	. /usr/lib/eole/ihm.sh
+#	if [ \$adresse_ip_web = '127.0.0.1' ];then
+#	TestHTTPPage Odoo http://\$adresse_ip_eth0:8069
+#	else
+#	TestService Web \$container_ip_web:80
+#	fi
+#	echo
+#fi
+#exit 0 " > /usr/share/eole/diagnose/151-odoo
+#chmod +x /usr/share/eole/diagnose/151-odoo
 
 #### message de fin d'installation
 
@@ -86,7 +87,6 @@ echo "les fichiers modifiés par cette installation sont:
 /usr/share/eole/diagnose/module/151-odoo
 
 Les anciens fichiers de configuration ont une extension en .BAK. Vous pouvez toujours utiliser cp pour les remettre en place en cas de problème " > /home/a/admin/perso/InstallationOdoo.log
-
 
 
 ##### Nouvelle fonction ####
