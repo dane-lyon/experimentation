@@ -102,7 +102,7 @@ echo "35 23 * * * root /etc/init.d/odoo restart" >> /etc/cron.d/odoo_restart
 
 mkdir /home/odoo_base
 mv /var/lib/postgresql/9.1/main/base /home/odoo_base
-ln -s /home/odoo_base /var/lib/postgresql/9.1/main/base
+ln -s /home/odoo_base/base /var/lib/postgresql/9.1/main/base
 chown -R postgres:postgres /home/odoo_base
 chmod -R u=rwx /home/odoo_base
 
