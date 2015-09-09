@@ -46,9 +46,10 @@ service odoo restart
 ###### on rajoute la base postgresql dans la sauvegarde bacula
 ###### on crée le fichier avec touch et on écrit dedans
 
-echo "Include {
-File = /var/lib/postgresql
-}" /etc/bacula/baculafichiers.d/odoo.conf
+## cette partie ne fonctionne pas sur 2.4 !
+#echo "Include {
+#File = /var/lib/postgresql
+#}" /etc/bacula/baculafichiers.d/odoo.conf
 
 #### on rajoute les tests dans le diagnose
 echo "#! /bin/bash
@@ -70,8 +71,8 @@ if [ \"\$activer_apache\" != \"non\" ];then
 	fi
 	echo
 fi
-exit 0 " > /usr/share/eole/diagnose/module/151-odoo
-chmod +x /usr/share/eole/diagnose/module/151-odoo
+exit 0 " > /usr/share/eole/diagnose/151-odoo
+chmod +x /usr/share/eole/diagnose/151-odoo
 
 #### message de fin d'installation
 
