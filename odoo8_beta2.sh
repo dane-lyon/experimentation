@@ -17,7 +17,7 @@ else
 
 
 #### on rajoute les outils eole 
-. /usr/lib/eole/ihm.sh
+#. /usr/lib/eole/ihm.sh
 
 
 ##### on installe Odoo
