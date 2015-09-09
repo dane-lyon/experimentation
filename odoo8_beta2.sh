@@ -55,7 +55,6 @@ service odoo restart
 echo "#! /bin/bash
 . /usr/lib/eole/ihm.sh
 . /etc/eole/containers.conf
-# $(CreoleGet nom_variable)
 
 if [ \$activer_mysql == 'oui' ]; then
 EchoGras \"*** Odoo\"
