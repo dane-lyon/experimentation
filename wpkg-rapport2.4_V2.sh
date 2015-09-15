@@ -3,7 +3,7 @@
 #installation de wpkg-report pour Eole 2.4 !!
 #version 09/2014
 
-WPKGDIR="/home/wpkg"
+WPKGDIR="/home/wpkg"ghfghfg
 WPKGRAPPORT="$WPKGDIR/rapports"
 URL='ftp://ftp.gig-mbh.de/software/wpkg-package-states.zip'
 FILE='wpkg-package-states.zip'
