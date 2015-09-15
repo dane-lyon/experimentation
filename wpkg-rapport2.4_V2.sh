@@ -3,7 +3,7 @@
 #installation de wpkg-report pour Eole 2.4 !!
 #version 09/2014
 
-WPKGDIR="/home/wpkg"ghfghfg
+WPKGDIR="/home/wpkg"
 WPKGRAPPORT="$WPKGDIR/rapports"
 URL='ftp://ftp.gig-mbh.de/software/wpkg-package-states.zip'
 FILE='wpkg-package-states.zip'
@@ -34,10 +34,18 @@ else
         #rm -rf wpkg-create-report.zip
         sed -i 's/<wpkgBaseDir><\/wpkgBaseDir>/<wpkgBaseDir>\\\\'$nom_machine'\\wpkg\\<\/wpkgBaseDir>/g' settings.xml
         sed -i 's/<clientStateStorePath>clientStates/<clientStateStorePath>\\\\'$nom_machine'\\wpkg\\softwares\\.EtatsClients\\/g' settings.xml
-        sed -i 's/<saveOutput>false/<saveOutput>true/g' settings.xml
-        sed -i 's/<outputFile>c:\\/<outputFile>\\\\'$nom_machine'\\wpkg\\rapports\\Compte-Rendu-/g' settings.xml
-        echo "cscript run.wsf" > $WPKGRAPPORT/'Création du rapport WPKG.bat'
-        todos -u $WPKGRAPPORT/'Création du rapport WPKG.bat'
+        sed -i 's/<ignoreExecuteAlways>false</ignoreExecuteAlways>'settings.xml
+        sed -i 's/<packageStateFilter></packageStateFilter>'settings.xml
+        sed -i 's/<hostFilter></hostFilter>'settings.xml
+        sed -i 's/<columnFilter></columnFilter>'settings.xml
+        sed -i 's/<outputProvider>html</outputProvider>' settings.xml
+        sed -i 's/<saveOutput>true/<saveOutput>/g' settings.xml
+        sed -i 's/<outputFile>c:\\/<outputFile>\\\\'$nom_machine'\\wpkg\\rapports\\Compte-Rendu-[YYYY]-[MM]-[DD]-[hh]-[mm].[ext]/g' settings.xml
+        sed -i '<showOutput>true</showOutput>
+        mv run.wsf Creation_du_rapport.swf
+        # echo "cscript Creation_du_rapport.swf" > $WPKGRAPPORT/'Création du rapport WPKG'
+        #todos -u $WPKGRAPPORT/'Création du rapport WPKG.bat'
+        
         if [ $? = 0 ] ; then
             echo "Creation du script de creation du rapport WPKG OK !"
         fi
