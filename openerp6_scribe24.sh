@@ -4,7 +4,7 @@
 
 ## ATTENTION RAPPEL : la version 6 d'OpenERP est obsolète, si elle est obligatoire 
 #sur un Scribe 2.3, avec un Scribe 2.4 vous avez la possibilité d'utliser une 
-#version plus récente (Odoo 8) voir ici : https://github.com/dane-lyon/experimentation/blob/master/odoo8_beta2.sh
+#version plus récente (Odoo 8) voir ici : https://github.com/dane-lyon/experimentation/blob/master/odoo8_scribe24.sh
 
 #### DANE rectorat de lyon ######
 #### Simon B, Dominique J, Jean-Philippe.P ####
