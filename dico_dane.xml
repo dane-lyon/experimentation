@@ -4,8 +4,8 @@
 <creole>
 
     <files>
-        <service>odoo</service>
-        <service_access service='odoo-server'>
+        <service>openerp</service>
+        <service_access service='openerp-server'>
             <port>8069</port>
             <port>5432</port>
         </service_access>
