@@ -27,7 +27,9 @@
 
 #///////////////////
 # bug constaté a corriger
-# a faire........
+
+# cmd ntpdate introuvable <= paquet a installer en + ds 16.04 contrairement aux précédentes versions
+#..........
 #//////////////////
 
 
