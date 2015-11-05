@@ -1,6 +1,8 @@
 #!/bin/bash
 
+##########################################
 # Partie intégration (Jean François Mai)
+##########################################
 wget http://eole.ac-dijon.fr/pub/Contribs/Clients_Linux/debian_gnu_linux_jessie_in_scribe2.4-v1.0c.tar.gz
 tar xzvf debian_gnu_linux_jessie_in_scribe2.4-v1.0c.tar.gz -C /root
 
@@ -8,8 +10,10 @@ tar xzvf debian_gnu_linux_jessie_in_scribe2.4-v1.0c.tar.gz -C /root
 sed -i 's/^10.149.46.65/192.168.2.183/' /root/jessie/constantes.sh
 #(val 192.168.2.183 correspond a valeur du scribe dans la ligne ci-dessous)
 
-# Partie customisation
 
+###########################################
+# Partie customisation (Simon.B)
+###########################################
 
 # Dépot & Mise a jour
 wget {{lien a mettre ici sources.list}}
