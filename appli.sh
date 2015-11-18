@@ -4,6 +4,16 @@
 # précision : non terminé
 
 # -----------------------------------------------------
+# Vérification que le script est lancé avec sudo
+# -----------------------------------------------------
+
+if [ "$UID" -ne "0" ]
+then
+  echo "Il faut etre root pour executer le script => sudo !!"
+  exit 
+fi 
+
+# -----------------------------------------------------
 # choix du profil
 # -----------------------------------------------------
 
@@ -17,9 +27,11 @@ echo "e = utilisation personnelle - distribution Ubuntu Trusty (14.04) ou varian
 echo "f = utilisation personnelle - distribution Debian Jessie (8) ou variante"
 echo "g = utilisation sous Archlinux"
 echo "h = utilisation familiale - distribution Ubuntu Trusty (14.04) ou variante"
-echo "i = profil libre non défini 1"
-echo "j = profil libre non défini 2"
-echo "k = profil libre non défini 3"
+echo "i = utilisation familiale - distribution Debian Jessie (8) ou variante"
+echo "j = profil libre non défini 1"
+echo "k = profil libre non défini 2"
+echo "l = profil libre non défini 3"
+echo "m = profil libre non défini 4"
 
 read -p "Répondre par la lettre correspondante en minuscule (exemple : f) : " rep
 
@@ -33,7 +45,7 @@ if [ "$rep" = "a" ] ; then
 else
 
 # -----------------------------------------------------
-# Profil "b" : établissement scolaire - distribution Debian Jessie (8) ou variante"
+# Profil "b" : établissement scolaire - distribution Debian Jessie (8) ou variante
 # -----------------------------------------------------
 
 if [ "$rep" = "b" ] ; then
@@ -41,7 +53,7 @@ if [ "$rep" = "b" ] ; then
 else     
 
 # -----------------------------------------------------
-# Profil "c" : technicien sous linux / DANE - distribution Ubuntu Trusty (14.04) ou variante"
+# Profil "c" : technicien sous linux / DANE - distribution Ubuntu Trusty (14.04) ou variante
 # -----------------------------------------------------
 
 if [ "$rep" = "c" ] ; then
@@ -49,65 +61,105 @@ if [ "$rep" = "c" ] ; then
 else  
 
 # -----------------------------------------------------
-# Profil "d" : établissement scolaire - distribution Ubuntu Trusty (14.04) ou variante
+# Profil "d" : technicien sous linux / DANE - distribution Debian Jessie (8) ou variante
 # -----------------------------------------------------
 
-if [ "$rep" = "b" ] ; then
-                echo "profil b"
+if [ "$rep" = "d" ] ; then
+                echo "profil d"
 else  
 
 # -----------------------------------------------------
-# Profil "e" : établissement scolaire - distribution Ubuntu Trusty (14.04) ou variante
+# Profil "e" : utilisation personnelle - distribution Ubuntu Trusty (14.04) ou variante
 # -----------------------------------------------------
 
-if [ "$rep" = "b" ] ; then
-                echo "profil b"
+if [ "$rep" = "e" ] ; then
+                echo "profil e"
 else  
 
 # -----------------------------------------------------
-# Profil "f" : établissement scolaire - distribution Ubuntu Trusty (14.04) ou variante
+# Profil "f" : utilisation personnelle - distribution Debian Jessie (8) ou variante
 # -----------------------------------------------------
 
-if [ "$rep" = "b" ] ; then
-                echo "profil b"
+if [ "$rep" = "f" ] ; then
+                echo "profil f"
 else  
 
 # -----------------------------------------------------
-# Profil "g" : établissement scolaire - distribution Ubuntu Trusty (14.04) ou variante
+# Profil "g" : utilisation sous Archlinux
 # -----------------------------------------------------
 
-if [ "$rep" = "b" ] ; then
-                echo "profil b"
+if [ "$rep" = "g" ] ; then
+                echo "profil g"
 else  
 
 # -----------------------------------------------------
-# Profil "h" : établissement scolaire - distribution Ubuntu Trusty (14.04) ou variante
+# Profil "h" : utilisation familiale - distribution Ubuntu Trusty (14.04) ou variante
 # -----------------------------------------------------
 
-if [ "$rep" = "b" ] ; then
-                echo "profil b"
+if [ "$rep" = "h" ] ; then
+                echo "profil h"
 else  
 
 # -----------------------------------------------------
-# Profil "i" : établissement scolaire - distribution Ubuntu Trusty (14.04) ou variante
+# Profil "i" : utilisation familiale - distribution Debian Jessie (8) ou variante
 # -----------------------------------------------------
 
-if [ "$rep" = "b" ] ; then
-                echo "profil b"
+if [ "$rep" = "i" ] ; then
+                echo "profil i"
 else  
                 
 # -----------------------------------------------------
-# Profil "j" : établissement scolaire - distribution Ubuntu Trusty (14.04) ou variante
+# Profil "j" : profil libre non défini 1
 # -----------------------------------------------------
 
-if [ "$rep" = "b" ] ; then
-                echo "profil b"
+if [ "$rep" = "j" ] ; then
+                echo "profil j"
 else                  
                 
 # -----------------------------------------------------
-# Profil "k" : établissement scolaire - distribution Ubuntu Trusty (14.04) ou variante
+# Profil "k" : profil libre non défini 2
 # -----------------------------------------------------
 
-if [ "$rep" = "b" ] ; then
-                echo "profil b"
+if [ "$rep" = "k" ] ; then
+                echo "profil k"
 else  
+
+# -----------------------------------------------------
+# Profil "l" : profil libre non défini 3
+# -----------------------------------------------------
+
+if [ "$rep" = "l" ] ; then
+                echo "profil l"
+else  
+
+# -----------------------------------------------------
+# Profil "m" : profil libre non défini 4
+# -----------------------------------------------------
+
+if [ "$rep" = "m" ] ; then
+                echo "profil m"
+
+# Fin boucle
+                                                                        fi
+                                                                fi
+                                                        fi
+                                                fi
+                                        fi
+                                fi
+                        fi
+                fi
+        fi
+fi
+fi
+fi
+fi
+
+# -----------------------------------------------------
+# Fin
+# -----------------------------------------------------
+
+echo "Installation des paquets terminés !"
+read -p "Voulez-vous redémarrer immédiatement ? [O/n] " rep_reboot
+if [ "$rep_reboot" = "O" ] || [ "$rep_reboot" = "o" ] ; then
+  reboot
+fi
