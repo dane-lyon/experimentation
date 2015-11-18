@@ -42,6 +42,13 @@ read -p "Répondre par la lettre correspondante en minuscule (exemple : f) : " r
 
 if [ "$rep" = "a" ] ; then
         echo "profil a"
+
+#maj
+apt-get update && apt-get -y dist-upgrade
+
+#nettoyage
+apt-get -y autoremove --purge && apt-get -y clean 
+        
 else
 
 # -----------------------------------------------------
@@ -50,6 +57,13 @@ else
 
 if [ "$rep" = "b" ] ; then
                 echo "profil b"
+                
+#maj
+apt-get update && apt-get -y dist-upgrade
+
+#nettoyage
+apt-get -y autoremove --purge && apt-get -y clean 
+
 else     
 
 # -----------------------------------------------------
@@ -58,6 +72,13 @@ else
 
 if [ "$rep" = "c" ] ; then
                 echo "profil c"
+                
+#maj
+apt-get update && apt-get -y dist-upgrade
+
+#nettoyage
+apt-get -y autoremove --purge && apt-get -y clean 
+
 else  
 
 # -----------------------------------------------------
@@ -66,6 +87,13 @@ else
 
 if [ "$rep" = "d" ] ; then
                 echo "profil d"
+                
+#maj
+apt-get update && apt-get -y dist-upgrade
+
+#nettoyage
+apt-get -y autoremove --purge && apt-get -y clean 
+
 else  
 
 # -----------------------------------------------------
@@ -74,6 +102,13 @@ else
 
 if [ "$rep" = "e" ] ; then
                 echo "profil e"
+                
+#maj
+apt-get update && apt-get -y dist-upgrade
+
+#nettoyage
+apt-get -y autoremove --purge && apt-get -y clean 
+
 else  
 
 # -----------------------------------------------------
@@ -82,6 +117,13 @@ else
 
 if [ "$rep" = "f" ] ; then
                 echo "profil f"
+                
+#maj
+apt-get update && apt-get -y dist-upgrade
+
+#nettoyage
+apt-get -y autoremove --purge && apt-get -y clean 
+
 else  
 
 # -----------------------------------------------------
@@ -90,6 +132,13 @@ else
 
 if [ "$rep" = "g" ] ; then
                 echo "profil g"
+                
+#maj
+pacman -Syu
+
+#nettoyage
+pacman -Qdtq && pacman -Sc && pacman -Rs -
+
 else  
 
 # -----------------------------------------------------
@@ -98,6 +147,13 @@ else
 
 if [ "$rep" = "h" ] ; then
                 echo "profil h"
+                
+#maj
+apt-get update && apt-get -y dist-upgrade
+
+#nettoyage
+apt-get -y autoremove --purge && apt-get -y clean 
+
 else  
 
 # -----------------------------------------------------
@@ -106,6 +162,13 @@ else
 
 if [ "$rep" = "i" ] ; then
                 echo "profil i"
+                
+#maj
+apt-get update && apt-get -y dist-upgrade
+
+#nettoyage
+apt-get -y autoremove --purge && apt-get -y clean 
+
 else  
                 
 # -----------------------------------------------------
@@ -139,7 +202,10 @@ else
 if [ "$rep" = "m" ] ; then
                 echo "profil m"
 
-# Fin boucle
+# Fin de la mega-boucle...
+                                                                                                fi
+                                                                                        fi
+                                                                                fi
                                                                         fi
                                                                 fi
                                                         fi
@@ -149,9 +215,6 @@ if [ "$rep" = "m" ] ; then
                         fi
                 fi
         fi
-fi
-fi
-fi
 fi
 
 # -----------------------------------------------------
