@@ -46,6 +46,31 @@ if [ "$rep" = "a" ] ; then
 #maj
 apt-get update && apt-get -y dist-upgrade
 
+#bureautique
+apt-get -y install ttf-mscorefonts-installer libreoffice libreoffice-l10n-fr libreoffice-help-fr freeplane scribus
+#UI
+#apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes ## pour XFCE
+#apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons ## Pour Unity
+#apt-get -y install lubuntu-restricted-extras lubuntu-restricted-addons ## Pour Lxde
+
+#internet
+apt-get -y install firefox chromium-browser flashplugin-downloader pepperflashplugin-nonfree
+
+#multimedia
+apt-get -y install gimp pinta imagination openshot audacity inkscape gthumb vlc x264 ffmpeg2theora flac vorbis-tools lame mypaint libdvdread4
+
+#systeme
+apt-get -y install gparted vim pyrenamer unrar htop shutter
+
+#math
+apt-get -y install geogebra algobox carmetal
+
+#sciences
+apt-get -y install stellarium celestia avogadro
+
+#prog
+apt-get -y install scratch idle-python2.7
+
 #nettoyage
 apt-get -y autoremove --purge && apt-get -y clean 
         
@@ -76,8 +101,28 @@ if [ "$rep" = "c" ] ; then
 #maj
 apt-get update && apt-get -y dist-upgrade
 
+#bureautique
+apt-get -y install ttf-mscorefonts-installer libreoffice libreoffice-l10n-fr zim dia
+#UI
+#apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes ## pour XFCE
+#apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons ## Pour Unity
+#apt-get -y install lubuntu-restricted-extras lubuntu-restricted-addons ## Pour Lxde
+
+#internet
+apt-get -y install firefox thunderbird pidgin chromium-browser flashplugin-downloader pepperflashplugin-nonfree xchat
+
+#multimedia
+apt-get -y install gimp pinta vlc 
+
+#systeme
+apt-get -y install gparted vim unrar htop shutter keepassx virtualbox
+
+#prog
+apt-get -y install scratch idle-python2.7 bluefish pgadmin3
+
 #nettoyage
 apt-get -y autoremove --purge && apt-get -y clean 
+
 
 else  
 
@@ -136,8 +181,26 @@ if [ "$rep" = "g" ] ; then
 #maj
 pacman -Syu
 
+#bureautique
+pacman -S libreoffice-fresh libreoffice-fresh-fr
+
+#internet
+pacman -S firefox firefox-i18n-fr thunderbird thunderbird-i18n-fr chromium flashplugin qupzilla
+
+#multimedia
+pacman -S gimp pinta openshot audacity inkscape gthumb vlc x265 flac lame libdvdread
+
+#systeme
+pacman -S gparted vim unrar htop shutter
+
+#sciences
+pacman -S celestia
+
+#prog
+pacman -S bluefish scratch emacs terminator
+
 #nettoyage
-pacman -Qdtq && pacman -Sc && pacman -Rs -
+#pacman -Qdtq && pacman -Sc && pacman -Rs -
 
 else  
 
@@ -150,6 +213,11 @@ if [ "$rep" = "h" ] ; then
                 
 #maj
 apt-get update && apt-get -y dist-upgrade
+
+
+
+
+
 
 #nettoyage
 apt-get -y autoremove --purge && apt-get -y clean 
