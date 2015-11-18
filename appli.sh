@@ -179,28 +179,28 @@ if [ "$rep" = "g" ] ; then
                 echo "profil g"
                 
 #maj
-pacman -Syu
+pacman --noconfirm -Syu
 
 #bureautique
-pacman -S libreoffice-fresh libreoffice-fresh-fr
+pacman --noconfirm -S libreoffice-fresh libreoffice-fresh-fr
 
 #internet
-pacman -S firefox firefox-i18n-fr thunderbird thunderbird-i18n-fr chromium flashplugin qupzilla
+pacman --noconfirm -S firefox firefox-i18n-fr thunderbird thunderbird-i18n-fr chromium flashplugin qupzilla
 
 #multimedia
-pacman -S gimp pinta openshot audacity inkscape gthumb vlc x265 flac lame libdvdread
+pacman --noconfirm -S gimp pinta openshot audacity inkscape gthumb vlc x265 flac lame libdvdread
 
 #systeme
-pacman -S gparted vim unrar htop shutter
+pacman --noconfirm -S gparted vim unrar htop shutter
 
 #sciences
-pacman -S celestia
+pacman --noconfirm -S celestia
 
 #prog
-pacman -S bluefish scratch emacs terminator
+pacman --noconfirm -S bluefish scratch emacs terminator
 
 #nettoyage
-#pacman -Qdtq && pacman -Sc && pacman -Rs -
+#pacman --noconfirm -Qdtq && pacman -Sc && pacman -Rs -
 
 else  
 
