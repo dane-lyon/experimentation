@@ -151,6 +151,40 @@ if [ "$rep" = "e" ] ; then
 #maj
 apt-get update && apt-get -y dist-upgrade
 
+#bureautique
+apt-get -y install ttf-mscorefonts-installer libreoffice libreoffice-l10n-fr libreoffice-help-fr libreoffice-templates openclipart-libreoffice dia
+#UI
+#apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes ## pour XFCE
+#apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons ## Pour Unity
+#apt-get -y install lubuntu-restricted-extras lubuntu-restricted-addons ## Pour Lxde
+
+#internet
+apt-get -y install firefox chromium-browser flashplugin-downloader pepperflashplugin-nonfree thunderbird filezilla xchat
+
+#multimedia
+apt-get -y install gimp pinta audacity vlc x264 libdvdread4 shutter
+
+#systeme
+apt-get -y install gparted vim unrar htop docky keepassx
+
+#gaming
+apt-get -y install steam playonlinux minetest supertux
+
+#programmation
+apt-get -y install bluefish scratch emacs
+
+#sciences
+apt-get -y install celestia
+
+#teamviewer 10
+#méthode 1
+wget http://download.teamviewer.com/download/teamviewer_i386.deb && dpkg -i teamviewer_i386.deb ; apt-get -fy install
+#méthode 2
+#wget http://download.teamviewer.com/download/teamviewer_linux.tar.gz && tar xzvf teamviewer_linux.tar -C /home/simon/teamviewer
+
+#android studio
+apt-add-repository -y ppa:paolorotolo/android-studio && apt-get update && apt-get -y install android-studio
+
 #nettoyage
 apt-get -y autoremove --purge && apt-get -y clean 
 
@@ -214,7 +248,30 @@ if [ "$rep" = "h" ] ; then
 #maj
 apt-get update && apt-get -y dist-upgrade
 
+#bureautique
+apt-get -y install ttf-mscorefonts-installer libreoffice libreoffice-l10n-fr libreoffice-help-fr freeplane scribus
+#UI
+#apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes ## pour XFCE
+#apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons ## Pour Unity
+#apt-get -y install lubuntu-restricted-extras lubuntu-restricted-addons ## Pour Lxde
 
+#internet
+apt-get -y install firefox chromium-browser flashplugin-downloader pepperflashplugin-nonfree
+
+#multimedia
+apt-get -y install gimp pinta imagination openshot audacity inkscape gthumb vlc x264 ffmpeg2theora flac vorbis-tools lame mypaint libdvdread4
+
+#systeme
+apt-get -y install gparted vim pyrenamer unrar htop shutter
+
+#math
+apt-get -y install geogebra algobox carmetal
+
+#sciences
+apt-get -y install stellarium celestia avogadro
+
+#prog
+apt-get -y install scratch idle-python2.7
 
 
 
