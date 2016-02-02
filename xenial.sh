@@ -10,7 +10,10 @@
 # - paquet a installer smbfs remplacé par cifs-utils car il a changé de nom (depuis la 14.04)
 # - ajout groupe dialout
 # - ajout fonction pour programmer l'extinction automatique des postes le soir
-# - ajout du choix de la variante utilisé basé sur la 16.04 (nouveauté 2016)
+# TODO - ajout du choix de la variante utilisé basé sur la 16.04 (nouveauté 2016)
+# TODO - séparer ligne spécifique a Unity
+# TODO - section différente suivant UI
+
 
 #Christophe Deze - Rectorat de Nantes
 #Cédric Frayssinet - Mission Tice Ac-lyon
@@ -49,9 +52,9 @@ fi
 #vérification de la bonne version d'Ubuntu
 ########################################################################
 . /etc/lsb-release
-if [ "$DISTRIB_RELEASE" != "14.04" ]
+if [ "$DISTRIB_RELEASE" != "16.04" ]
 then
-  echo " pas ubuntu 14.04"
+  echo " Vous n'êtes pas sous la bonne version"
   exit
 fi
 
