@@ -26,8 +26,6 @@
 # tous les partages (communs, matière etc...) il faut faire cette petite manip sur votre scribe :
 # https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages?ticket=
 
->>>>>>>>>>>>>>>>>>>> REPRENDRE A PARTIR DICI <<<<<<<<<<<<<<<<<<<<<<<<
-
 ###########################################################################
 #Paramétrage par défaut
 #Changez les valeurs, ainsi, il suffira de taper 'entrée' à chaque question
@@ -49,12 +47,29 @@ then
 fi 
 
 ########################################################################
-#vérification de la bonne version d'Ubuntu
+#vérification de la bonne version
 ########################################################################
 . /etc/lsb-release
-if [ "$DISTRIB_RELEASE" != "16.04" ]
+if [ "$DISTRIB_RELEASE" != "16.04" ] && [ "$DISTRIB_RELEASE" != "18" ]
 then
-  echo " Vous n'êtes pas sous la bonne version"
+  echo " Vous n'êtes pas sous une version compatible avec ce script !"
+  exit
+fi
+
+########################################################################
+# Quelle variante d'Ubuntu est utilisé ?
+########################################################################
+echo "Quelle variante d'Ubuntu voulez vous intégrer au domaine ? : "
+
+echo "1 = Ubuntu 16.04 Xenial Xerus (UI : Unity 7/8)"
+echo "2 = Xubuntu 16.04 Xenial Xerus (UI : Xfce 4.12)"
+echo "3 = Lubuntu 16.04 Xenial Xerus (UI : Lxde 0.8)"
+echo "4 = Ubuntu Mate 16.04 Xenial Xerus (UI : Mate 1.12)"
+echo "5 = Linux Mint 18 Sarah (UI : Cinnamon 3.0 ou Mate 1.14)"
+read -p "Répondre par le chiffre correspondant (1,2,3,5) : " distrib
+
+if [ "$distrib" != "1"] || [ "$distrib" != "2"] || [ "$distrib" != "3"] || [ "$distrib" != "4"] || [ "$distrib" != "5"] ; then
+  echo "désolé, vous avez choisi un choix qui n'existe pas. Seul 1,2,3,4,5 est autorisé. Fin du script"
   exit
 fi
 
@@ -105,6 +120,27 @@ if [ "$rep_proghalt" = "1" ] ; then
                         echo "0 22 * * * root /sbin/shutdown -h now" > /etc/cron.d/prog_extinction
                      fi
              fi
+fi
+
+######## test structure conditionnel #######
+if [ "$distrib" = "1" ] ; then
+  touch /home/ubu-unity.txt
+fi
+
+if [ "$distrib" = "2" ] ; then
+  touch /home/xub-xfce.txt
+fi
+
+if [ "$distrib" = "3" ] ; then
+  touch /home/lub-lxde.txt
+fi
+
+if [ "$distrib" = "4" ] ; then
+  touch /home/ubumate.txt
+fi
+
+if [ "$distrib" = "5" ] ; then
+  touch /home/mint.txt
 fi
 
 ########################################################################
