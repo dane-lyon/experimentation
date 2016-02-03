@@ -10,10 +10,9 @@
 # - paquet a installer smbfs remplacé par cifs-utils car il a changé de nom (depuis la 14.04)
 # - ajout groupe dialout
 # - ajout fonction pour programmer l'extinction automatique des postes le soir
-# TODO - ajout du choix de la variante utilisé basé sur la 16.04 (nouveauté 2016)
-# TODO - séparer ligne spécifique a Unity
-# TODO - section différente suivant UI
-
+# - ajout du paquet ntpdate qui n'est pas forcément présent suivant la variante
+# - section spécifique a Unity séparé dans une structure conditionnelle
+# - ajout du choix de la variante utilisé basé sur la 16.04 
 
 #Christophe Deze - Rectorat de Nantes
 #Cédric Frayssinet - Mission Tice Ac-lyon
@@ -155,7 +154,7 @@ ntpdate $ip_scribe
 #unattended-upgrades pour forcer les mises à jour de sécurité à se faire
 ########################################################################
 apt-get update
-apt-get install -y ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
+apt-get install -y ntpdate ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
 
 ########################################################################
 # activation auto des mises à jour de sécu
@@ -322,6 +321,8 @@ fi
 #parametrage du lightdm.conf
 #activation du pave numerique par greeter-setup-script=/usr/bin/numlockx on
 ########################################################################
+
+# TO DO : ajouter une condition pour ne pas faire cette section si distrib = 5 et a la place faire une section pour MDM
 echo "[SeatDefaults]
     allow-guest=false
     greeter-show-manual-login=true
@@ -329,6 +330,10 @@ echo "[SeatDefaults]
     session-setup-script=/etc/lightdm/logonscript.sh
     session-cleanup-script=/etc/lightdm/logoffscript.sh
     greeter-setup-script=/usr/bin/numlockx on" > /usr/share/lightdm/lightdm.conf.d/50-no-guest.conf
+# Fin TO DO
+
+# == Section dédié a Unity == #
+if [ "$distrib" = "1" ] ; then
 
 ########################################################################
 #supression de l'applet switch-user pour ne pas voir les derniers connectés
@@ -342,6 +347,10 @@ disable-lock-screen=true
 [com.canonical.Unity.Launcher]
 favorites=[ 'nautilus-home.desktop', 'firefox.desktop','libreoffice-startcenter.desktop', 'gcalctool.desktop','gedit.desktop','gnome-screenshot.desktop' ]
 " > /usr/share/glib-2.0/schemas/my-defaults.gschema.override
+touch /home/verif_que_ce_msg_apparait_que_pour_unity.txt
+
+fi
+# == Fin Section dédié a Unity == #
 
 #######################################################
 #Paramétrage des paramètres Proxy pour tout le système
