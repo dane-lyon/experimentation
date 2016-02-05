@@ -64,7 +64,7 @@ echo "1 = Ubuntu 16.04 Xenial Xerus (UI : Unity 7/8)"
 echo "2 = Xubuntu 16.04 Xenial Xerus (UI : Xfce 4.12)"
 echo "3 = Lubuntu 16.04 Xenial Xerus (UI : Lxde 0.8)"
 echo "4 = Ubuntu Mate 16.04 Xenial Xerus (UI : Mate 1.12)"
-echo "5 = Linux Mint 18 Sarah (UI : Cinnamon 3.0 ou Mate 1.14)"
+echo "5 = {pas encore sortie} Linux Mint 18 Sarah (UI : Cinnamon 3.0 ou Mate 1.14)"
 read -p "Répondre par le chiffre correspondant (1,2,3,5) : " distrib
 
 ##############################################################################
@@ -153,7 +153,7 @@ ntpdate $ip_scribe
 #numlockx pour le verrouillage du pave numerique
 #unattended-upgrades pour forcer les mises à jour de sécurité à se faire
 ########################################################################
-apt-get update
+apt-get update && apt-get -y dist-upgrade
 apt-get install -y ntpdate ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
 
 ########################################################################
@@ -317,12 +317,14 @@ else
   echo "prof deja dans sudo"
 fi
 
+
 ########################################################################
-#parametrage du lightdm.conf
+#parametrage du lightdm.conf (sauf pour Mint car n'utilise pas LigthDM)
 #activation du pave numerique par greeter-setup-script=/usr/bin/numlockx on
 ########################################################################
 
-# TO DO : ajouter une condition pour ne pas faire cette section si distrib = 5 et a la place faire une section pour MDM
+if [ "$distrib" != "5" ] ; then
+
 echo "[SeatDefaults]
     allow-guest=false
     greeter-show-manual-login=true
@@ -330,7 +332,17 @@ echo "[SeatDefaults]
     session-setup-script=/etc/lightdm/logonscript.sh
     session-cleanup-script=/etc/lightdm/logoffscript.sh
     greeter-setup-script=/usr/bin/numlockx on" > /usr/share/lightdm/lightdm.conf.d/50-no-guest.conf
-# Fin TO DO
+fi
+
+############################
+# Paramétrage MDM pour Mint
+############################
+
+if [ "$distrib" = "5" ] ; then
+#### TO DO pour MDM
+touch /home/mdm.txt
+fi
+
 
 # == Section dédié a Unity == #
 if [ "$distrib" = "1" ] ; then
@@ -407,7 +419,7 @@ mv /etc/xdg/autostart/nm-applet.desktop /etc/xdg/autostart/nm-applet.old
 ########################################################################
 #suppression du menu messages
 ########################################################################
-apt-get remove indicator-messages -y
+apt-get -y remove indicator-messages 
 
 ########################################################################
 #TO DO : suppression du panel de clavier
@@ -416,8 +428,8 @@ apt-get remove indicator-messages -y
 ########################################################################
 #nettoyage station avant clonage
 ########################################################################
-apt-get -y autoclean
 apt-get -y autoremove --purge
+apt-get -y clean
 
 ########################################################################
 #FIN
