@@ -4,6 +4,6 @@
 ########  © Virginie Favrat & Jean philippe Patrizio DANE
 
 # on sauvegarde le dossier ESU
-cp - r /home/esu /home/esu.bak
+cp -r /home/esu /home/esu.bak
 sed -i 's/\(<Variable nom="browser.startup.homepage.*>\)\(.*\)\(<\/Variable>\)/\1 https:\/\/lite.qwant.com \3/' /home/esu/Base/*/*xml
 sed -i 's/\(<Variable nom="Start Page.*>\)\(.*\)\(<\/Variable>\)/\1 lite.qwant.com \3/' /home/esu/Base/*/*xml
