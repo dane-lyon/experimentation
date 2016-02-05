@@ -422,10 +422,6 @@ mv /etc/xdg/autostart/nm-applet.desktop /etc/xdg/autostart/nm-applet.old
 apt-get -y remove indicator-messages 
 
 ########################################################################
-#TO DO : suppression du panel de clavier
-########################################################################
-
-########################################################################
 #nettoyage station avant clonage
 ########################################################################
 apt-get -y autoremove --purge
