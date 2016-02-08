@@ -64,8 +64,8 @@ echo "1 = Ubuntu 16.04 Xenial Xerus (UI : Unity 7/8)"
 echo "2 = Xubuntu 16.04 Xenial Xerus (UI : Xfce 4.12)"
 echo "3 = Lubuntu 16.04 Xenial Xerus (UI : Lxde 0.8)"
 echo "4 = Ubuntu Mate 16.04 Xenial Xerus (UI : Mate 1.12)"
-echo "5 = {pas encore sortie} Linux Mint 18 Sarah (UI : Cinnamon 3.0 ou Mate 1.14)"
-read -p "Répondre par le chiffre correspondant (1,2,3,5) : " distrib
+echo "5 = {nouvelle option a venir ici}"
+read -p "Répondre par le chiffre correspondant (1,2,3,4) : " distrib
 
 while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ]
 do
