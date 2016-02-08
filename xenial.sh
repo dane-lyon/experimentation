@@ -67,6 +67,13 @@ echo "4 = Ubuntu Mate 16.04 Xenial Xerus (UI : Mate 1.12)"
 echo "5 = {pas encore sortie} Linux Mint 18 Sarah (UI : Cinnamon 3.0 ou Mate 1.14)"
 read -p "Répondre par le chiffre correspondant (1,2,3,5) : " distrib
 
+while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ]
+do
+  echo "Désolé vous avez saisi un mauvais choix, veuillez recommencer : "
+  read -p "Répondre par le chiffre correspondant (1,2,3,5) : " distrib
+done
+
+
 ##############################################################################
 ### Questionnaire : IP du scribe, proxy firefox, port proxy, exception proxy #
 ##############################################################################
