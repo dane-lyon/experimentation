@@ -117,24 +117,27 @@ if [ "$rep_proghalt" = "1" ] ; then
 fi
 
 ######## test structure conditionnel #######
-if [ "$distrib" = "1" ] ; then
+if [ "$distrib" = "1" ] ; then  # ubuntu
   touch /home/ubu-unity.txt
+  apt-get -y purge aisleriot gnome-mines gnome-sudoku gnome-mahjongg
 fi
 
-if [ "$distrib" = "2" ] ; then
+if [ "$distrib" = "2" ] ; then  # xubuntu
   touch /home/xub-xfce.txt
 fi
 
-if [ "$distrib" = "3" ] ; then
+if [ "$distrib" = "3" ] ; then  # lubuntu
   touch /home/lub-lxde.txt
 fi
 
-if [ "$distrib" = "4" ] ; then
+if [ "$distrib" = "4" ] ; then  # ubuntu mate
   touch /home/ubumate.txt
+  apt-get -y purge ubuntu-mate-welcome hexchat transmission-gtk
 fi
 
-if [ "$distrib" = "5" ] ; then
+if [ "$distrib" = "5" ] ; then   # linux mint
   touch /home/mint.txt
+  apt-get -y purge mintwelcome
 fi
 
 ########################################################################
