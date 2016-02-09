@@ -123,6 +123,9 @@ if [ "$rep_proghalt" = "1" ] ; then
              fi
 fi
 
+######## Mises a jour du système ########
+apt-get update && apt-get -y dist-upgrade
+
 ######## test structure conditionnel #######
 if [ "$distrib" = "1" ] ; then  # ubuntu
   touch /home/ubu-unity.txt
@@ -164,7 +167,6 @@ ntpdate $ip_scribe
 #numlockx pour le verrouillage du pave numerique
 #unattended-upgrades pour forcer les mises à jour de sécurité à se faire
 ########################################################################
-apt-get update && apt-get -y dist-upgrade
 apt-get install -y ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
 
 ########################################################################
