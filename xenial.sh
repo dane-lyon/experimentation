@@ -380,13 +380,13 @@ fi
 #######################################################
 #Paramétrage des paramètres Proxy pour tout le système
 #######################################################
-if  [ "$ip_proxy" != "" ] || [ $port_proxy != "" ] ; then
+if  [ $ip_proxy != "" ] || [ $port_proxy != "" ] ; then
 
-  echo "Paramétrage du proxy $ip_proxy:$port_proxy" 
+echo "Paramétrage du proxy $ip_proxy:$port_proxy" 
 
 #Paramétrage des paramètres Proxy pour Gnome
 #######################################################
-  echo "[org.gnome.system.proxy]
+echo "[org.gnome.system.proxy]
 mode='manual'
 use-same-proxy=true
 ignore-hosts=$proxy_gnome_noproxy
