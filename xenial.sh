@@ -380,7 +380,7 @@ fi
 #######################################################
 #Paramétrage des paramètres Proxy pour tout le système
 #######################################################
-if  [ $ip_proxy != "" ] || [ $port_proxy != "" ] ; then
+if  [ "$ip_proxy" != "" ] || [ $port_proxy != "" ] ; then
 
 echo "Paramétrage du proxy $ip_proxy:$port_proxy" 
 
