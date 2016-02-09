@@ -127,27 +127,30 @@ fi
 apt-get update && apt-get -y dist-upgrade
 
 ######## test structure conditionnel #######
-if [ "$distrib" = "1" ] ; then  # ubuntu
+if [ "$distrib" = "1" ] ; then  # ubuntu   # OK0902
   touch /home/ubu-unity.txt
+  apt-get -y install ubuntu-restricted-extras
   apt-get -y purge aisleriot gnome-mines gnome-sudoku gnome-mahjongg
 fi
 
-if [ "$distrib" = "2" ] ; then  # xubuntu
+if [ "$distrib" = "2" ] ; then  # xubuntu  # OK0902
   touch /home/xub-xfce.txt
+  apt-get -y install libreoffice libreoffice-gtk libreoffice-l10n-fr xubuntu-restricted-extras
+  apt-get -y purge pidgin transmission-gtk gnome-mines gnome-sudoku blueman
 fi
 
 if [ "$distrib" = "3" ] ; then  # lubuntu
   touch /home/lub-lxde.txt
 fi
 
-if [ "$distrib" = "4" ] ; then  # ubuntu mate
+if [ "$distrib" = "4" ] ; then  # ubuntu mate  # KO
   touch /home/ubumate.txt
-  apt-get -y purge ubuntu-mate-welcome hexchat transmission-gtk
+  apt-get -y purge hexchat transmission-gtk #ubuntu-mate-welcome 
 fi
 
 if [ "$distrib" = "5" ] ; then   # linux mint
   touch /home/mint.txt
-  apt-get -y purge mintwelcome
+  #apt-get -y purge mintwelcome
 fi
 
 ########################################################################
