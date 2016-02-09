@@ -156,6 +156,7 @@ export DEBIAN_PRIORITY="critical"
 ########################################################################
 #Mettre la station à l'heure à partir du serveur Scribe
 ########################################################################
+apt-get -y install ntpdate
 ntpdate $ip_scribe
 
 ########################################################################
@@ -164,7 +165,7 @@ ntpdate $ip_scribe
 #unattended-upgrades pour forcer les mises à jour de sécurité à se faire
 ########################################################################
 apt-get update && apt-get -y dist-upgrade
-apt-get install -y ntpdate ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
+apt-get install -y ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
 
 ########################################################################
 # activation auto des mises à jour de sécu
