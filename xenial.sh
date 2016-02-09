@@ -139,16 +139,19 @@ if [ "$distrib" = "2" ] ; then  # xubuntu  # OK0902
   apt-get -y purge pidgin transmission-gtk gnome-mines gnome-sudoku blueman
 fi
 
-if [ "$distrib" = "3" ] ; then  # lubuntu
+if [ "$distrib" = "3" ] ; then  # lubuntu  # OK0902
+  apt-get -y install libreoffice libreoffice-gtk libreoffice-l10n-fr lubuntu-restricted-extras
+  apt-get -y purge abiword gnumeric pidgin transmission-gtk
   touch /home/lub-lxde.txt
 fi
 
 if [ "$distrib" = "4" ] ; then  # ubuntu mate  # KO
   touch /home/ubumate.txt
+  apt-get -y install ubuntu-restricted-extras
   apt-get -y purge hexchat transmission-gtk #ubuntu-mate-welcome 
 fi
 
-if [ "$distrib" = "5" ] ; then   # linux mint
+if [ "$distrib" = "5" ] ; then   # plus tard
   touch /home/mint.txt
   #apt-get -y purge mintwelcome
 fi
@@ -383,7 +386,7 @@ fi
 #######################################################
 #Paramétrage des paramètres Proxy pour tout le système
 #######################################################
-if  [ "$ip_proxy" != "" ] || [ $port_proxy != "" ] ; then
+if  [ "$ip_proxy" != "" ] || [ "$port_proxy" != "" ] ; then
 
 echo "Paramétrage du proxy $ip_proxy:$port_proxy" 
 
