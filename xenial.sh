@@ -91,6 +91,7 @@ done
 ### Questionnaire : IP du scribe, proxy firefox, port proxy, exception proxy #
 ##############################################################################
 read -p "Donnez l'ip du serveur Scribe ? [$scribe_def_ip] " ip_scribe
+echo -e "${vert}RAPPEL : si votre serveur Scribe est en version 2.4 ou 2.5, il y a une manip supplémentaire a faire de votre part pour avoir tous les partages, cf : https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages${neutre}"
 if [ "$ip_scribe" = "" ] ; then
  ip_scribe=$scribe_def_ip
 fi
