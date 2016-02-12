@@ -46,14 +46,14 @@ proxy_def_ip="172.16.0.252"
 proxy_def_port="3128"
 proxy_gnome_noproxy="[ 'localhost', '127.0.0.0/8', '172.16.0.0/16', '192.168.0.0/16', '*.crdp-lyon.fr', '*.crdplyon.lan' ]"
 proxy_env_noproxy="localhost,127.0.0.1,192.168.0.0/16,172.16.0.0/16,.crdp-lyon.fr,.crdplyon.lan"
-pagedemarragepardefaut="https://ixquick.com/"
+pagedemarragepardefaut="https://lite.qwant.com"
 
 #############################################
 # Run using sudo, of course.
 #############################################
 if [ "$UID" -ne "0" ]
 then
-  echo "Il faut etre root pour executer ce script. ==> sudo "
+  echo -e "${rouge} Il faut etre root pour executer ce script => sudo ./script.sh${neutre}"
   exit 
 fi 
 
@@ -63,7 +63,7 @@ fi
 . /etc/lsb-release
 if [ "$DISTRIB_RELEASE" != "16.04" ] && [ "$DISTRIB_RELEASE" != "18" ]
 then
-  echo " Vous n'êtes pas sous une version compatible avec ce script !"
+  echo -e "${rouge}Vous n'êtes pas sous une version compatible avec ce script, il faut utiliser la 16.04 !${neutre}"
   exit
 fi
 
@@ -77,12 +77,12 @@ echo "1 = Ubuntu 16.04 Xenial Xerus (UI : Unity 7/8)"
 echo "2 = Xubuntu 16.04 Xenial Xerus (UI : Xfce 4.12)"
 echo "3 = Lubuntu 16.04 Xenial Xerus (UI : Lxde 0.8)"
 echo "4 = Ubuntu Mate 16.04 Xenial Xerus (UI : Mate 1.12)"
-echo "5 = {nouvelle option a venir ici}"
+echo "(prochainement ici en 5e choix : Linux Mint 18 Sarah)"
 read -p "Répondre par le chiffre correspondant (1,2,3,4) : " distrib
 
 while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ]
 do
-  echo "Désolé vous avez saisi un mauvais choix, veuillez recommencer : "
+  echo -e "${rouge}Désolé vous avez saisi un mauvais choix, veuillez recommencer !${neutre}"
   read -p "Répondre par le chiffre correspondant (1,2,3,5) : " distrib
 done
 
@@ -90,8 +90,8 @@ done
 ##############################################################################
 ### Questionnaire : IP du scribe, proxy firefox, port proxy, exception proxy #
 ##############################################################################
+echo -e "${orange}RAPPEL : si votre serveur Scribe est en version 2.4 ou 2.5, il y a une manip supplémentaire a faire de votre part pour avoir tous les partages, cf : https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages${neutre}"
 read -p "Donnez l'ip du serveur Scribe ? [$scribe_def_ip] " ip_scribe
-echo -e "${vert}RAPPEL : si votre serveur Scribe est en version 2.4 ou 2.5, il y a une manip supplémentaire a faire de votre part pour avoir tous les partages, cf : https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages${neutre}"
 if [ "$ip_scribe" = "" ] ; then
  ip_scribe=$scribe_def_ip
 fi
@@ -121,7 +121,7 @@ fi
 ###################################################
 
 echo "Pour terminer, voulez vous activer l'extinction automatique des postes le soir ?"
-echo "0 ou aucune valeure saisie = non, pas d'extinction auto le soir"
+echo "0 ou aucune valeure saisie = non, pas d'extinction auto le soir" 
 echo "1 = oui, extinction a 19H00"
 echo "2 = oui, extinction a 20H00"
 echo "3 = oui, extinction a 22H00"
@@ -140,35 +140,32 @@ fi
 ######## Mises a jour du système ########
 apt-get update && apt-get -y dist-upgrade
 
-######## test structure conditionnel #######
-if [ "$distrib" = "1" ] ; then  # ubuntu   # OK0902
-  touch /home/ubu-unity.txt
+## variante ##
+
+if [ "$distrib" = "1" ] ; then  # ubuntu
   apt-get -y install ubuntu-restricted-extras
   apt-get -y purge aisleriot gnome-mines gnome-sudoku gnome-mahjongg
 fi
 
-if [ "$distrib" = "2" ] ; then  # xubuntu  # OK0902
-  touch /home/xub-xfce.txt
+if [ "$distrib" = "2" ] ; then  # xubuntu 
   apt-get -y install libreoffice libreoffice-gtk libreoffice-l10n-fr xubuntu-restricted-extras
   apt-get -y purge pidgin transmission-gtk gnome-mines gnome-sudoku blueman
 fi
 
-if [ "$distrib" = "3" ] ; then  # lubuntu  # OK0902
+if [ "$distrib" = "3" ] ; then  # lubuntu  
   apt-get -y install libreoffice libreoffice-gtk libreoffice-l10n-fr lubuntu-restricted-extras
   apt-get -y purge abiword gnumeric pidgin transmission-gtk
-  touch /home/lub-lxde.txt
 fi
 
-if [ "$distrib" = "4" ] ; then  # ubuntu mate  # KO
-  touch /home/ubumate.txt
+if [ "$distrib" = "4" ] ; then  # ubuntu mate  #shell linux activé obligatoire !
   apt-get -y install ubuntu-restricted-extras
-  apt-get -y purge hexchat transmission-gtk #ubuntu-mate-welcome 
+  apt-get -y purge hexchat transmission-gtk ubuntu-mate-welcome 
 fi
 
-if [ "$distrib" = "5" ] ; then   # plus tard
-  touch /home/mint.txt
-  #apt-get -y purge mintwelcome
-fi
+#if [ "$distrib" = "5" ] ; then   # plus tard
+#  apt-get -y purge mintwelcome
+#  changer le thème MDM pour ne pas avoir "l'userlist" par défaut
+#fi
 
 ########################################################################
 #rendre debconf silencieux
@@ -356,7 +353,8 @@ fi
 #activation du pave numerique par greeter-setup-script=/usr/bin/numlockx on
 ########################################################################
 
-if [ "$distrib" != "5" ] ; then
+#manip effectué pour toutes les variantes sauf Mint (5) car il utilise MDM a la place de LightDM
+if [ "$distrib" != "5" ] ; then 
 
 echo "[SeatDefaults]
     allow-guest=false
@@ -367,18 +365,9 @@ echo "[SeatDefaults]
     greeter-setup-script=/usr/bin/numlockx on" > /usr/share/lightdm/lightdm.conf.d/50-no-guest.conf
 fi
 
-############################
-# Paramétrage MDM pour Mint
-############################
 
-if [ "$distrib" = "5" ] ; then
-#### TO DO pour MDM
-touch /home/mdm.txt
-fi
-
-
-# == Section dédié a Unity == #
-if [ "$distrib" = "1" ] ; then
+# == Unity == #
+if [ "$distrib" = "1" ] ; then  # Uniquement pour Ubuntu/Unity
 
 ########################################################################
 #supression de l'applet switch-user pour ne pas voir les derniers connectés
@@ -392,7 +381,6 @@ disable-lock-screen=true
 [com.canonical.Unity.Launcher]
 favorites=[ 'nautilus-home.desktop', 'firefox.desktop','libreoffice-startcenter.desktop', 'gcalctool.desktop','gedit.desktop','gnome-screenshot.desktop' ]
 " > /usr/share/glib-2.0/schemas/my-defaults.gschema.override
-touch /home/verif_que_ce_msg_apparait_que_pour_unity.txt
 
 fi
 # == Fin Section dédié a Unity == #
@@ -442,7 +430,7 @@ fi
 ########################################################################
 #suppression de l'envoi des rapport d'erreurs
 ########################################################################
-echo "enabled=0" >/etc/default/apport
+echo "enabled=0" > /etc/default/apport
 
 ########################################################################
 #suppression de l'applet network-manager
