@@ -72,18 +72,20 @@ fi
 ########################################################################
 echo "Quelle variante d'Ubuntu voulez vous intégrer au domaine ? : "
 echo -e "${rouge}ATTENTION : pour certaine variante (notamment Mint et Ubuntu Mate), il est impératif que la case 'client linux' soit coché dans l'EAD du Scribe pour les utilisateurs pour que ça fonctionne${neutre}"
-
+echo -e "${vert}==================================================${neutre}"
 echo "1 = Ubuntu 16.04 Xenial Xerus (UI : Unity 7/8)"
 echo "2 = Xubuntu 16.04 Xenial Xerus (UI : Xfce 4.12)"
 echo "3 = Lubuntu 16.04 Xenial Xerus (UI : Lxde 0.8)"
 echo "4 = Ubuntu Mate 16.04 Xenial Xerus (UI : Mate 1.12)"
-echo "(prochainement ici en 5e choix : Linux Mint 18 Sarah)"
-read -p "Répondre par le chiffre correspondant (1,2,3,4) : " distrib
+echo "5 = Ubuntu Gnome 16.04 Xenial Xerus (UI : Gnome 3.18)"
+echo "(prochainement ici : Linux Mint 18 Sarah)"
+echo -e "${vert}==================================================${neutre}"
+read -p "Répondre par le chiffre correspondant (1,2,3,4,5) : " distrib
 
-while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ]
+while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ] && [ "$distrib" != "5" ]
 do
   echo -e "${rouge}Désolé vous avez saisi un mauvais choix, veuillez recommencer !${neutre}"
-  read -p "Répondre par le chiffre correspondant (1,2,3,5) : " distrib
+  read -p "Répondre par le chiffre correspondant (1,2,3,4,5) : " distrib
 done
 
 
@@ -162,7 +164,12 @@ if [ "$distrib" = "4" ] ; then  # ubuntu mate  #shell linux activé obligatoire 
   apt-get -y purge hexchat transmission-gtk ubuntu-mate-welcome 
 fi
 
-#if [ "$distrib" = "5" ] ; then   # plus tard
+if [ "$distrib" = "5" ] ; then  # ubuntu gnome  
+  apt-get -y install ubuntu-restricted-extras
+# TO DO : désactiver userlist de GDM
+fi
+
+#if [ "$distrib" = "x" ] ; then   # plus tard
 #  apt-get -y purge mintwelcome
 #  changer le thème MDM pour ne pas avoir "l'userlist" par défaut
 #fi
@@ -353,8 +360,8 @@ fi
 #activation du pave numerique par greeter-setup-script=/usr/bin/numlockx on
 ########################################################################
 
-#manip effectué pour toutes les variantes sauf Mint (5) car il utilise MDM a la place de LightDM
-if [ "$distrib" != "5" ] ; then 
+#manip effectué pour toutes les variantes sauf Ubuntu Gnome (5) et Mint (X) car ils utilisent GDM ou MDM a la place de LightDM
+if [ "$distrib" != "5" ] && [ "$distrib" != "X" ] ; then 
 
 echo "[SeatDefaults]
     allow-guest=false
