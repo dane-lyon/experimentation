@@ -11,15 +11,19 @@
 # - ajout groupe dialout
 # - ajout fonction pour programmer l'extinction automatique des postes le soir
 # - ajout du paquet ntpdate qui n'est pas forcément présent suivant la variante
-# - section spécifique a Unity séparé dans une structure conditionnelle
+# - section spécifique a Unity qui ne se lance pas avec les autres variantes
+# - section spécifique a MDM et GDM pour certaine variante
 # - ajout du choix de la variante utilisé basé sur la 16.04 
+# - jeux intégrés par défaut supprimés
+# - possibilité de backportage de LibreOffice si l'utilisateur le souhaite 
+# - couleur dans le shell sur les messages d'avertissement dans le script
 
 #Christophe Deze - Rectorat de Nantes
 #Cédric Frayssinet - Mission Tice Ac-lyon
 #Xavier GAREL - Mission Tice Ac-lyon
 #Simon BERNARD - Dane Lyon
 
-# version 3.0.0alpha (avec proxy system)
+# version 3.0.1 alpha (avec proxy system)
 
 # Ce script est compatible avec un Scribe 2.3, 2.4 et 2.5 par contre si vous avez un scribe 2.4/2.5, afin d'avoir
 # tous les partages (communs, matière etc...) il faut faire cette petite manip sur votre scribe :
@@ -139,6 +143,14 @@ if [ "$rep_proghalt" = "1" ] ; then
              fi
 fi
 
+###################################################
+# Backportage de LibreOffice ?
+###################################################
+echo "Souhaitez vous activer le backportage (PPA LO Stable) de LibreOffice ? :"
+  echo -e "${violet}Si vous ne comprenez pas la question ou si c'est non, laissez le choix par défaut a savoir 'non'${neutre}"
+  read -p "NON (choix par défaut, vous serez alors toujours avec la version 5.1.x) => valider sans rien mettre ou n'importe quelle valeure autre que oui."
+  read -p "OUI (5.1 => 5.2 => 5.3 etc...) => saisir exactement en minuscule : oui" backport_lo
+
 ######## Mises a jour du système ########
 apt-get update && apt-get -y dist-upgrade
 
@@ -173,6 +185,15 @@ fi
 #  apt-get -y purge mintwelcome
 #  changer le thème MDM pour ne pas avoir "l'userlist" par défaut
 #fi
+
+
+########################################################################
+# Backportage de LibreOffice (si oui)
+########################################################################
+if [ "$backport_lo" = "oui" ] ; then
+  add-apt-repository -y ppa:libreoffice/ppa
+  apt-get update && apt-get -y upgrade
+fi
 
 ########################################################################
 #rendre debconf silencieux
