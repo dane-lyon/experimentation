@@ -74,9 +74,9 @@ fi
 ########################################################################
 # Quelle variante d'Ubuntu est utilisé ?
 ########################################################################
-echo "Quelle variante d'Ubuntu voulez vous intégrer au domaine ? : "
 echo -e "${rouge}ATTENTION : pour certaine variante (notamment Mint et Ubuntu Mate), il est impératif que la case 'client linux' soit coché dans l'EAD du Scribe pour les utilisateurs pour que ça fonctionne${neutre}"
 echo -e "${vert}==================================================${neutre}"
+echo "Quelle variante d'Ubuntu voulez vous intégrer au domaine ? : "
 echo "1 = Ubuntu 16.04 Xenial Xerus (UI : Unity 7/8)"
 echo "2 = Xubuntu 16.04 Xenial Xerus (UI : Xfce 4.12)"
 echo "3 = Lubuntu 16.04 Xenial Xerus (UI : Lxde 0.8)"
@@ -97,7 +97,9 @@ done
 ### Questionnaire : IP du scribe, proxy firefox, port proxy, exception proxy #
 ##############################################################################
 echo -e "${orange}RAPPEL : si votre serveur Scribe est en version 2.4 ou 2.5, il y a une manip supplémentaire a faire de votre part pour avoir tous les partages, cf : https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages${neutre}"
+echo -e "${vert}==================================================${neutre}"
 read -p "Donnez l'ip du serveur Scribe ? [$scribe_def_ip] " ip_scribe
+echo -e "${vert}==================================================${neutre}"
 if [ "$ip_scribe" = "" ] ; then
  ip_scribe=$scribe_def_ip
 fi
@@ -106,8 +108,9 @@ echo "Adresse du serveur Scribe = $ip_scribe"
 #####################################
 # Existe-t-il un proxy à paramétrer ?
 #####################################
-
+echo -e "${vert}==================================================${neutre}"
 read -p "Faut-il enregistrer l'utilisation d'un proxy ? [O/n] " rep_proxy
+echo -e "${vert}==================================================${neutre}"
 if [ "$rep_proxy" = "O" ] || [ "$rep_proxy" = "o" ] || [ "$rep_proxy" = "" ] ; then
   read -p "Donnez l'adresse ip du proxy ? [$proxy_def_ip] " ip_proxy
   if [ "$ip_proxy" = "" ] ; then
@@ -125,13 +128,15 @@ fi
 ###################################################
 # cron d'extinction automatique a lancer ?
 ###################################################
-
-echo "Pour terminer, voulez vous activer l'extinction automatique des postes le soir ?"
+echo -e "${vert}==================================================${neutre}"
+echo "Voulez vous activer l'extinction automatique des postes le soir ?"
 echo "0 ou aucune valeure saisie = non, pas d'extinction auto le soir" 
 echo "1 = oui, extinction a 19H00"
 echo "2 = oui, extinction a 20H00"
 echo "3 = oui, extinction a 22H00"
+echo -e "${vert}==================================================${neutre}"
 read -p "Répondre par le chiffre correspondant (0,1,2,3) : " rep_proghalt
+
 
 if [ "$rep_proghalt" = "1" ] ; then
         echo "0 19 * * * root /sbin/shutdown -h now" > /etc/cron.d/prog_extinction
@@ -146,10 +151,13 @@ fi
 ###################################################
 # Backportage de LibreOffice ?
 ###################################################
-echo "Souhaitez vous activer le backportage (PPA LO Stable) de LibreOffice ? :"
+echo -e "${vert}==================================================${neutre}"
+echo "Souhaitez-vous activer le backportage (PPA LO Stable) de LibreOffice ? :"
   echo -e "${violet}Si vous ne comprenez pas la question ou si c'est non, laissez le choix par défaut a savoir 'non'${neutre}"
-  read -p "NON (choix par défaut, vous serez alors toujours avec la version 5.1.x) => valider sans rien mettre ou n'importe quelle valeure autre que oui."
-  read -p "OUI (5.1 => 5.2 => 5.3 etc...) => saisir exactement en minuscule : oui" backport_lo
+  echo "NON (choix par défaut / toujours la branche 5.1) => valider sans rien mettre ou n'importe quelle valeure autre que oui."
+  echo "OUI (maj 5.1 => 5.2 => 5.3 etc...) => saisir exactement en minuscule : oui" 
+  echo -e "${vert}==================================================${neutre}"
+  read -p "Votre choix : " backport_lo
 
 ######## Mises a jour du système ########
 apt-get update && apt-get -y dist-upgrade
