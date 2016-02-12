@@ -25,6 +25,18 @@
 # tous les partages (communs, matière etc...) il faut faire cette petite manip sur votre scribe :
 # https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages?ticket=
 
+## declaration couleur ##
+rouge='\e[0;31m'
+rose='\e[1;31m'
+violet='\e[0;35m'
+vert='\e[0;32m'
+orange='\e[0;33m'
+gris='\e[1;30m'
+cyan='\e[0;36m'
+bleu='\e[0;34m'
+jaune='\e[1;33m'
+neutre='\e[0;m'
+
 ###########################################################################
 #Paramétrage par défaut
 #Changez les valeurs, ainsi, il suffira de taper 'entrée' à chaque question
@@ -59,6 +71,7 @@ fi
 # Quelle variante d'Ubuntu est utilisé ?
 ########################################################################
 echo "Quelle variante d'Ubuntu voulez vous intégrer au domaine ? : "
+echo -e "${rouge}ATTENTION : pour certaine variante (notamment Mint et Ubuntu Mate), il est impératif que la case 'client linux' soit coché dans l'EAD du Scribe pour les utilisateurs pour que ça fonctionne${neutre}"
 
 echo "1 = Ubuntu 16.04 Xenial Xerus (UI : Unity 7/8)"
 echo "2 = Xubuntu 16.04 Xenial Xerus (UI : Xfce 4.12)"
