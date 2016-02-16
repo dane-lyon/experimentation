@@ -157,7 +157,7 @@ echo "Souhaitez-vous activer le backportage (PPA LO Stable) de LibreOffice ? :"
   echo "NON (choix par défaut / toujours la branche 5.1) => valider sans rien mettre ou n'importe quelle valeure autre que oui."
   echo "OUI (maj 5.1 => 5.2 => 5.3 etc...) => saisir exactement en minuscule : oui" 
   echo -e "${vert}==================================================${neutre}"
-  read -p "Votre choix : " backport_lo
+  read -p "Votre choix (non/oui) : " backport_lo
 
 ######## Mises a jour du système ########
 apt-get update && apt-get -y dist-upgrade
