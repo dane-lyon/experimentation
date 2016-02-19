@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Script de post installation Ubuntu 14.04 LTS
+# Script de post installation Ubuntu 16.04 LTS
 # Francise par Bristow pour la DANE DE LYON
-# Syntax: # sudo ./ubuntupostinstall-14.04.sh
+# Syntax: # sudo ./ubuntupostinstall-16.04.sh
 #
 # Nicolargo (aka) Nicolas Hennion
 # http://www.nicolargo.com
@@ -11,7 +11,7 @@
 #
 
 """
-Post installation script for Ubuntu 14.04 LTS
+Post installation script for Ubuntu 16.04 LTS
 """
 
 import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
@@ -19,10 +19,10 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.6b"
+_VERSION="2.0a"
 _DEBUG = 1
-_LOG_FILE = "/tmp/ubuntu-14.04-postinstall.log"
-_CONF_FILE = "https://raw.githubusercontent.com/dane-lyon/clients-linux-scribe/master/ubuntu_14.04_postinstall.cfg"
+_LOG_FILE = "/tmp/ubuntu-16.04-postinstall.log"
+_CONF_FILE = "https://raw.githubusercontent.com/dane-lyon/experimentation/master/ubuntu_16.04_postinstall.cfg"
 
 # System commands
 #-----------------------------------------------------------------------------
@@ -80,23 +80,23 @@ def syntax():
 	"""
 	Print the script syntax
 	"""
-	print "Ubuntu 14.04 post installation script version %s" % _VERSION
+	print "Ubuntu 16.04 post installation script version %s" % _VERSION
 	print ""
-	print "Syntax: ubuntu-14.04-postinstall.py [-c cfgfile] [-h] [-v]"
+	print "Syntax: ubuntu-16.04-postinstall.py [-c cfgfile] [-h] [-v]"
 	print "  -c cfgfile: Use the cfgfile instead of the default one"
 	print "  -h        : Print the syntax and exit"
 	print "  -v        : Print the version and exit"
 	print ""
 	print "Exemples:"
 	print ""
-	print " # ubuntu-14.04-postinstall.py"
+	print " # ubuntu-16.04-postinstall.py"
 	print " > Run the script with the default configuration file"
 	print "   %s" % _CONF_FILE
 	print ""
-	print " # ubuntu-14.04-postinstall.py -c ./myconf.cfg"
+	print " # ubuntu-16.04-postinstall.py -c ./myconf.cfg"
 	print " > Run the script with the ./myconf.cfg file"
 	print ""
-	print " # ubuntu-14.04-postinstall.py -c http://mysite.com/myconf.cfg"
+	print " # ubuntu-16.04-postinstall.py -c http://mysite.com/myconf.cfg"
 	print " > Run the script with the http://mysite.com/myconf.cfg configuration file"
 	print ""
 
@@ -247,12 +247,12 @@ def main(argv):
 		
 	# Is it trusty tahr ?
 	_UBUNTU_VERSION = platform.linux_distribution()[2]
-	if (_UBUNTU_VERSION != "trusty"):
-		showexec ("Script seulement pour Ubuntu 14.04", "tpassoustrusty", exitonerror = 1)
+	if (_UBUNTU_VERSION != "xenial"):
+		showexec ("Script seulement pour Ubuntu 16.04", "tpassoustrusty", exitonerror = 1)
 	
 	# Read the configuration file
 	if (config_file == ""):
-		config_file = "/tmp/ubuntu_14.04_postinstall.cfg"
+		config_file = "/tmp/ubuntu_16.04_postinstall.cfg"
 		showexec ("Telechargement du fichier de configuration", "rm -f "+config_file+" ; "+_WGET+" -O "+config_file+" "+config_url)		
 	config = ConfigParser.RawConfigParser()
 	config.read(config_file)
