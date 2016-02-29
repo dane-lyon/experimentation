@@ -5,29 +5,32 @@
 #--- Nouveau script d'intégration d'Ubuntu & Variante 16.04 LTS avec un Scribe 2.3, 2.4 ou 2.5 ---#
 ###################################################################################################
 
-#### Nouveautés depuis la 16.04 (Simon) ####
-# - valeur de vérification 12.04 remplacé par 16.04
+#### Nouveautés depuis la 12.04 (Simon) ####
+# - valeur de vérification 12.04/14.04 remplacé par 16.04
 # - paquet a installer smbfs remplacé par cifs-utils car il a changé de nom (depuis la 14.04)
 # - ajout groupe dialout
 # - ajout fonction pour programmer l'extinction automatique des postes le soir
-# - ajout du paquet ntpdate qui n'est pas forcément présent suivant la variante
-# - section spécifique a Unity qui ne se lance pas avec les autres variantes
+# - jeux intégrés par défaut supprimés
+
+#### Nouveautés depuis la 14.04 (Simon) ####
+# - ajout du paquet ntpdate qui n'est pas forcément présent (dépend des variantes)
+# - section spécifique a Unity uniquement pour Ubuntu
 # - section spécifique a MDM et GDM pour certaine variante
 # - ajout du choix de la variante utilisé basé sur la 16.04 
-# - jeux intégrés par défaut supprimés
 # - possibilité de backportage de LibreOffice si l'utilisateur le souhaite 
 # - couleur dans le shell sur les messages d'avertissement dans le script
+# - pour Mint, le thème du gestionnaire de session MDM est changé pour ne pas avoir l'userlist par défaut
 
 #Christophe Deze - Rectorat de Nantes
 #Cédric Frayssinet - Mission Tice Ac-lyon
 #Xavier GAREL - Mission Tice Ac-lyon
 #Simon BERNARD - Dane Lyon
 
-# version 3.0.1 alpha (avec proxy system)
+# version 3.0.2 (avec proxy system)
 
 # Ce script est compatible avec un Scribe 2.3, 2.4 et 2.5 par contre si vous avez un scribe 2.4/2.5, afin d'avoir
 # tous les partages (communs, matière etc...) il faut faire cette petite manip sur votre scribe :
-# https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages?ticket=
+# https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages
 
 ## declaration couleur ##
 rouge='\e[0;31m'
@@ -67,29 +70,29 @@ fi
 . /etc/lsb-release
 if [ "$DISTRIB_RELEASE" != "16.04" ] && [ "$DISTRIB_RELEASE" != "18" ]
 then
-  echo -e "${rouge}Vous n'êtes pas sous une version compatible avec ce script, il faut utiliser la 16.04 !${neutre}"
+  echo -e "${rouge}Vous n'êtes pas sous une version compatible avec ce script, il faut utiliser la 16.04 ou une variante basé sur la 16.04${neutre}"
   exit
 fi
 
 ########################################################################
 # Quelle variante d'Ubuntu est utilisé ?
 ########################################################################
-echo -e "${rouge}ATTENTION : pour certaine variante (notamment Mint et Ubuntu Mate), il est impératif que la case 'client linux' soit coché dans l'EAD du Scribe pour les utilisateurs pour que ça fonctionne${neutre}"
+echo -e "${rouge}ATTENTION : pour certaine variante, il est impératif que la case 'Activation du shell (gestion de clients Linux)' soit coché dans l'EAD du Scribe pour les utilisateurs pour que ça fonctionne${neutre}"
 echo -e "${vert}==================================================${neutre}"
 echo "Quelle variante d'Ubuntu voulez vous intégrer au domaine ? : "
-echo "1 = Ubuntu 16.04 Xenial Xerus (UI : Unity 7/8)"
-echo "2 = Xubuntu 16.04 Xenial Xerus (UI : Xfce 4.12)"
-echo "3 = Lubuntu 16.04 Xenial Xerus (UI : Lxde 0.8)"
-echo "4 = Ubuntu Mate 16.04 Xenial Xerus (UI : Mate 1.12)"
-echo "5 = Ubuntu Gnome 16.04 Xenial Xerus (UI : Gnome 3.18)"
-echo "(prochainement ici : Linux Mint 18 Sarah)"
+echo "1 = Ubuntu 16.04 (UI : Unity 7 / 8)"
+echo "2 = Xubuntu 16.04 (UI : Xfce 4.12)"
+echo "3 = Lubuntu 16.04 (UI : Lxde 0.8)"
+echo "4 = Ubuntu Mate 16.04 (UI : Mate 1.12)"
+echo "5 = Ubuntu Gnome 16.04 (UI : Gnome 3.18)"
+echo "6 = Linux Mint 18 (UI : Cinnamon 3.0/Mate 1.14)"
 echo -e "${vert}==================================================${neutre}"
 read -p "Répondre par le chiffre correspondant (1,2,3,4,5) : " distrib
 
-while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ] && [ "$distrib" != "5" ]
+while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ] && [ "$distrib" != "5" ] && [ "$distrib" != "6" ]
 do
   echo -e "${rouge}Désolé vous avez saisi un mauvais choix, veuillez recommencer !${neutre}"
-  read -p "Répondre par le chiffre correspondant (1,2,3,4,5) : " distrib
+  read -p "Répondre par le chiffre correspondant (1 a 6) : " distrib
 done
 
 
@@ -179,7 +182,7 @@ if [ "$distrib" = "3" ] ; then  # lubuntu
   apt-get -y purge abiword gnumeric pidgin transmission-gtk
 fi
 
-if [ "$distrib" = "4" ] ; then  # ubuntu mate  #shell linux activé obligatoire !
+if [ "$distrib" = "4" ] ; then  # ubuntu mate  
   apt-get -y install ubuntu-restricted-extras
   apt-get -y purge hexchat transmission-gtk ubuntu-mate-welcome 
 fi
@@ -189,10 +192,12 @@ if [ "$distrib" = "5" ] ; then  # ubuntu gnome
 # TO DO : désactiver userlist de GDM
 fi
 
-#if [ "$distrib" = "x" ] ; then   # plus tard
-#  apt-get -y purge mintwelcome
-#  changer le thème MDM pour ne pas avoir "l'userlist" par défaut
-#fi
+if [ "$distrib" = "6" ] ; then   # mint
+  apt-get -y purge mintwelcome hexchat pidgin transmission-gtk banshee
+  cp /etc/mdm/mdm.conf /etc/mdm/mdm_old.conf
+  echo "[greeter]" >> /etc/mdm/mdm.conf
+  echo "HTMLTheme=MDModern" >> /etc/mdm/mdm.conf
+fi
 
 
 ########################################################################
