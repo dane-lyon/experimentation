@@ -87,7 +87,7 @@ echo "4 = Ubuntu Mate 16.04 (UI : Mate 1.12)"
 echo "5 = Ubuntu Gnome 16.04 (UI : Gnome 3.18)"
 echo "6 = Linux Mint 18 (UI : Cinnamon 3.0/Mate 1.14)"
 echo -e "${vert}==================================================${neutre}"
-read -p "Répondre par le chiffre correspondant (1,2,3,4,5) : " distrib
+read -p "Répondre par le chiffre correspondant (1 a 6) : " distrib
 
 while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ] && [ "$distrib" != "5" ] && [ "$distrib" != "6" ]
 do
@@ -395,7 +395,7 @@ fi
 ########################################################################
 
 #manip effectué pour toutes les variantes sauf Ubuntu Gnome (5) et Mint (X) car ils utilisent GDM ou MDM a la place de LightDM
-if [ "$distrib" != "5" ] && [ "$distrib" != "X" ] ; then 
+if [ "$distrib" != "5" ] && [ "$distrib" != "6" ] ; then 
 
 echo "[SeatDefaults]
     allow-guest=false
