@@ -168,7 +168,7 @@ apt-get update && apt-get -y dist-upgrade
 ## variante ##
 
 if [ "$distrib" = "1" ] ; then  # ubuntu
-  apt-get -y install ubuntu-restricted-extras
+  apt-get -y install ubuntu-restricted-extras unity-tweak-tool nautilus-image-converter nautilus-script-audio-convert
   apt-get -y purge aisleriot gnome-mines gnome-sudoku gnome-mahjongg
 fi
 
