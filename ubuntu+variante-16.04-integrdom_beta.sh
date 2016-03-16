@@ -70,7 +70,7 @@ fi
 . /etc/lsb-release
 if [ "$DISTRIB_RELEASE" != "16.04" ] && [ "$DISTRIB_RELEASE" != "18" ]
 then
-  echo -e "${rouge}Vous n'êtes pas sous une version compatible avec ce script, il faut utiliser la 16.04 ou une variante basé sur la 16.04${neutre}"
+  echo -e "${rouge}Vous n'êtes pas sous une version compatible, il faut utiliser la 16.04 (ou Mint18), si vous utilisez l'ancienne version (14.04), il faut utiliser les anciens scripts ici : lien a mettre${neutre}"
   exit
 fi
 
