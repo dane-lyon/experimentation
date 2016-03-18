@@ -95,6 +95,15 @@ do
   read -p "Répondre par le chiffre correspondant (1 a 6) : " distrib
 done
 
+########################################################################
+# Choix type d'installation du script
+########################################################################
+echo -e "${vert}==================================================${neutre}"
+echo "Installation du script..."
+echo "1 = Basique [choix par défaut]"
+echo "2 = Avancé (des options supplémentaires)"
+echo -e "${vert}==================================================${neutre}"
+read -p "Votre choix (1/2) : " type_install
 
 ##############################################################################
 ### Questionnaire : IP du scribe, proxy firefox, port proxy, exception proxy #
@@ -128,6 +137,7 @@ else
   port_proxy=""
 fi
 
+if [ "$type_install"]
 ###################################################
 # cron d'extinction automatique a lancer ?
 ###################################################
