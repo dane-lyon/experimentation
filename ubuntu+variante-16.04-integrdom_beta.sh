@@ -137,16 +137,17 @@ else
   port_proxy=""
 fi
 
-if [ "$type_install"]
+if [ "$type_install" = "2" ] ; then
+
 ###################################################
 # cron d'extinction automatique a lancer ?
 ###################################################
 echo -e "${vert}==================================================${neutre}"
 echo "Voulez vous activer l'extinction automatique des postes le soir ?"
-echo "0 ou aucune valeure saisie = non, pas d'extinction auto le soir" 
-echo "1 = oui, extinction a 19H00"
-echo "2 = oui, extinction a 20H00"
-echo "3 = oui, extinction a 22H00"
+echo "1 = non [choix par défaut]" 
+echo "2 = oui, extinction a 19H00"
+echo "3 = oui, extinction a 20H00"
+echo "4 = oui, extinction a 22H00"
 echo -e "${vert}==================================================${neutre}"
 read -p "Répondre par le chiffre correspondant (0,1,2,3) : " rep_proghalt
 
@@ -161,16 +162,35 @@ if [ "$rep_proghalt" = "1" ] ; then
              fi
 fi
 
+
 ###################################################
 # Backportage de LibreOffice ?
 ###################################################
 echo -e "${vert}==================================================${neutre}"
-echo "Souhaitez-vous activer le backportage (PPA LO Stable) de LibreOffice ? :"
-  echo -e "${violet}Si vous ne comprenez pas la question ou si c'est non, laissez le choix par défaut a savoir 'non'${neutre}"
-  echo "Non (choix par défaut) => taper 'non' ou rien ou n'importe quelle valeure autre que oui."
-  echo "Oui => saisir en minuscule : oui" 
+echo "Activer le backportage de LibreOffice ? :"
+  echo "1 = non, toujours rester sur la branche 5.1 [choix par défaut]"
+  echo "2 = oui (toujours la dernière version, équivaut a 'libreoffice évolution')" 
   echo -e "${vert}==================================================${neutre}"
   read -p "Votre choix (non/oui) : " backport_lo
+
+
+if [ "$distrib" = "4" ] ; then
+
+###################################################
+# Customisation graphique
+###################################################
+echo -e "${vert}==================================================${neutre}"
+echo "Voulez vous activer la customisation graphique avec Ubuntu Mate ?"
+  echo "1 = non [choix par défaut]"
+  echo "2 = oui style Mac OS X (dock en bas, menu en haut)" 
+  echo "3 = oui style Windows (pas de dock, rien en haut, menu en bas)"
+  echo "4 = oui mode haute performance (moins beau graphiquement)"
+  echo -e "${vert}==================================================${neutre}"
+  read -p "Votre choix (non/oui) : " custom
+  fi
+  
+fi
+
 
 ######## Mises a jour du système ########
 apt-get update && apt-get -y dist-upgrade
