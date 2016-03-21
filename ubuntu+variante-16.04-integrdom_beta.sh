@@ -514,6 +514,23 @@ mv /etc/xdg/autostart/nm-applet.desktop /etc/xdg/autostart/nm-applet.old
 apt-get -y remove indicator-messages 
 
 ########################################################################
+# Customisation graphique (si demandé)
+########################################################################
+# Pour Ubuntu Mate only :
+
+if [ "$custom" = "2" ] && [ "$distrib" = "4" ] ; then
+   touch ~/custom_mate_cupertino.txt
+fi
+
+if [ "$custom" = "3" ] && [ "$distrib" = "4" ] ; then
+   touch ~/custom_mate_win.txt
+fi
+
+if [ "$custom" = "4" ] && [ "$distrib" = "4" ] ; then
+   touch ~/custom_mate_perf.txt
+fi
+
+########################################################################
 #nettoyage station avant clonage
 ########################################################################
 apt-get -y autoremove --purge
