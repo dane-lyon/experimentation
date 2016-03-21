@@ -87,23 +87,23 @@ echo "4 = Ubuntu Mate 16.04 (UI : Mate 1.12)"
 echo "5 = Ubuntu Gnome 16.04 (UI : Gnome 3.18)"
 echo "6 = Linux Mint 18 (UI : Cinnamon 3.0/Mate 1.14)"
 echo -e "${vert}==================================================${neutre}"
-read -p "Répondre par le chiffre correspondant (1 a 6) : " distrib
+read -p "Répondre par le chiffre correspondant [1/2/3/4/5/6] : " distrib
 
 while [ "$distrib" != "1" ] && [ "$distrib" != "2" ] && [ "$distrib" != "3" ] && [ "$distrib" != "4" ] && [ "$distrib" != "5" ] && [ "$distrib" != "6" ]
 do
   echo -e "${rouge}Désolé vous avez saisi un mauvais choix, veuillez recommencer !${neutre}"
-  read -p "Répondre par le chiffre correspondant (1 a 6) : " distrib
+  read -p "Répondre par le chiffre correspondant [1/2/3/4/5/6] : " distrib
 done
 
 ########################################################################
 # Choix type d'installation du script
 ########################################################################
 echo -e "${vert}==================================================${neutre}"
-echo "Installation du script..."
+echo "Installation du script :"
 echo "1 = Basique [choix par défaut]"
-echo "2 = Avancé (des options supplémentaires)"
+echo "2 = Avancé (des options supplémentaires proposés)"
 echo -e "${vert}==================================================${neutre}"
-read -p "Votre choix (1/2) : " type_install
+read -p "Votre choix [1/2] : " type_install
 
 ##############################################################################
 ### Questionnaire : IP du scribe, proxy firefox, port proxy, exception proxy #
@@ -149,7 +149,7 @@ echo "2 = oui, extinction a 19H00"
 echo "3 = oui, extinction a 20H00"
 echo "4 = oui, extinction a 22H00"
 echo -e "${vert}==================================================${neutre}"
-read -p "Répondre par le chiffre correspondant (0,1,2,3) : " rep_proghalt
+read -p "Répondre par le chiffre correspondant [1/2/3/4] : " rep_proghalt
 
 
 if [ "$rep_proghalt" = "1" ] ; then
@@ -168,29 +168,37 @@ fi
 ###################################################
 echo -e "${vert}==================================================${neutre}"
 echo "Activer le backportage de LibreOffice ? :"
-  echo "1 = non, toujours rester sur la branche 5.1 [choix par défaut]"
-  echo "2 = oui (toujours la dernière version, équivaut a 'libreoffice évolution')" 
+  echo "1 = non, toujours rester sur la branche 5.1 (+maj de sécurité) [choix par défaut]"
+  echo "2 = oui, toujours recevoir la dernière version (équivaut a 'libreoffice evolution')" 
   echo -e "${vert}==================================================${neutre}"
-  read -p "Votre choix (non/oui) : " backport_lo
-
-
+  read -p "Votre choix [1/2] : " backport_lo
+  
+###################################################
+# Les profs peuvent sudo ?
+###################################################
+echo -e "${vert}==================================================${neutre}"
+echo "Voulez vous que l'ensemble des professeurs puissent effectuer des tâches d'administrateur (sudo) ?"
+  echo "1 = oui, les profs peuvent sudo [choix par défaut]"
+  echo "2 = non, seul l'admin local + l'admin du domaine peux sudo" 
+  echo -e "${vert}==================================================${neutre}"
+  read -p "Votre choix [1/2] : " prof_sudo
+  
 if [ "$distrib" = "4" ] ; then
 
 ###################################################
 # Customisation graphique
 ###################################################
 echo -e "${vert}==================================================${neutre}"
-echo "Voulez vous activer la customisation graphique avec Ubuntu Mate ?"
+echo "Voulez vous activer la customisation graphique pour Ubuntu Mate ?"
   echo "1 = non [choix par défaut]"
   echo "2 = oui style Mac OS X (dock en bas, menu en haut)" 
   echo "3 = oui style Windows (pas de dock, rien en haut, menu en bas)"
-  echo "4 = oui mode haute performance (moins beau graphiquement)"
+  echo "4 = oui mode haute performance (moins esthétique)"
   echo -e "${vert}==================================================${neutre}"
-  read -p "Votre choix (non/oui) : " custom
+  read -p "Saisir le chiffre correspondant a votre choix [1/2/3/4] : " custom
   fi
   
 fi
-
 
 ######## Mises a jour du système ########
 apt-get update && apt-get -y dist-upgrade
@@ -409,6 +417,8 @@ sed -i "s/enabled=True/enabled=False/g" /etc/xdg/user-dirs.conf
 ########################################################################
 # les profs peuvent sudo
 ########################################################################
+if [ "$prof_sudo" = "1" ] || [ "$type_install" = "1" ] ; then
+
 grep "%professeurs ALL=(ALL) ALL" /etc/sudoers > /dev/null
 if [ $?!=0 ]
 then
@@ -418,6 +428,7 @@ else
   echo "prof deja dans sudo"
 fi
 
+fi
 
 ########################################################################
 #parametrage du lightdm.conf (sauf pour Mint car n'utilise pas LigthDM)
