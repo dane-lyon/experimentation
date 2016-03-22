@@ -19,10 +19,10 @@ apt-get update ; apt-get -y dist-upgrade
 # trouver solution pour les paquets pour pas demander confirmation :
 
 # Police d'écriture de Microsoft
-apt-get -y install ttf-mscorefonts-installer
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | /usr/bin/debconf-set-selections | apt-get -y install ttf-mscorefonts-installer
 
 # Oracle Java 8
-add-apt-repository -y ppa:webupd8team/java ; apt-get update ; apt-get -y install oracle-java8-installer
+add-apt-repository -y ppa:webupd8team/java ; apt-get update ; echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections | apt-get -y install oracle-java8-installer
 
 #[ Bureautique ]
 
