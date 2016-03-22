@@ -30,20 +30,20 @@ add-apt-repository -y ppa:webupd8team/java ; apt-get update ; apt-get -y install
 add-apt-repository -y ppa:libreoffice/ppa ; apt-get update ; apt-get -y upgrade
 apt-get -y install libreoffice libreoffice-l10n-fr libreoffice-help-fr 
 
-apt-get -y install freeplane scribus gnote
+apt-get -y install freeplane scribus gnote xournal cups-pdf
 
 #[ Web ]
 apt-get -y install firefox chromium-browser flashplugin-downloader pepperflashplugin-nonfree
 
 #[ Video / Audio ]
-apt-get -y install imagination openshot audacity vlc x264 ffmpeg2theora flac vorbis-tools lame oggvideotools mplayer ogmrip
+apt-get -y install imagination openshot audacity vlc x264 ffmpeg2theora flac vorbis-tools lame oggvideotools mplayer ogmrip gstreamer0.10-plugins-ugly goobox
 # Sur 16.04 : ajouter x265
 
 #[ Graphisme / Photo ]
 apt-get -y install blender gimp pinta inkscape gthumb mypaint hugin shutter
 
 #[ Systeme ]
-apt-get -y install gparted vim pyrenamer rar unrar htop diodon
+apt-get -y install gparted vim pyrenamer rar unrar htop diodon p7zip-full
 
 #[ Mathematiques ]
 apt-get -y install geogebra algobox carmetal scilab
