@@ -3,10 +3,10 @@ Ajout des paquets suivants :
 
 [FAIT] xournal
 [FAIT] p7zip-full
-geany
-gstreamer0.10-plugins-ugly
-goobox
-cups-pdf
+[DEJA PRESENT] geany
+[FAIT] gstreamer0.10-plugins-ugly
+[FAIT] goobox
+[FAIT] cups-pdf
 
 
 
