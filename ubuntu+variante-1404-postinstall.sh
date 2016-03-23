@@ -9,6 +9,7 @@ then
   exit 
 fi 
 
+
 # Vérification que le système est a jour
 apt-get update ; apt-get -y dist-upgrade
 
@@ -67,26 +68,21 @@ apt-get -y install scratch idle-python3.4 ghex geany imagemagick
 # Icone Numis supplémentaire
 add-apt-repository -y ppa:numix/ppa ; apt-get --force-yes install -y numix-icon-theme-circle
 
-
-
-
 ################################
 # Concerne Ubuntu / Unity
 ################################
-
-#si variante = ubu alors :
+if [ "$(which unity)" = "/usr/bin/unity" ] ; then  # si Ubuntu/Unity alors :
 
 #[ Paquet AddOns ]
 apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons unity-tweak-tool
 apt-get y install nautilus-image-converter nautilus-script-audio-convert
 
-
+fi
 
 ################################
 # Concerne Xubuntu / XFCE
 ################################
-
-#si variante = xub alors :
+if [ "$(which xfwm4)" = "/usr/bin/xfwm4" ] && [ "$(which lightdm)" = "/usr/sbin/lightdm" ] ; then # si Xubuntu/Xfce alors :
 
 #[ Paquet AddOns ]
 apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes
@@ -95,3 +91,8 @@ apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goo
 
 add-apt-repository -y ppa:docky-core/stable ; apt-get update ; apt-get -y install plank
 wget http://dane.ac-lyon.fr/spip/IMG/tar/skel.tar ; tar xvf skel.tar -C / ; rm -rf skel.tar
+
+fi
+
+
+exit
