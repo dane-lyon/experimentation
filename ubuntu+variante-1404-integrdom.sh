@@ -1,29 +1,35 @@
 #!/bin/bash
 
-###### Intégration client scribe 2.3/2.4 pour Ubuntu 14.04 LTS ###### 
+# Validé & testé pour les variantes suivantes :
+# Ubuntu 14.04, Xubuntu 14.04, Lubuntu 14.04, Linux Mint 17.X
+
+###### Intégration client scribe 2.3/2.4/2.5 pour Ubuntu 14.04.X/Mint 17.X ###### 
+#(Pour la version 16.04/Mint 18, il faudra utiliser la nouvelle version du script)
+
+# IMPORTANT : ce script ne sert qu'a "l'intégration", si vous voulez des logiciels supplémentaires, retirer ceux inutiles, 
+#avoir une customisation graphique etc..., il faut dans ce cas utiliser le 2e script facultatif "ubuntu+variante-1404-postinstall"
+
+### ATTENTION, SI VOUS AVEZ UN SCRIBE 2.4 OU 2.5 VEUILLEZ LIRE CECI ###
+# Ce script est compatible avec un Scribe 2.3, 2.4, 2.5 par contre si vous avez un scribe 2.4 ou 2.5, afin d'avoir
+# tous les partages (communs, groupes etc...) il faut faire la manip suivante 1 fois sur votre scribe (paragraphe "Client Linux : avoir les partages sous Scribe 2.4/2.5") :
+# https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages
 
 #### changement apporté pour la version 14.04 (simon) ####
 # - valeur de vérification 12.04 remplacé par 14.04
 # - paquet a installer smbfs remplacé par cifs-utils car il a changé de nom.
 # - ajout groupe dialout
+# - désinstallation de certains logiciels inutiles suivant les variantes
 # - ajout fonction pour programmer l'extinction automatique des postes le soir
 # - lecture dvd
+# - changement thème MDM pour Mint (pour ne pas voir l'userlist)
 
 #Christophe Deze - Rectorat de Nantes
 #Cédric Frayssinet - Mission Tice Ac-lyon
 #Xavier GAREL - Mission Tice Ac-lyon
 #Simon BERNARD - Dane Lyon
 
-#############################################
-#Script d'integration de station ubuntu 14.04 sur un scribe 2.3/2.4/2.5
-#testé avec Scribe 2.3
-#############################################
-# version 1.1 (avec proxy system)
 
-# Ce script est compatible avec un Scribe 2.3, 2.4 et 2.5 par contre si vous avez un scribe 2.4, afin d'avoir
-# tous les partages (communs, matière etc...) il faut faire cette petite manip sur votre scribe :
-# https://raw.githubusercontent.com/sibe39/divers/master/scribe24_avoir_les_partages
-
+# version 2.1 (avec proxy system)
 ###########################################################################
 #Paramétrage par défaut
 #Changez les valeurs, ainsi, il suffira de taper 'entrée' à chaque question
@@ -48,9 +54,9 @@ fi
 #vérification de la bonne version d'Ubuntu
 ########################################################################
 . /etc/lsb-release
-if [ "$DISTRIB_RELEASE" != "14.04" ]
+if [ "$DISTRIB_RELEASE" != "14.04" ] && [ "$DISTRIB_RELEASE" != "17" ] && [ "$DISTRIB_RELEASE" != "17.1" ] && [ "$DISTRIB_RELEASE" != "17.2" ] && [ "$DISTRIB_RELEASE" != "17.3" ]
 then
-  echo " pas ubuntu 14.04"
+  echo "Vous n'êtes pas sûr une version compatible, rappel des versions supportés pour ce script : Ubuntu & Variante 14.04, Linux Mint 17.X"
   exit
 fi
 
@@ -87,7 +93,7 @@ fi
 ###################################################
 
 echo "Pour terminer, voulez vous activer l'extinction automatique des postes le soir ?"
-echo "0 ou aucune valeure saisie = non, pas d'extinction auto le soir"
+echo "0 = non, pas d'extinction automatique le soir"
 echo "1 = oui, extinction a 19H00"
 echo "2 = oui, extinction a 20H00"
 echo "3 = oui, extinction a 22H00"
@@ -109,9 +115,53 @@ fi
 export DEBIAN_FRONTEND="noninteractive"
 export DEBIAN_PRIORITY="critical"
 
+#######################################################
+#Paramétrage des paramètres Proxy pour tout le système
+#######################################################
+if  [ "$ip_proxy" != "" ] || [ $port_proxy != "" ] ; then
+
+  echo "Paramétrage du proxy $ip_proxy:$port_proxy" 
+
+#Paramétrage des paramètres Proxy pour Gnome
+#######################################################
+  echo "[org.gnome.system.proxy]
+mode='manual'
+use-same-proxy=true
+ignore-hosts=$proxy_gnome_noproxy
+[org.gnome.system.proxy.http]
+host='$ip_proxy'
+port=$port_proxy
+[org.gnome.system.proxy.https]
+host='$ip_proxy'
+port=$port_proxy
+" >> /usr/share/glib-2.0/schemas/my-defaults.gschema.override
+
+  glib-compile-schemas /usr/share/glib-2.0/schemas
+
+#Paramétrage du Proxy pour le systeme
+######################################################################
+echo "http_proxy=http://$ip_proxy:$port_proxy/
+https_proxy=http://$ip_proxy:$port_proxy/
+ftp_proxy=http://$ip_proxy:$port_proxy/
+no_proxy=\"$proxy_env_noproxy\"" >> /etc/environment
+
+#Paramétrage du Proxy pour apt
+######################################################################
+echo "Acquire::http::proxy \"http://$ip_proxy:$port_proxy/\";
+Acquire::ftp::proxy \"ftp://$ip_proxy:$port_proxy/\";
+Acquire::https::proxy \"https://$ip_proxy:$port_proxy/\";" > /etc/apt/apt.conf.d/20proxy
+
+#Permettre d'utiliser la commande add-apt-repository derriere un Proxy
+######################################################################
+echo "Defaults env_keep = https_proxy" >> /etc/sudoers
+
+fi
+
+
 ########################################################################
 #Mettre la station à l'heure à partir du serveur Scribe
 ########################################################################
+apt-get -y install ntpdate ;
 ntpdate $ip_scribe
 
 ########################################################################
@@ -198,8 +248,10 @@ export DEBIAN_FRONTEND="dialog"
 export DEBIAN_PRIORITY="high"
 
 ########################################################################
-#parametrage du script de demontage du netlogon pour lightdm
+#parametrage du script de demontage du netlogon pour lightdm # désactivé pour Mint
 ########################################################################
+if [ "$DISTRIB_RELEASE" = "14.04" ] ; then 
+
 touch /etc/lightdm/logonscript.sh
 grep "if mount | grep -q \"/tmp/netlogon\" ; then umount /tmp/netlogon ;fi" /etc/lightdm/logonscript.sh  >/dev/null
 if [ $? == 0 ]
@@ -216,8 +268,41 @@ umount -f /tmp/netlogon \
 umount -f \$HOME
 " > /etc/lightdm/logoffscript.sh
 chmod +x /etc/lightdm/logoffscript.sh
+######
+touch ~/controle_ligne271_lightdm_pas-sous-mint.txt
+######
+
+########################################################################
+#parametrage du lightdm.conf
+#activation du pave numerique par greeter-setup-script=/usr/bin/numlockx on
+########################################################################
+echo "[SeatDefaults]
+    allow-guest=false
+    greeter-show-manual-login=true
+    greeter-hide-users=true
+    session-setup-script=/etc/lightdm/logonscript.sh
+    session-cleanup-script=/etc/lightdm/logoffscript.sh
+    greeter-setup-script=/usr/bin/numlockx on" > /usr/share/lightdm/lightdm.conf.d/50-no-guest.conf
+######
+touch ~/controle_ligne287_lightdm_pas-sous-mint.txt
+######    
+
+fi
 
 # echo "GVFS_DISABLE_FUSE=1" >> /etc/environment
+
+########################################################################
+# Modification Gestionnaire de session MDM Linux Mint
+########################################################################
+if [ "$DISTRIB_RELEASE" != "14.04" ] ; then 
+  apt-get -y purge mintwelcome hexchat pidgin transmission-gtk banshee
+  cp /etc/mdm/mdm.conf /etc/mdm/mdm_old.conf
+  echo "[greeter]" >> /etc/mdm/mdm.conf
+  echo "HTMLTheme=MDModern" >> /etc/mdm/mdm.conf
+  ######
+touch ~/controle_ligne303_mdm_vsetesousMint.txt
+######
+fi
 
 ########################################################################
 #Paramétrage pour remplir pam_mount.conf
@@ -283,22 +368,14 @@ else
   echo "prof deja dans sudo"
 fi
 
-########################################################################
-#parametrage du lightdm.conf
-#activation du pave numerique par greeter-setup-script=/usr/bin/numlockx on
-########################################################################
-echo "[SeatDefaults]
-    allow-guest=false
-    greeter-show-manual-login=true
-    greeter-hide-users=true
-    session-setup-script=/etc/lightdm/logonscript.sh
-    session-cleanup-script=/etc/lightdm/logoffscript.sh
-    greeter-setup-script=/usr/bin/numlockx on" > /usr/share/lightdm/lightdm.conf.d/50-no-guest.conf
+
 
 ########################################################################
-#supression de l'applet switch-user pour ne pas voir les derniers connectés
+#supression de l'applet switch-user pour ne pas voir les derniers connectés # Uniquement pour Ubuntu / Unity
 #paramétrage d'un laucher unity par défaut : nautilus, firefox, libreoffice, calculatrice, editeur de texte et capture d'ecran
 ########################################################################
+if [ "$(which unity)" = "/usr/bin/unity" ] ; then  # si Ubuntu/Unity alors :
+
 echo "[com.canonical.indicator.session]
 user-show-menu=false
 [org.gnome.desktop.lockdown]
@@ -308,47 +385,20 @@ disable-lock-screen=true
 favorites=[ 'nautilus-home.desktop', 'firefox.desktop','libreoffice-startcenter.desktop', 'gcalctool.desktop','gedit.desktop','gnome-screenshot.desktop' ]
 " > /usr/share/glib-2.0/schemas/my-defaults.gschema.override
 
-#######################################################
-#Paramétrage des paramètres Proxy pour tout le système
-#######################################################
-if  [ "$ip_proxy" != "" ] || [ $port_proxy != "" ] ; then
 
-  echo "Paramétrage du proxy $ip_proxy:$port_proxy" 
-
-#Paramétrage des paramètres Proxy pour Gnome
-#######################################################
-  echo "[org.gnome.system.proxy]
-mode='manual'
-use-same-proxy=true
-ignore-hosts=$proxy_gnome_noproxy
-[org.gnome.system.proxy.http]
-host='$ip_proxy'
-port=$port_proxy
-[org.gnome.system.proxy.https]
-host='$ip_proxy'
-port=$port_proxy
-" >> /usr/share/glib-2.0/schemas/my-defaults.gschema.override
-
-  glib-compile-schemas /usr/share/glib-2.0/schemas
-
-#Paramétrage du Proxy pour le systeme
-######################################################################
-echo "http_proxy=http://$ip_proxy:$port_proxy/
-https_proxy=http://$ip_proxy:$port_proxy/
-ftp_proxy=http://$ip_proxy:$port_proxy/
-no_proxy=\"$proxy_env_noproxy\"" >> /etc/environment
-
-#Paramétrage du Proxy pour apt
-######################################################################
-echo "Acquire::http::proxy \"http://$ip_proxy:$port_proxy/\";
-Acquire::ftp::proxy \"ftp://$ip_proxy:$port_proxy/\";
-Acquire::https::proxy \"https://$ip_proxy:$port_proxy/\";" > /etc/apt/apt.conf.d/20proxy
-
-#Permettre d'utiliser la commande add-apt-repository derriere un Proxy
-######################################################################
-echo "Defaults env_keep = https_proxy" >> /etc/sudoers
-
+# Suppression de paquet inutile sous Ubuntu
+apt-get -y purge aisleriot gnome-mines gnome-sudoku gnome-mahjongg
+######
+touch ~/controle_ligne392_vsetes_sous_unity.txt
+######
 fi
+
+# Pour être sûr que LibreOffice & Firefox sont bien installés (pas forcément le cas suivant les variantes) :
+apt-get -y install libreoffice libreoffice-gtk libreoffice-l10n-fr firefox
+
+# Pour être sûr que les paquets suivant (parfois présent) ne sont pas installés :
+apt-get -y purge pidgin transmission-gtk gnome-mines gnome-sudoku blueman abiword gnumeric
+
 
 ########################################################################
 #suppression de l'envoi des rapport d'erreurs
@@ -365,8 +415,6 @@ mv /etc/xdg/autostart/nm-applet.desktop /etc/xdg/autostart/nm-applet.old
 ########################################################################
 apt-get remove indicator-messages -y
 
-# Applications inutiles
-apt-get -y purge aisleriot gnome-mines gnome-sudoku gnome-mahjongg
 
 ########################################################################
 #TO DO : suppression du panel de clavier
@@ -379,8 +427,8 @@ bash /usr/share/doc/libdvdread4/install-css.sh
 ########################################################################
 #nettoyage station avant clonage
 ########################################################################
-apt-get -y autoclean
 apt-get -y autoremove --purge
+apt-get -y clean
 
 ########################################################################
 #FIN
