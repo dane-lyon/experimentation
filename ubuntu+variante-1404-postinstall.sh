@@ -9,6 +9,7 @@ then
   exit 
 fi 
 
+. /etc/lsb-release
 
 # Vérification que le système est a jour
 apt-get update ; apt-get -y dist-upgrade
@@ -82,7 +83,7 @@ fi
 ################################
 # Concerne Xubuntu / XFCE
 ################################
-if [ "$(which xfwm4)" = "/usr/bin/xfwm4" ] && [ "$(which lightdm)" = "/usr/sbin/lightdm" ] ; then # si Xubuntu/Xfce alors :
+if [ "$(which xfwm4)" = "/usr/bin/xfwm4" ] && [ "$DISTRIB_RELEASE" = "14.04" ] ; then # si Xubuntu/Xfce alors :
 
 #[ Paquet AddOns ]
 apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes
