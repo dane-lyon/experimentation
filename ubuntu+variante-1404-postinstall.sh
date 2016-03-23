@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Variantes validés :
+# Ubuntu, Xubuntu, Lubuntu, Linux Mint
+
 #############################################
 # Run using sudo, of course.
 #############################################
