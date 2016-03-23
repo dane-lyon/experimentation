@@ -60,6 +60,8 @@ apt-get -y install stellarium celestia avogadro
 # Pour Google Earth :
 apt-get -y install libfontconfig1:i386 libx11-6:i386 libxrender1:i386 libxext6:i386 libgl1-mesa-glx:i386 libglu1-mesa:i386 libglib2.0-0:i386 libsm6:i386
 wget https://dl.google.com/dl/earth/client/current/google-earth-stable_current_i386.deb ; dpkg -i google-earth-stable_current_i386.deb ; apt-get -fy install ; rm -f google-earth-stable_current_i386.deb 
+#### controle ####
+touch ~/postinstall_toutelesvariantes.txt
 
 #[ Programmation ]
 apt-get -y install scratch idle-python3.4 ghex geany imagemagick
@@ -81,7 +83,8 @@ if [ "$(which unity)" = "/usr/bin/unity" ] ; then  # si Ubuntu/Unity alors :
 #[ Paquet AddOns ]
 apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons unity-tweak-tool
 apt-get y install nautilus-image-converter nautilus-script-audio-convert
-touch ~/c_bien_unity.txt
+#### controle ####
+touch ~/postinstall_uniquementUnity.txt
 
 fi
 
@@ -98,6 +101,9 @@ touch ~/c_bien_xfce.txt
 
 add-apt-repository -y ppa:docky-core/stable ; apt-get update ; apt-get -y install plank
 wget http://dane.ac-lyon.fr/spip/IMG/tar/skel.tar ; tar xvf skel.tar -C / ; rm -rf skel.tar
+
+#### controle ####
+touch ~/postinstall_uniquementXubuntu.txt
 
 fi
 
