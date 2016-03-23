@@ -68,6 +68,7 @@ apt-get -y install scratch idle-python3.4 ghex geany imagemagick
 #[ AddOns ]
 # Icone Numis supplémentaire
 add-apt-repository -y ppa:numix/ppa ; apt-get --force-yes install -y numix-icon-theme-circle
+touch ~/c_nimporte_quel_variante.txt
 
 ################################
 # Concerne Ubuntu / Unity
@@ -77,6 +78,7 @@ if [ "$(which unity)" = "/usr/bin/unity" ] ; then  # si Ubuntu/Unity alors :
 #[ Paquet AddOns ]
 apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons unity-tweak-tool
 apt-get y install nautilus-image-converter nautilus-script-audio-convert
+touch ~/c_bien_unity.txt
 
 fi
 
@@ -87,6 +89,7 @@ if [ "$(which xfwm4)" = "/usr/bin/xfwm4" ] && [ "$DISTRIB_RELEASE" = "14.04" ] ;
 
 #[ Paquet AddOns ]
 apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes
+touch ~/c_bien_xfce.txt
 
 # Customisation XFCE
 
