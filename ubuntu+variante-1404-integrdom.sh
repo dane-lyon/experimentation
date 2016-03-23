@@ -118,7 +118,7 @@ export DEBIAN_PRIORITY="critical"
 #######################################################
 #Paramétrage des paramètres Proxy pour tout le système
 #######################################################
-if [ "$ip_proxy" != "" ] || [ $port_proxy != "" ] ; then
+if [ "$ip_proxy" -ne "" ] || [ $port_proxy -ne "" ] ; then # != retiré pour test
 
   echo "Paramétrage du proxy $ip_proxy:$port_proxy" 
 
