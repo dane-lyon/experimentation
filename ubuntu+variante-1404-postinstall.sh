@@ -82,7 +82,7 @@ if [ "$(which unity)" = "/usr/bin/unity" ] ; then  # si Ubuntu/Unity alors :
 
 #[ Paquet AddOns ]
 apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons unity-tweak-tool
-apt-get y install nautilus-image-converter nautilus-script-audio-convert
+apt-get -y install nautilus-image-converter nautilus-script-audio-convert
 #### controle ####
 touch ~/postinstall_uniquementUnity.txt
 
