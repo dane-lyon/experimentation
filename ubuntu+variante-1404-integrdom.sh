@@ -297,8 +297,7 @@ fi
 if [ "$(which mdm)" = "/usr/sbin/mdm" ] ; then # si MDM est installé (donc Mint)
   apt-get -y purge mintwelcome hexchat pidgin transmission-gtk banshee
   cp /etc/mdm/mdm.conf /etc/mdm/mdm_old.conf
-  echo "[greeter]" >> /etc/mdm/mdm.conf
-  echo "HTMLTheme=MDModern" >> /etc/mdm/mdm.conf
+  wget http://nux87.free.fr/ubuntu-script-dane/mint-integrdom/mdm.conf ; mv mdm.conf /etc/mdm/
   ######
 touch ~/controle_ligne303_mdm_vsetesousMint.txt
 ######
