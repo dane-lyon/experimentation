@@ -70,10 +70,6 @@ apt-get -y install scratch idle-python3.4 ghex geany imagemagick
 #[ Serveur ]
 #apt-get -y install openssh-server
 
-#[ AddOns ]
-# Icone Numis supplémentaire
-add-apt-repository -y ppa:numix/ppa ; apt-get --force-yes install -y numix-icon-theme-circle
-touch ~/c_nimporte_quel_variante.txt
 
 ################################
 # Concerne Ubuntu / Unity
@@ -83,8 +79,9 @@ if [ "$(which unity)" = "/usr/bin/unity" ] ; then  # si Ubuntu/Unity alors :
 #[ Paquet AddOns ]
 apt-get -y install ubuntu-restricted-extras ubuntu-restricted-addons unity-tweak-tool
 apt-get -y install nautilus-image-converter nautilus-script-audio-convert
-#### controle ####
-touch ~/postinstall_uniquementUnity.txt
+
+# Icone Numis supplémentaire
+add-apt-repository -y ppa:numix/ppa ; apt-get --force-yes install -y numix-icon-theme-circle
 
 fi
 
