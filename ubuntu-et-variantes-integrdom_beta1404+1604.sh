@@ -257,7 +257,7 @@ export DEBIAN_PRIORITY="high"
 ########################################################################
 #parametrage du script de demontage du netlogon pour lightdm # désactivé pour Mint
 ########################################################################
-if [ "$DISTRIB_RELEASE" = "14.04" ] ; then 
+if [ "$DISTRIB_RELEASE" = "14.04" ] || [ "$DISTRIB_RELEASE" = "16.04" ] ; then 
 
 touch /etc/lightdm/logonscript.sh
 grep "if mount | grep -q \"/tmp/netlogon\" ; then umount /tmp/netlogon ;fi" /etc/lightdm/logonscript.sh  >/dev/null
@@ -301,7 +301,7 @@ if [ "$(which mdm)" = "/usr/sbin/mdm" ] ; then # si MDM est installé (donc Mint
 fi
 
 # Spécifique a Ubuntu Mate
-if [ "$(which mate-desktop-environment)" = "/usr/sbin/mdm" ] ; then
+if [ "$(which caja)" = "/usr/bin/caja" ] ; then
   apt-get -y purge hexchat transmission-gtk ubuntu-mate-welcome ;
 fi
 
