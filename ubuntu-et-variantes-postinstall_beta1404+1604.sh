@@ -57,7 +57,7 @@ Fin
 Si distrib = 16.04 ou 18 ; alors
 
 # paquet
-apt-get -y install idle-python3.5
+apt-get -y install idle-python3.5 x265
 
 # google earth install specifique a 16.04 ici
 
