@@ -21,15 +21,20 @@ apt-get update ; apt-get -y dist-upgrade
 # Concerne toutes les variantes
 ################################
 
-# trouver solution pour les paquets pour pas demander confirmation :
-
 # Police d'écriture de Microsoft
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | /usr/bin/debconf-set-selections | apt-get -y install ttf-mscorefonts-installer
 
 # Oracle Java 8
 add-apt-repository -y ppa:webupd8team/java ; apt-get update ; echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections | apt-get -y install oracle-java8-installer
 
-#[ Bureautique ]
+
+#########################################
+# Paquet uniquement pour la 14.04 / 17.3
+#########################################
+Si distrib = 14.04 ou 17.3 ; alors
+
+# paquet
+apt-get -y install idle-python3.4
 
 # LibreOffice toujours en dernière version (PPA)
 #add-apt-repository -y ppa:libreoffice/ppa ; apt-get update ; apt-get -y upgrade
@@ -40,6 +45,30 @@ wget --no-check-certificate https://raw.githubusercontent.com/dane-lyon/fichier-
 mv libreoffice-ppa.list /etc/apt/sources.list.d/ ;
 apt-get update ; apt-get -y --force-yes upgrade ; apt-get -y --force-yes install libreoffice libreoffice-gtk libreoffice-l10n-fr ;
 
+# Pour Google Earth :
+apt-get -y install libfontconfig1:i386 libx11-6:i386 libxrender1:i386 libxext6:i386 libgl1-mesa-glx:i386 libglu1-mesa:i386 libglib2.0-0:i386 libsm6:i386
+wget https://dl.google.com/dl/earth/client/current/google-earth-stable_current_i386.deb ; dpkg -i google-earth-stable_current_i386.deb ; apt-get -fy install ; rm -f google-earth-stable_current_i386.deb 
+
+Fin
+
+#########################################
+# Paquet uniquement pour la 16.04 / 18
+#########################################
+Si distrib = 16.04 ou 18 ; alors
+
+# paquet
+apt-get -y install idle-python3.5
+
+# google earth install specifique a 16.04 ici
+
+
+
+Fin
+
+#=======================================================================#
+# Installation quelque soit la variante et la version 
+
+#[ Bureautique ]
 apt-get -y install freeplane scribus gnote xournal cups-pdf
 
 #[ Web ]
@@ -61,12 +90,8 @@ apt-get -y install geogebra algobox carmetal scilab
 #[ Sciences ]
 apt-get -y install stellarium celestia avogadro
 
-# Pour Google Earth :
-apt-get -y install libfontconfig1:i386 libx11-6:i386 libxrender1:i386 libxext6:i386 libgl1-mesa-glx:i386 libglu1-mesa:i386 libglib2.0-0:i386 libsm6:i386
-wget https://dl.google.com/dl/earth/client/current/google-earth-stable_current_i386.deb ; dpkg -i google-earth-stable_current_i386.deb ; apt-get -fy install ; rm -f google-earth-stable_current_i386.deb 
-
 #[ Programmation ]
-apt-get -y install scratch idle-python3.4 ghex geany imagemagick
+apt-get -y install scratch ghex geany imagemagick
 # sur 16.04 : idle-python en version supérieur
 
 #[ Serveur ]
