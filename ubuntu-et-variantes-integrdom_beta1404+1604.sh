@@ -1,7 +1,15 @@
 #!/bin/bash
 
 # Validé & testé pour les variantes suivantes :
-# Ubuntu 14.04, Xubuntu 14.04, Lubuntu 14.04, Linux Mint 17.X
+# - Ubuntu 14.04 /Unity
+# - Ubuntu 16.04 /Unity
+# - Xubuntu 14.04 /XFCE
+# - Xubuntu 16.04 /XFCE
+# - Lubuntu 14.04 /LXDE
+# - Lubuntu 16.04 /LXDE
+# - Ubuntu Mate 16.04 /Mate
+# - Linux Mint 17.3/Cinnamon & Mate 
+# - Linux Mint 18/Cinnamon & Mate (sort en Juin)
 
 ###### Intégration client scribe 2.3/2.4/2.5 pour Ubuntu 14.04.X/Mint 17.X ###### 
 
@@ -14,7 +22,7 @@
 # https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages
 
 #### changement apporté pour la version 14.04 (simon) ####
-# - valeur de vérification 12.04 remplacé par 14.04
+# - valeur de vérification 12.04 remplacé par 14.04 ainsi que 16.04 et pour Mint
 # - paquet a installer smbfs remplacé par cifs-utils car il a changé de nom.
 # - ajout groupe dialout
 # - désinstallation de certains logiciels inutiles suivant les variantes
@@ -53,9 +61,9 @@ fi
 #vérification de la bonne version d'Ubuntu
 ########################################################################
 . /etc/lsb-release
-if [ "$DISTRIB_RELEASE" != "14.04" ] && [ "$DISTRIB_RELEASE" != "17" ] && [ "$DISTRIB_RELEASE" != "17.1" ] && [ "$DISTRIB_RELEASE" != "17.2" ] && [ "$DISTRIB_RELEASE" != "17.3" ]
+if [ "$DISTRIB_RELEASE" != "14.04" ] && [ "$DISTRIB_RELEASE" != "17.3" ] && [ "$DISTRIB_RELEASE" != "16.04" ] && [ "$DISTRIB_RELEASE" != "18" ]
 then
-  echo "Vous n'êtes pas sûr une version compatible, rappel des versions supportés pour ce script : Ubuntu & Variante 14.04, Linux Mint 17.X"
+  echo "Vous n'êtes pas sûr une version compatible, rappel des versions supportés pour ce script : Ubuntu & Variante 14.04/16.04, Linux Mint 17.3/18"
   exit
 fi
 
@@ -290,6 +298,11 @@ if [ "$(which mdm)" = "/usr/sbin/mdm" ] ; then # si MDM est installé (donc Mint
   apt-get -y purge mintwelcome hexchat pidgin transmission-gtk banshee
   cp /etc/mdm/mdm.conf /etc/mdm/mdm_old.conf
   wget --no-check-certificate https://dane.ac-lyon.fr/spip/IMG/zip/mdm.conf.zip ; unzip mdm.conf.zip -d /etc/mdm/ ; rm mdm.conf.zip ;
+fi
+
+# Spécifique a Ubuntu Mate
+if [ "$(which mate-desktop-environment)" = "/usr/sbin/mdm" ] ; then
+  apt-get -y purge hexchat transmission-gtk ubuntu-mate-welcome ;
 fi
 
 ########################################################################
