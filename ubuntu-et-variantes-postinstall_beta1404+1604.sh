@@ -31,7 +31,7 @@ add-apt-repository -y ppa:webupd8team/java ; apt-get update ; echo oracle-java8-
 #########################################
 # Paquet uniquement pour la 14.04 / 17.3
 #########################################
-Si distrib = 14.04 ou 17.3 ; alors
+if [ "$DISTRIB_RELEASE" = "14.04" ] || [ "$DISTRIB_RELEASE" = "17.3" ] ; then
 
 # paquet
 apt-get -y install idle-python3.4
@@ -40,7 +40,7 @@ apt-get -y install idle-python3.4
 #add-apt-repository -y ppa:libreoffice/ppa ; apt-get update ; apt-get -y upgrade
 #apt-get -y install libreoffice libreoffice-l10n-fr libreoffice-help-fr 
 
-# Comme le PPA bloque avec un proxy actuellement, méthode alternative :
+# Comme le PPA bloque avec un proxy actuellement, méthode alternative : [désactivé pour la 16.04]
 wget --no-check-certificate https://raw.githubusercontent.com/dane-lyon/fichier-de-config/master/libreoffice-ppa.list ;
 mv libreoffice-ppa.list /etc/apt/sources.list.d/ ;
 apt-get update ; apt-get -y --force-yes upgrade ; apt-get -y --force-yes install libreoffice libreoffice-gtk libreoffice-l10n-fr ;
@@ -54,16 +54,13 @@ Fin
 #########################################
 # Paquet uniquement pour la 16.04 / 18
 #########################################
-Si distrib = 16.04 ou 18 ; alors
+if [ "$DISTRIB_RELEASE" = "16.04" ] || [ "$DISTRIB_RELEASE" = "18" ] ; then
 
 # paquet
-apt-get -y install idle-python3.5 x265
+apt-get -y install idle-python3.5 x265 ;
+# google earth plus tard ici 
 
-# google earth install specifique a 16.04 ici
-
-
-
-Fin
+fi
 
 #=======================================================================#
 # Installation quelque soit la variante et la version 
