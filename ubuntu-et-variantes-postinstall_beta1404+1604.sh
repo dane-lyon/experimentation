@@ -142,6 +142,7 @@ if [ "$(which caja)" = "/usr/bin/caja" ] && [ "$DISTRIB_RELEASE" = "16.04" ] ; t
 
 #paquet
 apt-get -y install ubuntu-restricted-extras mate-desktop-enivonment-extras
+apt-get -y purge cheese transmission-gtk pidgin hexchat rhythmbox
 
 # Skel spécifique a Mate ?
 
