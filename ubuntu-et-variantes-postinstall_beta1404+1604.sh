@@ -34,7 +34,7 @@ add-apt-repository -y ppa:webupd8team/java ; apt-get update ; echo oracle-java8-
 if [ "$DISTRIB_RELEASE" = "14.04" ] || [ "$DISTRIB_RELEASE" = "17.3" ] ; then
 
 # paquet
-apt-get -y install idle-python3.4
+apt-get -y install idle-python3.4 gstreamer0.10-plugins-ugly celestia
 
 # LibreOffice toujours en dernière version (PPA)
 #add-apt-repository -y ppa:libreoffice/ppa ; apt-get update ; apt-get -y upgrade
@@ -49,7 +49,7 @@ apt-get update ; apt-get -y --force-yes upgrade ; apt-get -y --force-yes install
 apt-get -y install libfontconfig1:i386 libx11-6:i386 libxrender1:i386 libxext6:i386 libgl1-mesa-glx:i386 libglu1-mesa:i386 libglib2.0-0:i386 libsm6:i386
 wget https://dl.google.com/dl/earth/client/current/google-earth-stable_current_i386.deb ; dpkg -i google-earth-stable_current_i386.deb ; apt-get -fy install ; rm -f google-earth-stable_current_i386.deb 
 
-Fin
+fi
 
 #########################################
 # Paquet uniquement pour la 16.04 / 18
@@ -72,8 +72,8 @@ apt-get -y install freeplane scribus gnote xournal cups-pdf
 apt-get -y install firefox chromium-browser flashplugin-downloader pepperflashplugin-nonfree
 
 #[ Video / Audio ]
-apt-get -y install imagination openshot audacity vlc x264 ffmpeg2theora flac vorbis-tools lame oggvideotools mplayer ogmrip gstreamer0.10-plugins-ugly goobox
-# Sur 16.04 : ajouter x265
+apt-get -y install imagination openshot audacity vlc x264 ffmpeg2theora flac vorbis-tools lame oggvideotools mplayer ogmrip goobox
+#x265 installé sur la 16.04 en +
 
 #[ Graphisme / Photo ]
 apt-get -y install blender sweethome3d gimp pinta inkscape gthumb mypaint hugin shutter
@@ -85,11 +85,12 @@ apt-get -y install gparted vim pyrenamer rar unrar htop diodon p7zip-full
 apt-get -y install geogebra algobox carmetal scilab
 
 #[ Sciences ]
-apt-get -y install stellarium celestia avogadro
+apt-get -y install stellarium avogadro 
+#celestia installé uniquement sur la 14.04, cf en haut
 
 #[ Programmation ]
 apt-get -y install scratch ghex geany imagemagick
-# sur 16.04 : idle-python en version supérieur
+# + idle-python installé en 2 versions différente suivant 14.04 ou 16.04 (cf en haut)
 
 #[ Serveur ]
 #apt-get -y install openssh-server
@@ -112,7 +113,7 @@ fi
 ################################
 # Concerne Xubuntu / XFCE
 ################################
-if [ "$(which xfwm4)" = "/usr/bin/xfwm4" ] && [ "$DISTRIB_RELEASE" = "14.04" ] ; then # si Xubuntu/Xfce alors :
+if [ "$(which xfwm4)" = "/usr/bin/xfwm4" ] && [ "$DISTRIB_RELEASE" = "14.04" ] ; then # si Xubuntu/Xfce 14.04 alors :
 
 #[ Paquet AddOns ]
 apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes
@@ -127,6 +128,22 @@ apt-get update ; apt-get -y install plank --force-yes
 
 wget --no-check-certificate https://dane.ac-lyon.fr/spip/IMG/tar/skel_xub1404.tar ; tar xvf skel_xub1404.tar -C /etc ; rm -rf skel_xub1404.tar
 fi
+
+if [ "$(which xfwm4)" = "/usr/bin/xfwm4" ] && [ "$DISTRIB_RELEASE" = "16.04" ] ; then # si Xubuntu/Xfce 16.04 alors :
+
+#[ Paquet AddOns ]
+apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goodies xfwm4-themes plank #pas besoin de ppa
+
+# Vérifier si skel de la 14.04 est compatible avec 16.04 !!!  remis ici pour test :
+wget --no-check-certificate https://dane.ac-lyon.fr/spip/IMG/tar/skel_xub1404.tar ; tar xvf skel_xub1404.tar -C /etc ; rm -rf skel_xub1404.tar
+fi
+
+if [ "$(which caja)" = "/usr/bin/caja" ] && [ "$DISTRIB_RELEASE" = "16.04" ] ; then # si Ubuntu Mate 16.04 alors :
+
+#paquet
+apt-get -y install ubuntu-restricted-extras mate-desktop-enivonment-extras
+
+# Skel spécifique a Mate ?
 
 
 exit
