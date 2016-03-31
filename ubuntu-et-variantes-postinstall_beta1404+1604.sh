@@ -17,33 +17,16 @@ fi
 # Vérification que le système est a jour
 apt-get update ; apt-get -y dist-upgrade
 
-################################
-# Concerne toutes les variantes
-################################
-
-# Police d'écriture de Microsoft
-echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | /usr/bin/debconf-set-selections | apt-get -y install ttf-mscorefonts-installer ;
-
-# Oracle Java 8
-#add-apt-repository -y ppa:webupd8team/java ; apt-get update ; echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections | apt-get -y install oracle-java8-installer ;
-# vérifier si ça marche sinon mettre fichier.list sur le github...
-
 #########################################
 # Paquet uniquement pour la 14.04 / 17.3
 #########################################
 if [ "$DISTRIB_RELEASE" = "14.04" ] || [ "$DISTRIB_RELEASE" = "17.3" ] ; then
 
-wget --no-check-certificate https://raw.githubusercontent.com/dane-lyon/fichier-de-config/master/trusty-ppa-supplement.list ;
-mv trusty-ppa-supplement.list /etc/apt/sources.list.d/ ;
-apt-get update ; apt-get -y --force-yes upgrade ; 
-
 # paquet
 apt-get -y install idle-python3.4 gstreamer0.10-plugins-ugly celestia
 
-# LibreOffice toujours en dernière version (PPA)
-#add-apt-repository -y ppa:libreoffice/ppa ; apt-get update ; apt-get -y upgrade
-#apt-get -y install libreoffice libreoffice-l10n-fr libreoffice-help-fr 
-
+# Backportage LibreOffice
+add-apt-repository -y ppa:libreoffice/ppa ; apt-get update ; apt-get -y upgrade
 
 # Pour Google Earth : #(cette méthode ne fonctionne pas sur la 16.04)
 apt-get -y install libfontconfig1:i386 libx11-6:i386 libxrender1:i386 libxext6:i386 libgl1-mesa-glx:i386 libglu1-mesa:i386 libglib2.0-0:i386 libsm6:i386
@@ -56,10 +39,6 @@ fi
 #########################################
 if [ "$DISTRIB_RELEASE" = "16.04" ] || [ "$DISTRIB_RELEASE" = "18" ] ; then
 
-wget --no-check-certificate https://raw.githubusercontent.com/dane-lyon/fichier-de-config/master/xenial-ppa-supplement.list ;
-mv xenial-ppa-supplement.list /etc/apt/sources.list.d/ ;
-apt-get update ; apt-get -y --force-yes upgrade ; 
-
 # paquet
 apt-get -y install idle-python3.5 x265 ;
 # méthode d'installation alternative pour Google Earth ? pour Celestia ? 
@@ -70,14 +49,17 @@ fi
 
 # Installation quelque soit la variante et la version 
 
+# Police d'écriture de Microsoft
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | /usr/bin/debconf-set-selections | apt-get -y install ttf-mscorefonts-installer ;
+
+# Oracle Java 8
+add-apt-repository -y ppa:webupd8team/java ; apt-get update ; echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections | apt-get -y install oracle-java8-installer
+
 #[ Bureautique ]
-apt-get -y --force-yes install libreoffice libreoffice-gtk libreoffice-l10n-fr 
-apt-get -y install freeplane scribus gnote xournal cups-pdf
+apt-get -y install libreoffice libreoffice-gtk libreoffice-l10n-fr freeplane scribus gnote xournal cups-pdf
 
 #[ Web ]
 apt-get -y install firefox chromium-browser flashplugin-downloader pepperflashplugin-nonfree
-
-echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections | apt-get -y install oracle-java8-installer ;
 
 #[ Video / Audio ]
 apt-get -y install imagination openshot audacity vlc x264 ffmpeg2theora flac vorbis-tools lame oggvideotools mplayer ogmrip goobox
@@ -126,10 +108,7 @@ apt-get -y install xubuntu-restricted-extras xubuntu-restricted-addons xfce4-goo
 
 # Customisation XFCE
 
-#add-apt-repository -y ppa:docky-core/stable ; apt-get update ; apt-get -y install plank --force-yes
-# PPA temporairement désactivé, méthode alternative : #uniquement pour 14.04
-apt-get -y install plank --force-yes #sera installé via le dépot ppa ajout au début du script
-
+add-apt-repository -y ppa:docky-core/stable ; apt-get update ; apt-get -y install plank ;
 wget --no-check-certificate https://dane.ac-lyon.fr/spip/IMG/tar/skel_xub1404.tar ; tar xvf skel_xub1404.tar -C /etc ; rm -rf skel_xub1404.tar
 fi
 
