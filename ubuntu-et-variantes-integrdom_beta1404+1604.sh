@@ -9,26 +9,27 @@
 # - Lubuntu 16.04 /LXDE
 # - Ubuntu Mate 16.04 /Mate
 # - Linux Mint 17.3/Cinnamon & Mate 
-# - Linux Mint 18/Cinnamon & Mate (sort en Juin)
+# - Linux Mint 18/Cinnamon & Mate (bientôt)
 
-###### Intégration client scribe 2.3/2.4/2.5 pour Ubuntu 14.04.X/Mint 17.X ###### 
+###### Intégration client scribe 2.3/2.4/2.5 pour Ubuntu 14.04.X/Mint 17.3 ###### 
 
 # IMPORTANT : ce script ne sert qu'a "l'intégration", si vous voulez des logiciels supplémentaires, retirer ceux inutiles, 
-#avoir une customisation graphique etc..., il faut dans ce cas utiliser le 2e script facultatif de postinstall
+#avoir une customisation graphique etc..., il faudra lancer aussi après le 2e script facultatif de postinstall
 
-### ATTENTION, SI VOUS AVEZ UN SCRIBE 2.4 OU 2.5 VEUILLEZ LIRE CECI ###
+### ATTENTION, SI VOUS AVEZ UN SCRIBE 2.4 OU 2.5 :
 # Ce script est compatible avec un Scribe 2.3, 2.4, 2.5 par contre si vous avez un scribe 2.4 ou 2.5, afin d'avoir
 # tous les partages (communs, groupes etc...) il faut faire la manip suivante 1 fois sur votre scribe (paragraphe "Client Linux : avoir les partages sous Scribe 2.4/2.5") :
 # https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages
 
-#### changement apporté pour la version 14.04 (simon) ####
-# - valeur de vérification 12.04 remplacé par 14.04 ainsi que 16.04 et pour Mint
+### changement apporté pour la version 14.04 :
+
+# - valeur de vérification 12.04 remplacé par 14.04 ainsi que 16.04 (+Mint)
 # - paquet a installer smbfs remplacé par cifs-utils car il a changé de nom.
 # - ajout groupe dialout
 # - désinstallation de certains logiciels inutiles suivant les variantes
 # - ajout fonction pour programmer l'extinction automatique des postes le soir
 # - lecture dvd
-# - changement thème MDM pour Mint (pour ne pas voir l'userlist)
+# - changement du thème MDM par défaut pour Mint (pour ne pas voir l'userlist)
 
 #Christophe Deze - Rectorat de Nantes
 #Cédric Frayssinet - Mission Tice Ac-lyon
@@ -36,7 +37,7 @@
 #Simon BERNARD - Dane Lyon
 
 
-# version 2.1 (avec proxy system)
+# version 2.0 (avec proxy system)
 ###########################################################################
 #Paramétrage par défaut
 #Changez les valeurs, ainsi, il suffira de taper 'entrée' à chaque question
@@ -165,6 +166,10 @@ echo "Defaults env_keep = https_proxy" >> /etc/sudoers
 fi
 
 
+# Vérification que le système est bien a jour
+apt-get update ; apt-get -y dist-upgrade
+
+
 ########################################################################
 #Mettre la station à l'heure à partir du serveur Scribe
 ########################################################################
@@ -176,7 +181,6 @@ ntpdate $ip_scribe
 #numlockx pour le verrouillage du pave numerique
 #unattended-upgrades pour forcer les mises à jour de sécurité à se faire
 ########################################################################
-apt-get update
 apt-get install -y ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
 
 ########################################################################
@@ -296,13 +300,13 @@ fi
 ########################################################################
 if [ "$(which mdm)" = "/usr/sbin/mdm" ] ; then # si MDM est installé (donc Mint)
   apt-get -y purge mintwelcome hexchat pidgin transmission-gtk banshee
-  cp /etc/mdm/mdm.conf /etc/mdm/mdm_old.conf
+  cp /etc/mdm/mdm.conf /etc/mdm/mdm_old.conf #backup du fichier de config de mdm
   wget --no-check-certificate https://dane.ac-lyon.fr/spip/IMG/zip/mdm.conf.zip ; unzip mdm.conf.zip -d /etc/mdm/ ; rm mdm.conf.zip ;
 fi
 
 # Spécifique a Ubuntu Mate
 if [ "$(which caja)" = "/usr/bin/caja" ] ; then
-  apt-get -y purge hexchat transmission-gtk ubuntu-mate-welcome ;
+  apt-get -y purge hexchat transmission-gtk ubuntu-mate-welcome cheese pidgin rhythmbox ;
 fi
 
 ########################################################################
@@ -386,22 +390,22 @@ disable-lock-screen=true
 favorites=[ 'nautilus-home.desktop', 'firefox.desktop','libreoffice-startcenter.desktop', 'gcalctool.desktop','gedit.desktop','gnome-screenshot.desktop' ]
 " > /usr/share/glib-2.0/schemas/my-defaults.gschema.override
 
-
 # Suppression de paquet inutile sous Ubuntu
-apt-get -y purge aisleriot gnome-mines gnome-sudoku gnome-mahjongg
+apt-get -y purge aisleriot gnome-mines gnome-sudoku gnome-mahjongg ;
+
 fi
 
 # Pour être sûr que LibreOffice & Firefox sont bien installés (pas forcément le cas suivant les variantes) :
-apt-get -y install libreoffice libreoffice-gtk libreoffice-l10n-fr firefox
+apt-get -y install libreoffice libreoffice-gtk libreoffice-l10n-fr firefox ;
 
 # Pour être sûr que les paquets suivant (parfois présent) ne sont pas installés :
-apt-get -y purge pidgin transmission-gtk gnome-mines gnome-sudoku blueman abiword gnumeric thunderbird
+apt-get -y purge pidgin transmission-gtk gnome-mines gnome-sudoku blueman abiword gnumeric thunderbird ;
 
 
 ########################################################################
 #suppression de l'envoi des rapport d'erreurs
 ########################################################################
-echo "enabled=0" >/etc/default/apport
+echo "enabled=0" > /etc/default/apport
 
 ########################################################################
 #suppression de l'applet network-manager
@@ -411,12 +415,8 @@ mv /etc/xdg/autostart/nm-applet.desktop /etc/xdg/autostart/nm-applet.old
 ########################################################################
 #suppression du menu messages
 ########################################################################
-apt-get remove indicator-messages -y
+apt-get -y purge indicator-messages 
 
-
-########################################################################
-#TO DO : suppression du panel de clavier
-########################################################################
 
 # Lecture DVD
 apt-get -y install libdvdread4
