@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Utilitaire Dane Béta
+Comment=Utilitaire d'installation des logiciels sur les postes Ubuntu, pour l'éducation.
+Exec=sudo /usr/bin/Utilitaires
+Icon=/usr/share/pixmaps/dane-utilitaires.xpm
+Terminal=true
+Type=Application
+StartupNotify=false
+Categories=Education;
+MimeType=application/x-gambas3
