@@ -23,3 +23,8 @@ cp -rf ~/.local /etc/skel/ ;
 cp -rf ~/.gconf /etc/skel/ ;
 cp -rf ~/Bureau /etc/skel/ ;
 cp -rf ~/Desktop /etc/skel/ ;
+
+#############################################
+# Page par défaut Firefox
+#############################################
+echo "user_pref(\"browser.startup.homepage\", \"$pagedemarragepardefaut\");" >> /usr/lib/firefox/defaults/pref/channel-prefs.js
