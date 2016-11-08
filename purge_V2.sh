@@ -4,7 +4,7 @@
 # Version 4.0 - Juin 2015
 
 # TEST only pour l'instant
-
+#test
 
 if [ ! -d /var/log/purge ] ; then
 mkdir /var/log/purge
