@@ -58,9 +58,10 @@ fi
 # drivers imprimantes
 
 wget http://www.openprinting.org/download/printdriver/debian/dists/lsb3.2/contrib/binary-amd64/openprinting-gutenprint_5.2.7-1lsb3.2_amd64.deb
-dpkg -i openprinting-gutenprint_5.2.7-1lsb3.2_amd64.deb
+dpkg -i openprinting-gutenprint_5.2.7-1lsb3.2_amd64.deb ;
+apt-get -fy install ;
 
-# driver spour les scanners le splus courants
+# driver spour les scanners les plus courants
 apt-get -y install sane
 
 # Police d'écriture de Microsoft
@@ -158,7 +159,7 @@ fi
 ########################################################################
 #nettoyage station 
 ########################################################################
-apt-get -y autoremove --purge ; apt-get -y clean
+apt-get -fy install ; apt-get -y autoremove --purge ; apt-get -y clean ;
 
 ########################################################################
 #FIN
