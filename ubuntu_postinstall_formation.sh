@@ -85,8 +85,8 @@ apt-get -y install blender sweethome3d gimp pinta inkscape gthumb mypaint hugin 
 #[ Systeme ]
 apt-get -y install gparted vim pyrenamer rar unrar htop diodon p7zip-full
 
-#[ Mathematiques ]
-apt-get -y install geogebra algobox carmetal scilab
+#[ Mathematiques ] #geogebra retiré pour formation
+apt-get -y install algobox carmetal scilab
 
 #[ Sciences ]
 apt-get -y install stellarium avogadro 
