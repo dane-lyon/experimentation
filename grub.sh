@@ -10,3 +10,5 @@ GRUB_HIDDEN_TIMOUT_QUIET=false
 GRUB_DISABLE_RECOVERY=true
 GRUB_GFXMODE=640x480
 GRUB_BACKGROUND="/usr/share/themes/grub_custom.jpg"' > /etc/default/grub
+update-grub
+
