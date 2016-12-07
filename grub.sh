@@ -5,7 +5,7 @@ wget --no-check-certificate https://raw.githubusercontent.com/dane-lyon/fichier-
 mv -f grub_custom.jpg /usr/share/themes/
 
 # modification configuration de grub
-echo 'GRUB_DEFAULT=0
+echo 'GRUB_DEFAULT=2
 GRUB_TIMEOUT=0
 GRUB_HIDDEN_TIMEOUT=3
 GRUB_HIDDEN_TIMOUT_QUIET=false
