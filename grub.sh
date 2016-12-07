@@ -1,1 +1,10 @@
 #!/bin/bash
+
+echo 
+'"GRUB_DEFAULT=0
+GRUB_TIMEOUT=0
+GRUB_HIDDEN_TIMEOUT=3
+GRUB_HIDDEN_TIMOUT_QUIET=false
+GRUB_DISABLE_RECOVERY=true
+GRUB_GFXMODE=640x480
+GRUB_BACKGROUND="/usr/share/oscar/icones/grub_custom.jpg"'
