@@ -1,20 +1,11 @@
 #!/bin/bash
-# Attribution du dossier POL
-# $1 : username
-groupe=$(id -gn $1)
-uid=$(id -u $1)
-POL=/var/POL
-home=$(eval echo ~$1)
-lien=$home/.PlayOnLinux
- 
-# Sauvegarde du lien précédent
-if [ -d "$lien" ]; then
-    mv $lien $lien.bak
-fi
 
-# Changement de propriétaire du dossier de POL
-chown -h -R $1:$groupe $POL
-ln -s $POL $lien
-chown -h -R $1:$groupe $lien
-# Copie des raccourcis sur le bureau
-cp --preserve=ownership $POL/shortcuts/*.desktop $home/Bureau
+# Ce mini-script a pour but de pouvoir lancer Pronote depuis n'importe quel utilisateur (installation PoL partagé)
+
+# Pré-requis :
+# Avoir déplacé le dossier ~/.PlayOnLinux sur /home/.PlayOnLinux
+# Avoir crée un lien symbolique dans le home de l'utilisateur pointant sur /home/.PlayOnLinux (automatisation avec le skel par ex)
+
+utilisateur='whoami'
+sudo chown -R $utilisateur:$utilisateur /home/.PlayOnLinux
+/usr/share/playonlinux/playonlinux --run "Pronote 2016" %F
