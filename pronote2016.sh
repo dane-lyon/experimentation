@@ -6,5 +6,9 @@
 # Avoir déplacé le dossier ~/.PlayOnLinux sur /home/.PlayOnLinux
 # Avoir crée un lien symbolique dans le home de l'utilisateur pointant sur /home/.PlayOnLinux (automatisation avec le skel par ex)
 
+### ancien
+#utilisateur='whoami'
+#sudo chown -R $utilisateur:$utilisateur /home/.PlayOnLinux
+
 sudo chown -R $user:$user /home/.PlayOnLinux
 /usr/share/playonlinux/playonlinux --run "Pronote 2016" %F
