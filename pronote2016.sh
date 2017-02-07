@@ -1,14 +1,5 @@
 #!/bin/bash
+# en considérant que le PoL partagé se trouve dans /home/.PlayOnLinux
 
-# Ce mini-script a pour but de pouvoir lancer Pronote depuis n'importe quel utilisateur (installation PoL partagé)
-
-# Pré-requis :
-# Avoir déplacé le dossier ~/.PlayOnLinux sur /home/.PlayOnLinux
-# Avoir crée un lien symbolique dans le home de l'utilisateur pointant sur /home/.PlayOnLinux (automatisation avec le skel par ex)
-
-### ancien
-#utilisateur='whoami'
-#sudo chown -R $utilisateur:$utilisateur /home/.PlayOnLinux
-
-sudo chown -R $user:$user /home/.PlayOnLinux
-/usr/share/playonlinux/playonlinux --run "Pronote 2016" %F
+moi=`whoami`
+sudo chown -R $moi:$moi /home/.PlayOnLinux
