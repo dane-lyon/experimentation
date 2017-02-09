@@ -34,17 +34,17 @@ else
         #rm -rf wpkg-create-report.zip
         sed -i 's/<wpkgBaseDir><\/wpkgBaseDir>/<wpkgBaseDir>\\\\'$nom_machine'\\wpkg\\<\/wpkgBaseDir>/g' settings.xml
         sed -i 's/<clientStateStorePath>clientStates/<clientStateStorePath>\\\\'$nom_machine'\\wpkg\\softwares\\.EtatsClients\\/g' settings.xml
-        sed -i 's/<ignoreExecuteAlways>false</ignoreExecuteAlways>'settings.xml
-        sed -i 's/<packageStateFilter></packageStateFilter>'settings.xml
-        sed -i 's/<hostFilter></hostFilter>'settings.xml
-        sed -i 's/<columnFilter></columnFilter>'settings.xml
-        sed -i 's/<outputProvider>html</outputProvider>' settings.xml
+        sed -i 's/<ignoreExecuteAlways>false/<ignoreExecuteAlways>/g'settings.xml
+        sed -i 's/<packageStateFilter>/<packageStateFilter>/g'settings.xml
+        sed -i 's/<hostFilter>/<hostFilter>/g'settings.xml
+        sed -i 's/<columnFilter>/<columnFilter>/g'settings.xml
+        sed -i 's/<outputProvider>html/<outputProvider>/g' settings.xml
         sed -i 's/<saveOutput>true/<saveOutput>/g' settings.xml
         sed -i 's/<outputFile>c:\\/<outputFile>\\\\'$nom_machine'\\wpkg\\rapports\\Compte-Rendu-[YYYY]-[MM]-[DD]-[hh]-[mm].[ext]/g' settings.xml
-        sed -i '<showOutput>true</showOutput>
+        sed -i 's/<showOutput>true/<showOutput>/g'
         mv run.wsf Creation_du_rapport.swf
-        # echo "cscript Creation_du_rapport.swf" > $WPKGRAPPORT/'Création du rapport WPKG'
-        #todos -u $WPKGRAPPORT/'Création du rapport WPKG.bat'
+        echo "cscript Creation_du_rapport.swf" > $WPKGRAPPORT/'Création du rapport WPKG.bat'
+               
         
         if [ $? = 0 ] ; then
             echo "Creation du script de creation du rapport WPKG OK !"
