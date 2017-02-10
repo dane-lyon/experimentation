@@ -42,8 +42,8 @@ else
         sed -i 's/<saveOutput>true/<saveOutput>/g' settings.xml
         sed -i 's/<outputFile>c:\\/<outputFile>\\\\'$nom_machine'\\wpkg\\rapports\\Compte-Rendu-[YYYY]-[MM]-[DD]-[hh]-[mm].[ext]/g' settings.xml
         sed -i 's/<showOutput>true/<showOutput>/g' settings
-        mv run.wsf Creation_du_rapport.swf
-        echo "cscript Creation_du_rapport.swf" > $WPKGRAPPORT/'Création du rapport WPKG.bat'
+        mv run.wsf Creation_du_rapport.wsf
+        echo "cscript Creation_du_rapport.wsf" > $WPKGRAPPORT/'Création du rapport WPKG.bat'
                
         
         if [ $? = 0 ] ; then
