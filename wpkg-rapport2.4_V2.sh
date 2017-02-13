@@ -38,8 +38,8 @@ else
         sed -i 's/<packageStateFilter>/<packageStateFilter>/g' settings.xml
         sed -i 's/<hostFilter>/<hostFilter>/g' settings.xml
         sed -i 's/<columnFilter>/<columnFilter>/g' settings.xml
-        sed -i 's/<outputProvider>/<outputProvider>html /g' settings.xml
-        sed -i 's/<saveOutput>false/<saveOutput>/true g' settings.xml
+        sed -i 's/<outputProvider>/<outputProvider>html/g' settings.xml
+        sed -i 's/<saveOutput>false/<saveOutput>/true/g' settings.xml
         sed -i 's/<outputFile>c:\\/<outputFile>\\\\'$nom_machine'\\wpkg\\rapports\\Compte-Rendu-[YYYY]-[MM]-[DD]-[hh]-[mm].[ext]/g' settings.xml
         sed -i 's/<showOutput>true/<showOutput>/g' settings.xml
         mv run.wsf Creation_du_rapport.wsf
