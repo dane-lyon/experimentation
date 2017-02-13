@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# installation de wpkg-report pour Eole 2.4 !!
+# installation de wpkg-report pour Eole 2.4 2.5 !!
 # version 09/2014
 
 WPKGDIR="/home/wpkg"
