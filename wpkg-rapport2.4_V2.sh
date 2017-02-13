@@ -37,7 +37,7 @@ else
         sed -i 's/<columnFilter>/<columnFilter>/g' settings.xml
         sed -i 's/<outputProvider>/<outputProvider>/g' settings.xml
         sed -i 's/<saveOutput>false/<saveOutput>true/g' settings.xml
-      # sed -i 's/<outputFile>c:\\/<outputFile>\\\\'$nom_machine'\\wpkg\\rapports\\Compte-Rendu-[YYYY]-[MM]-[DD]-[hh]-[mm].[ext]/g' settings.xml
+        sed -i 's/<outputFile>c:\\/<outputFile>\\\\'$nom_machine'\\wpkg\\rapports\\/g' settings.xml
         sed -i 's/<showOutput>true/<showOutput>/g' settings.xml
         sed -i 's/defaultValue/defaultVal/g' /home/wpkg/rapports/lib/utilitiesClass.js
         mv run.wsf Creation_du_rapport.wsf
