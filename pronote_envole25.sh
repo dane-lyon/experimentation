@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Demande le code RNE
-# Afficher "Quel est le code RNE de votre établissement ?"
-#récupérer valeure => rne_college
+# Récupération du code RNE
+
+read -p "Veuillez indiquer votre code RNE : " coderne
 
 # Création du fichier pronote
 
 cd /etc/apache2/sites-available/
-echo "RedirectMatch ^/pronote https://[rne_college].index-education.net/pronote/" > pronote.conf
+echo "RedirectMatch ^/pronote https://$coderne.index-education.net/pronote/" > pronote.conf
 
 # Création lien symbolique
 a2ensite pronote.conf
@@ -16,7 +16,7 @@ a2ensite pronote.conf
 echo "[Pronote]
 baseurl=/pronote/
 scheme=both
-addr=[rne_college].index-education.net
+addr=$coderne.index-education.net
 typeaddr=dns
 filter=pronote" > /usr/share/sso/app_filters/pronote_apps.ini
 
