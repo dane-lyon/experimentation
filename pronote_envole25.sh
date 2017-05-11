@@ -32,5 +32,5 @@ eleveClasses=ENTEleveClasses
 user=uid" > /usr/share/sso/app_filters/pronote.ini
 
 # Relance du service apache
-service apache2 reloard
+service apache2 reload
 
