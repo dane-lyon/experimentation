@@ -29,7 +29,7 @@ categories=ENTPersonProfils
 dateNaissance=ENTPersonDateNaissance
 codePostal=ENTPersonCodePostal
 eleveClasses=ENTEleveClasses
-user=uid
+user=uid" > /usr/share/sso/app_filters/pronote.ini
 
 # Relance du service apache
 service apache2 reloard
