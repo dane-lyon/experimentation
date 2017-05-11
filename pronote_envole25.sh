@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Récupération du code RNE
-
 read -p "Veuillez indiquer votre code RNE : " coderne
 
 # Création du fichier pronote
