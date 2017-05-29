@@ -1,5 +1,8 @@
 #!/bin/bash
-# version 2.0.0
+# version 2.0.0 alpha 0.1
+
+### IMPORTANT ===> NE PAS UTILISER CE SCRIPT ! EN COURS DE MODIFICATION / NON TESTE !!
+
 
 # Testé & validé pour les variantes suivantes :
 ################################################
@@ -32,6 +35,7 @@
 # - Utilisation du Skel désormais compatible avec la 16.04
 # - Ajout variable pour contrôle de la version
 # - Suppression de la notification de mise a niveau (sinon par exemple en 14.04, s'affiche sur tous les comptes au démarrage)
+# - Prise en charge du script Esubuntu de Olivier CALPETARD de l'académie de la Réunion
 
 ## Liste des contributeurs au script :
 #Christophe Deze - Rectorat de Nantes
