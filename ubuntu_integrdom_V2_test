@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.0 alpha 0.1
+# version 2.0.0 alpha 0.2
 
 ### IMPORTANT ===> NE PAS UTILISER CE SCRIPT ! EN COURS DE MODIFICATION / NON TESTE !!
 
@@ -140,9 +140,14 @@ fi
 read -p "Voulez vous activer le script Esubuntu (cf doc si vous ne savez pas a quoi cela correspond) ? [O/N] :" esubuntu
 
 if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
-  ### lancement du script
-  ### blablabla
+  # Groupe ESU
+  echo "Veuillez entrer le groupe ESU (salle) pour les postes linux : "
+  read salle
+  .................... ajouter suite ici .........
+
 fi
+
+
 
 
 ########################################################################
