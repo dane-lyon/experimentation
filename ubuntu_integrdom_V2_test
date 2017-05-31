@@ -177,7 +177,7 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   echo "$salle" > /etc/GM_ESU
 
   #on lance le script prof_firefox
-  ./esu_ubuntu/firefox/prof_firefox.sh
+  sudo ./esu_ubuntu/firefox/prof_firefox.sh
 
   #on inscrit la tache upkg dans crontab
   echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
