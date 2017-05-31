@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.0 alpha 0.2
+# version 2.0.0 alpha 0.3
 
 ### IMPORTANT ===> NE PAS UTILISER CE SCRIPT ! EN COURS DE MODIFICATION / NON TESTE !!
 
@@ -140,10 +140,46 @@ fi
 read -p "Voulez vous activer le script Esubuntu (cf doc si vous ne savez pas a quoi cela correspond) ? [O/N] :" esubuntu
 
 if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
-  # Groupe ESU
-  echo "Veuillez entrer le groupe ESU (salle) pour les postes linux : "
+  
+  #téléchargement des paquets
+  wget --no-check-certificate https://lien_sur_github_du_zip/esu_ubuntu.zip
+  unzip esu_ubuntu.zip
+  
+  #création du dossier upkg
+  mkdir /usr/local/upkg_client/
+  chmod -R 777 /usr/local/upkg_client
+
+  #installation de cntlm zenity et conky
+  apt-get install -y zenity conky #cntlm 
+
+  #configuration de cntlm système pour ne pas faire d'interférence avec celui de l'utilisateur
+  #echo "Username	admin
+  #Domain		SCRIBE
+  #Auth	LM
+  #Proxy		172.18.40.1:3128
+  #NoProxy		localhost, 127.0.0.*, 172.18.*
+  #Listen		3129" > /etc/cntlm.conf
+
+  #on lance la copie des fichiers
+  cp -rf ./esu_ubuntu/lightdm/* /etc/lightdm/
+  chmod +x /etc/lightdm/*.sh
+  cp -rf ./esu_ubuntu/xdg_autostart/* /etc/xdg/autostart/
+  chmod +x /etc/xdg/autostart/cntlm.desktop
+  chmod +x /etc/xdg/autostart/message_scribe.desktop
+  chmod +x /etc/xdg/autostart/scribe_background.desktop
+  chmod 755 /etc/lightdm/param_etab.conf
+
+  #on lance la gestion du groupe
+  #salle du pc
+  echo "Veuillez entrer le groupe ESU de vos postes clients linux : "
   read salle
-  .................... ajouter suite ici .........
+  echo "$salle" > /etc/GM_ESU
+
+  #on lance le script prof_firefox
+  ./esu_ubuntu/firefox/prof_firefox.sh
+
+  #on inscrit la tache upkg dans crontab
+  echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
 
 fi
 
