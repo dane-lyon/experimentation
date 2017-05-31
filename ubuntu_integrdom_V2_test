@@ -139,11 +139,9 @@ fi
 ##############################################################################
 read -p "Voulez vous activer le script Esubuntu (cf doc si vous ne savez pas a quoi cela correspond) ? [O/N] :" esubuntu
 
-if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
-  
+if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then  
   #téléchargement des paquets
-  wget --no-check-certificate https://github.com/dane-lyon/experimentation/blob/master/esu_ubuntu.zip?raw=true
-  mv esu_ubuntu.zip\?raw\=true esu_ubuntu.zip
+  wget --no-check-certificate https://github.com/dane-lyon/experimentation/raw/master/esu_ubuntu.zip
   unzip esu_ubuntu.zip
   
   #création du dossier upkg
@@ -181,7 +179,6 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
 
   #on inscrit la tache upkg dans crontab
   echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
-
 fi
 
 
@@ -516,6 +513,9 @@ sed -r -i 's/Prompt=lts/Prompt=never/g' /etc/update-manager/release-upgrades
 ########################################################################
 apt-get -y autoremove --purge
 apt-get -y clean
+
+# Pour Esubuntu, pack a upbloader dans /netlogon/icones/{votre groupe esu} :
+#wget https://github.com/dane-lyon/experimentation/raw/master/config_default.zip
 
 ########################################################################
 #FIN
