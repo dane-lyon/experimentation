@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.0 alpha 0.4
+# version 2.0.0 alpha 0.5
 
 ### IMPORTANT ===> NE PAS UTILISER CE SCRIPT ! EN COURS DE MODIFICATION / NON TESTE !!
 
@@ -177,6 +177,11 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   #on lance le script prof_firefox
   chmod -R +x ./esu_ubuntu
   ./esu_ubuntu/firefox/prof_firefox.sh
+  
+  # Mise en place des wallpaper pour les élèves, profs, admin
+  wget --no-check-certificate https://github.com/dane-lyon/experimentation/raw/master/wallpaper.zip
+  unzip wallpaper.zip
+  mv wallpaper /usr/share/
 
   #on inscrit la tache upkg dans crontab
   echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
