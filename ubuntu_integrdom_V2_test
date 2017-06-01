@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.0 alpha 0.3
+# version 2.0.0 alpha 0.4
 
 ### IMPORTANT ===> NE PAS UTILISER CE SCRIPT ! EN COURS DE MODIFICATION / NON TESTE !!
 
@@ -175,7 +175,8 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   echo "$salle" > /etc/GM_ESU
 
   #on lance le script prof_firefox
-  sudo ./esu_ubuntu/firefox/prof_firefox.sh
+  chmod -R +x ./esu_ubuntu
+  ./esu_ubuntu/firefox/prof_firefox.sh
 
   #on inscrit la tache upkg dans crontab
   echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
