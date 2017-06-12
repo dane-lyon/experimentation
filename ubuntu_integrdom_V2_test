@@ -1,9 +1,9 @@
 #!/bin/bash
-# version 2.0.0 alpha 0.8 (+ choix esubuntu)
+# version 2.0.0 béta (+esu ubuntu)
 
-# Testé & validé pour les variantes suivantes :
+# Testé & validé pour les variantes suivantes (sauf fonction esu_ubuntu) :
 ################################################
-# - Ubuntu 14.04 & 16.04 (Unity)
+# - Ubuntu 14.04 & 16.04 (Unity) [esu ubuntu testé sur Ubuntu 14.04 uniquement]
 # - Xubuntu 14.04 & 16.04 (Xfce)
 # - Lubuntu 14.04 & 16.04 (Lxde)
 # - Ubuntu Mate 16.04 (Mate)
@@ -250,7 +250,7 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   ./esu_ubuntu/firefox/prof_firefox.sh
   
   # Mise en place des wallpaper pour les élèves, profs, admin
-  wget --no-check-certificate https://github.com/dane-lyon/experimentation/raw/master/wallpaper.zip
+  wget http://nux87.online.fr/esu_ubuntu/wallpaper.zip
   unzip wallpaper.zip
   mv wallpaper /usr/share/
 
