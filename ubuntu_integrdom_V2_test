@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.0 alpha 0.6 (+ choix esubuntu)
+# version 2.0.0 alpha 0.7 (+ choix esubuntu)
 
 # Testé & validé pour les variantes suivantes :
 ################################################
@@ -212,8 +212,9 @@ apt-get update ; apt-get -y dist-upgrade
 # Téléchargement + Mise en place de Esubuntu
 if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then  
   #téléchargement des paquets
-  wget --no-check-certificate https://github.com/dane-lyon/experimentation/raw/master/esu_ubuntu.zip
-  unzip esu_ubuntu.zip
+  wget --no-check-certificate https://github.com/dane-lyon/fichier-de-config/raw/master/esu_ubuntu.tar.gz
+  mkdir esu_ubuntu
+  tar xzvf esu_ubuntu.tar.gz -C esu_ubuntu 
   
   #création du dossier upkg
   mkdir /usr/local/upkg_client/
