@@ -1,8 +1,5 @@
 #!/bin/bash
-# version 2.0.0 alpha 0.5
-
-### IMPORTANT ===> NE PAS UTILISER CE SCRIPT ! EN COURS DE MODIFICATION / NON TESTE !!
-
+# version 2.0.0 alpha 0.6 (+ choix esubuntu)
 
 # Testé & validé pour les variantes suivantes :
 ################################################
@@ -139,57 +136,6 @@ fi
 ##############################################################################
 read -p "Voulez vous activer le script Esubuntu (cf doc si vous ne savez pas a quoi cela correspond) ? [O/N] :" esubuntu
 
-if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then  
-  #téléchargement des paquets
-  wget --no-check-certificate https://github.com/dane-lyon/experimentation/raw/master/esu_ubuntu.zip
-  unzip esu_ubuntu.zip
-  
-  #création du dossier upkg
-  mkdir /usr/local/upkg_client/
-  chmod -R 777 /usr/local/upkg_client
-
-  #installation de cntlm zenity et conky
-  apt-get install -y zenity conky #cntlm 
-
-  #configuration de cntlm système pour ne pas faire d'interférence avec celui de l'utilisateur
-  #echo "Username	admin
-  #Domain		SCRIBE
-  #Auth	LM
-  #Proxy		172.18.40.1:3128
-  #NoProxy		localhost, 127.0.0.*, 172.18.*
-  #Listen		3129" > /etc/cntlm.conf
-
-  #on lance la copie des fichiers
-  cp -rf ./esu_ubuntu/lightdm/* /etc/lightdm/
-  chmod +x /etc/lightdm/*.sh
-  cp -rf ./esu_ubuntu/xdg_autostart/* /etc/xdg/autostart/
-  chmod +x /etc/xdg/autostart/cntlm.desktop
-  chmod +x /etc/xdg/autostart/message_scribe.desktop
-  chmod +x /etc/xdg/autostart/scribe_background.desktop
-  chmod 755 /etc/lightdm/param_etab.conf
-
-  #on lance la gestion du groupe
-  #salle du pc
-  echo "Veuillez entrer le groupe ESU de vos postes clients linux : "
-  read salle
-  echo "$salle" > /etc/GM_ESU
-
-  #on lance le script prof_firefox
-  chmod -R +x ./esu_ubuntu
-  ./esu_ubuntu/firefox/prof_firefox.sh
-  
-  # Mise en place des wallpaper pour les élèves, profs, admin
-  wget --no-check-certificate https://github.com/dane-lyon/experimentation/raw/master/wallpaper.zip
-  unzip wallpaper.zip
-  mv wallpaper /usr/share/
-
-  #on inscrit la tache upkg dans crontab
-  echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
-fi
-
-
-
-
 ########################################################################
 #rendre debconf silencieux
 ########################################################################
@@ -253,6 +199,7 @@ echo "Defaults env_keep = https_proxy" >> /etc/sudoers
 
 fi
 
+
 # Modification pour ne pas avoir de problème lors du rafraichissement des dépots avec un proxy
 # cette ligne peut être commenté/ignoré si vous n'utilisez pas de proxy ou avec la 14.04.
 echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf
@@ -261,6 +208,56 @@ echo "Acquire::http::Pipeline-Depth 0;" >> /etc/apt/apt.conf
 
 # Vérification que le système est bien a jour
 apt-get update ; apt-get -y dist-upgrade
+
+# Téléchargement + Mise en place de Esubuntu
+if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then  
+  #téléchargement des paquets
+  wget --no-check-certificate https://github.com/dane-lyon/experimentation/raw/master/esu_ubuntu.zip
+  unzip esu_ubuntu.zip
+  
+  #création du dossier upkg
+  mkdir /usr/local/upkg_client/
+  chmod -R 777 /usr/local/upkg_client
+
+  #installation de cntlm zenity et conky
+  apt-get install -y zenity conky #cntlm 
+
+  #configuration de cntlm système pour ne pas faire d'interférence avec celui de l'utilisateur
+  #echo "Username	admin
+  #Domain		SCRIBE
+  #Auth	LM
+  #Proxy		172.18.40.1:3128
+  #NoProxy		localhost, 127.0.0.*, 172.18.*
+  #Listen		3129" > /etc/cntlm.conf
+
+  #on lance la copie des fichiers
+  cp -rf ./esu_ubuntu/lightdm/* /etc/lightdm/
+  chmod +x /etc/lightdm/*.sh
+  cp -rf ./esu_ubuntu/xdg_autostart/* /etc/xdg/autostart/
+  chmod +x /etc/xdg/autostart/cntlm.desktop
+  chmod +x /etc/xdg/autostart/message_scribe.desktop
+  chmod +x /etc/xdg/autostart/scribe_background.desktop
+  chmod 755 /etc/lightdm/param_etab.conf
+
+  #on lance la gestion du groupe
+  #salle du pc
+  echo "Veuillez entrer le groupe ESU de vos postes clients linux : "
+  read salle
+  echo "$salle" > /etc/GM_ESU
+
+  #on lance le script prof_firefox
+  chmod -R +x ./esu_ubuntu
+  ./esu_ubuntu/firefox/prof_firefox.sh
+  
+  # Mise en place des wallpaper pour les élèves, profs, admin
+  wget --no-check-certificate https://github.com/dane-lyon/experimentation/raw/master/wallpaper.zip
+  unzip wallpaper.zip
+  mv wallpaper /usr/share/
+
+  #on inscrit la tache upkg dans crontab
+  echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
+fi
+
 
 ########################################################################
 #Mettre la station à l'heure à partir du serveur Scribe
