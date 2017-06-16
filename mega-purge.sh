@@ -2,7 +2,7 @@
 
 # Voici une purge radicale, elle supprime complètement :
 
-# - tous le contenu présent dans les dossiers ".Config" et/ou "Application Data" et/ou "config_eole" de tous les utilisateurs.
+# - tous le contenu présent dans les dossiers ".Config" et/ou "config_eole" de tous les utilisateurs.
 # - une statistique stat_purge.txt dans le perso de l'admin qui affiche la taille du home avant & après la purge
 
 # info avant la purge (date+heure+taille occupé du home)
