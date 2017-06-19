@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.0 béta (+esu ubuntu)
+# version 2.0.1 béta (+esu ubuntu)
 
 # Testé & validé pour les variantes suivantes (sauf fonction esu_ubuntu) :
 ################################################
@@ -39,6 +39,7 @@
 #Cédric Frayssinet - Mission Tice Ac-lyon
 #Xavier Garel - Mission Tice Ac-lyon
 #Simon Bernard - Dane Lyon
+#Olivier CALPETARD - Académie de la Réunion (partie Esubuntu)
 
 # Proxy system
 ###########################################################################
