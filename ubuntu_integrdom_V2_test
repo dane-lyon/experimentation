@@ -235,7 +235,6 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   cp -rf ./esu_ubuntu/lightdm/* /etc/lightdm/
   chmod +x /etc/lightdm/*.sh
   cp -rf ./esu_ubuntu/xdg_autostart/* /etc/xdg/autostart/
-  chmod +x /etc/xdg/autostart/cntlm.desktop
   chmod +x /etc/xdg/autostart/message_scribe.desktop
   chmod +x /etc/xdg/autostart/scribe_background.desktop
   chmod 755 /etc/lightdm/param_etab.conf
