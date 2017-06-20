@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.2 béta (+esu ubuntu)
+# version 2.0.3 béta (+esu ubuntu)
 
 # Testé & validé pour les variantes suivantes (sauf fonction esu_ubuntu) :
 ################################################
@@ -237,8 +237,8 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   cp -rf ./esu_ubuntu/xdg_autostart/* /etc/xdg/autostart/
   chmod +x /etc/xdg/autostart/message_scribe.desktop
   chmod +x /etc/xdg/autostart/scribe_background.desktop
-  chmod 755 /etc/lightdm/param_etab.conf
-
+  
+  
   #on lance la gestion du groupe
   #salle du pc
   echo "Veuillez entrer le groupe ESU de vos postes clients linux : "
@@ -256,6 +256,9 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
 
   #on inscrit la tache upkg dans crontab
   echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
+  
+  #dans le cas ou il resterai encore une trace de cntlm dans xdg autostart :
+  rm -f /etc/xdg/autostart/cntlm*
 fi
 
 
