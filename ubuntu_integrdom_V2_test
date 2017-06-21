@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.3 béta (+esu ubuntu)
+# version 2.0.4 béta (+esu ubuntu)
 
 # Testé & validé pour les variantes suivantes (sauf fonction esu_ubuntu) :
 ################################################
@@ -157,6 +157,8 @@ disable-lock-screen=true
 [com.canonical.Unity.Launcher]
 favorites=[ 'nautilus-home.desktop', 'firefox.desktop','libreoffice-startcenter.desktop', 'gcalctool.desktop','gedit.desktop','gnome-screenshot.desktop' ]
 " > /usr/share/glib-2.0/schemas/my-defaults.gschema.override
+
+fi
 
 #######################################################
 #Paramétrage des paramètres Proxy pour tout le système
@@ -472,8 +474,6 @@ fi
 
 # Suppression de paquet inutile sous Ubuntu/Unity
 apt-get -y purge aisleriot gnome-mahjongg ;
-
-fi
 
 # Pour être sûr que les paquets suivant (parfois présent) ne sont pas installés :
 apt-get -y purge pidgin transmission-gtk gnome-mines gnome-sudoku blueman abiword gnumeric thunderbird ;
