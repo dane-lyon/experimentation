@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.4 béta (+esu ubuntu)
+# version 2.0.5 béta (+esu ubuntu)
 
 # Testé & validé pour les variantes suivantes (sauf fonction esu_ubuntu) :
 ################################################
@@ -261,6 +261,9 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   
   #dans le cas ou il resterai encore une trace de cntlm dans xdg autostart :
   rm -f /etc/xdg/autostart/cntlm*
+  
+  # Modification de la valeur en dur a la fin du fichier background.sh pour corresponde au bon groupe ESU
+  sed -i -e "s/posteslinux/$salle/g" /etc/lightdm/background.sh
 fi
 
 
