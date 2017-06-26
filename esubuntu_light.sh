@@ -1,4 +1,5 @@
 #!/bin/bash
+#v0.2
 
 #téléchargement des paquets
 wget http://nux87.online.fr/esu_ubuntu/esu_ubuntu.zip
@@ -38,5 +39,9 @@ echo "*/20 * * * * root /etc/lightdm/groupe.sh" > /etc/crontab
   
 #dans le cas ou il resterai encore une trace de cntlm dans xdg autostart :
 rm -f /etc/xdg/autostart/cntlm*
+
+# Modification de la valeur en dur a la fin du fichier background.sh pour corresponde au bon groupe ESU
+sed -i -e "s/posteslinux/$salle/g" /etc/lightdm/background.sh
+
 
 exit
