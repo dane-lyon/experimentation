@@ -7,7 +7,7 @@ Mise en place du script
 - Créer un nouveau groupe ESU (via la console ESU) pour vos clients Linux, par exemple "posteslinux"
 
 - Télécharger le contenu de l'archive et le décompresser dans votre nouveau groupe esu pour linux.
-Lien ici : https://framadrive.org/s/1Aqdwfjg1p58gCf
+Lien ici : https://github.com/dane-lyon/fichier-de-config/blob/master/dans_groupe-esu_linux.zip?raw=true
 
 - Ensuite sur le poste client Ubuntu, lancer la nouvelle version du Script (dans la partie expérimentation), lien direct ici : 
 https://raw.githubusercontent.com/dane-lyon/experimentation/master/ubuntu_integrdom_V2_test
