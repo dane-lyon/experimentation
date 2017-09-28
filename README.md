@@ -15,7 +15,7 @@ Il permet :
 
 ### Mise en place d'Esubuntu 
 
-**Rappel : validé/testé uniquement pour Ubuntu/Unity en 14.04)**
+_**RAPPEL : validé/testé uniquement pour Ubuntu/Unity en 14.04)**_
 
 #### Mise en place du script
 
@@ -28,6 +28,7 @@ https://raw.githubusercontent.com/dane-lyon/experimentation/master/ubuntu_integr
 1. Le nom du groupe esu sera demandé, il faudra mettre exactement le même nom que le nouveau groupe esu créé précédemment.
 1. A la fin, redémarrer le poste.
 
+A noter la présence d'un script à lancer sur des postes déjà intégrés au domaine : https://github.com/dane-lyon/experimentation/blob/master/esubuntu_light.sh
 
 #### Paramétrage de upkg (équivalent de WPKG pour Windows)
 
@@ -71,3 +72,11 @@ maximum avant d'avoir le script de lancé sur les postes clients. Si on veut mod
 _Attention : le proxy est géré aussi par ce fichier, par défaut il est paramétré sur 172.16.0.252, si l'on a autre chose, bien penser à modifier la valeur._
 * Dernière précision : si vous avez un Scribe en version 2.4, 2.5 ou 2.6, pensez à faire ceci pour avoir les partages réseaux :
 https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages
+
+### TO DO
+
+* totalement fonctionnel avec Ubuntu 14 mais conky n'est pas beau sur Ubuntu 16.04 (Unity et Mate) :
+https://framapic.org/TjUm5Y1Deo0V/EpXcrOSrqS6h.png
+
+
+
