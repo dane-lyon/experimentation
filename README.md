@@ -55,18 +55,19 @@ Si on veut supprimer le logiciel vlc sur tous les postes :
           #!/bin/bash
           sudo apt-get remove vlc -y
 ```
+* Le *script upkg* n'est lancé qu'une seule fois sur les postes, pour qu'il soit de nouveau lancé (par exemple si on a fait 
+des changements dans le script), on doit modifier le fichier "stamp.date", en effet ce fichier est comparé à chaque fois 
+avec celui présent en local sur les machines, si il y a une différence, alors le script est lancé et le fichier local maj 
+à l'identique sinon rien n'est lancé. 
+* Par défaut, la période de rafraîchissement pour la vérification est de *20 minutes* donc on peut attendre jusqu’à 20 minutes 
+maximum avant d'avoir le script de lancé sur les postes clients. Si on veut modifier cette durée, c'est dans le fichier 
+/etc/crontab.
+
 
 ### Paramétrages complémentaires
 
 * Il est possible de personnaliser le panel conky en allant dans son groupe ESU puis "conky" et enfin fichier "conky.cfg"
 * La config de Firefox est déporté aussi dans le groupe_esu. Il est ainsi possible de modifier la page d’accueil et le proxy de tous les postes d'un seul coup, pour cela il faut modifier le fichier "firefox.js" dans le dossier "linux" du groupe esu.
 _Attention : le proxy est géré aussi par ce fichier, par défaut il est paramétré sur 172.16.0.252, si l'on a autre chose, bien penser à modifier la valeur._
-* Le script upkg n'est lancé qu'une seule fois sur les postes, pour qu'il soit de nouveau lancé (par exemple si on a fait 
-des changements dans le script), on doit modifier le fichier "stamp.date", en effet ce fichier est comparé à chaque fois 
-avec celui présent en local sur les machines, si il y a une différence, alors le script est lancé et le fichier local maj 
-à l'identique sinon rien n'est lancé. 
-* Par défaut la période de rafraîchissement pour la vérification est de 20 minutes donc on peut attendre jusqu’à 20 minutes 
-maximum avant d'avoir le script de lancé sur les postes clients. Si on veut modifier cette durée, c'est dans le fichier 
-/etc/crontab.
 * Dernière précision : si vous avez un Scribe en version 2.4, 2.5 ou 2.6, pensez à faire ceci pour avoir les partages réseaux :
 https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages
