@@ -13,7 +13,7 @@ Il permet :
 * d'avoir un panel d'informations en fond : nom du poste, personne connectée, adresse IP, quota... 
 * déport de la configuration de Firefox
 
-!(https://framapic.org/vSTaLit0PjRu/pA1mI9wIMjNm.png)
+![Esubuntu en action](https://framapic.org/vSTaLit0PjRu/pA1mI9wIMjNm.png)
 
 
 ### Mise en place d'Esubuntu 
@@ -82,8 +82,8 @@ https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages
 - [ ] conky n'est pas beau sur Ubuntu 16.04 (Unity et Mate) :
 
 Ubuntu 16.04 :
-!(https://framapic.org/L6QaKVozF0qH/9ZOEjWqbw4Zn.png)
+![Ubuntu 16](https://framapic.org/L6QaKVozF0qH/9ZOEjWqbw4Zn.png)
 
 Ubuntu Mate 16.04 :
-!(https://framapic.org/oDHoCeh6MKWi/ruIRBcNPcbKH.png)
+![Mate 16](https://framapic.org/oDHoCeh6MKWi/ruIRBcNPcbKH.png)
 
