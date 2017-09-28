@@ -42,19 +42,19 @@ Dans le groupe esu linux, il y a un dossier "linux" et dedans un dossier "upkg",
 ```
           
 Si on veut déployer le logiciel "htop" sur tous les postes :
-    ```bash
 
+```bash
           #!/bin/bash
           sudo apt-get install htop -y
-           ```
+```
     
           
 Si on veut supprimer le logiciel vlc sur tous les postes :
-    ```bash
 
+```bash
           #!/bin/bash
           sudo apt-get remove vlc -y
-     ```
+```
 
 ### Paramétrages complémentaires
 
