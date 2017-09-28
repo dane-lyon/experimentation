@@ -9,8 +9,8 @@ Scripts en version Beta qui ont besoin de tests complémentaires. Merci pour les
 ESUBUNTU a été développé par Olivier Calpetard du lycée Antoine Roussin à La Réunion. A la DANE de Lyon, nous avons essayé de le scripter le plus possible afin de faciliter son déploiement.
 Il permet :
 * de lancer des commandes de manière centralisée (installation d'applications, scripts...)
-* d'obtenir des fonds d'écran différents entre élèves et enseignants
-* d'avoir un panel d'informations en fond : nom du poste, personne connectée, adresse IP... 
+* d'obtenir des fonds d'écran différents entre élèves et enseignants (admin aura le fond prof)
+* d'avoir un panel d'informations en fond : nom du poste, personne connectée, adresse IP, quota... 
 * déport de la configuration de Firefox
 
 ### Mise en place d'Esubuntu 
@@ -29,45 +29,39 @@ https://raw.githubusercontent.com/dane-lyon/experimentation/master/ubuntu_integr
 1. A la fin, redémarrer le poste.
 
 
-#### Détails des changements
-
-* Un nouveau fond d'écran qui sera différent suivant le profil (prof ou élève), l'admin aura le même fond d'écran que le profil 
-prof
-* Un nouveau panel (conky) qui apparaîtra à droite du bureau indiquant le nom du poste, l'utilisation du quota du dossier perso 
-de l'utilisateur (comme sous Windows), l'espace local utilisé sur le disque dur et quelques autres informations 
-(il est possible de personnaliser le panel conky en allant dans son groupe esu puis "conky" et enfin fichier "conky.cfg").
-* La config de Firefox est déporté aussi dans le groupe_esu. Il est ainsi possible de modifier la page d’accueil et le proxy 
-de tous les postes d'un seul coup, pour cela il faut modifier le fichier "firefox.js" dans le dossier "linux" du groupe esu.
-
-    Attention : le proxy est géré aussi par ce fichier, par défaut il est paramétré sur 172.16.0.252, si l'on a autre chose, 
-    bien penser à modifier la valeur.
-
-* Autre nouveauté intéressante : la possibilité de gérer le déploiement de mises à jour, applications etc... des postes clients, 
-pour cela c'est très simple :
+#### Paramétrage de upkg (équivalent de WPKG pour Windows)
 
 Dans le groupe esu linux, il y a un dossier "linux" et dedans un dossier "upkg", à l'intérieur 3 fichiers :
     - upkg.txt : ne pas toucher pas à ce fichier sauf si l'on veut complètement désactiver cette fonctionnalité (dans ce cas passez la valeur de 1 à 0).
     - script_install.sh : c'est dans ce script qu'on indiquera ce qu'on veut déployer, par exemple si l'on veut mettre à jour 
     tous les postes, il faut mettre ceci :
-    
+    ```bash
           #!/bin/bash
           sudo apt-get update
           sudo apt-get dist-upgrade -y
+     ```
           
 Si on veut déployer le logiciel "htop" sur tous les postes :
+    ```bash
 
           #!/bin/bash
           sudo apt-get install htop -y
+           ```
+    
           
 Si on veut supprimer le logiciel vlc sur tous les postes :
+    ```bash
 
           #!/bin/bash
           sudo apt-get remove vlc -y
-          
+     ```
 
-### Précisions supplémentaires
+### Paramétrages complémentaires
 
-* Le script n'est lancé qu'une seule fois sur les postes, pour qu'il soit de nouveau lancé (par exemple si on a fait 
+* Il est possible de personnaliser le panel conky en allant dans son groupe ESU puis "conky" et enfin fichier "conky.cfg"
+* La config de Firefox est déporté aussi dans le groupe_esu. Il est ainsi possible de modifier la page d’accueil et le proxy de tous les postes d'un seul coup, pour cela il faut modifier le fichier "firefox.js" dans le dossier "linux" du groupe esu.
+_Attention : le proxy est géré aussi par ce fichier, par défaut il est paramétré sur 172.16.0.252, si l'on a autre chose, bien penser à modifier la valeur._
+* Le script upkg n'est lancé qu'une seule fois sur les postes, pour qu'il soit de nouveau lancé (par exemple si on a fait 
 des changements dans le script), on doit modifier le fichier "stamp.date", en effet ce fichier est comparé à chaque fois 
 avec celui présent en local sur les machines, si il y a une différence, alors le script est lancé et le fichier local maj 
 à l'identique sinon rien n'est lancé. 
