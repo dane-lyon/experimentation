@@ -32,14 +32,14 @@ https://raw.githubusercontent.com/dane-lyon/experimentation/master/ubuntu_integr
 #### Paramétrage de upkg (équivalent de WPKG pour Windows)
 
 Dans le groupe esu linux, il y a un dossier "linux" et dedans un dossier "upkg", à l'intérieur 3 fichiers :
-    - upkg.txt : ne pas toucher pas à ce fichier sauf si l'on veut complètement désactiver cette fonctionnalité (dans ce cas passez la valeur de 1 à 0).
-    - script_install.sh : c'est dans ce script qu'on indiquera ce qu'on veut déployer, par exemple si l'on veut mettre à jour 
-    tous les postes, il faut mettre ceci :
-    ```bash
+* upkg.txt : ne pas toucher pas à ce fichier sauf si l'on veut complètement désactiver cette fonctionnalité (dans ce cas passez la valeur de 1 à 0).
+* script_install.sh : c'est dans ce script qu'on indiquera ce qu'on veut déployer, par exemple si l'on veut mettre à jour tous les postes, il faut mettre ceci :
+
+```bash
           #!/bin/bash
           sudo apt-get update
           sudo apt-get dist-upgrade -y
-     ```
+```
           
 Si on veut déployer le logiciel "htop" sur tous les postes :
     ```bash
