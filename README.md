@@ -13,6 +13,9 @@ Il permet :
 * d'avoir un panel d'informations en fond : nom du poste, personne connectée, adresse IP, quota... 
 * déport de la configuration de Firefox
 
+!https://framapic.org/vSTaLit0PjRu/pA1mI9wIMjNm.png
+
+
 ### Mise en place d'Esubuntu 
 
 _**RAPPEL : validé/testé uniquement pour Ubuntu/Unity en 14.04)**_
@@ -75,8 +78,9 @@ https://dane.ac-lyon.fr/spip/Client-Linux-activer-les-partages
 
 ### TO DO
 
-* totalement fonctionnel avec Ubuntu 14 mais conky n'est pas beau sur Ubuntu 16.04 (Unity et Mate) :
-https://framapic.org/TjUm5Y1Deo0V/EpXcrOSrqS6h.png
+- [x] totalement fonctionnel avec Ubuntu 14 
+- [ ] conky n'est pas beau sur Ubuntu 16.04 (Unity et Mate) :
+
 
 
 
