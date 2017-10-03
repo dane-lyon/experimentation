@@ -10,6 +10,8 @@ mkdir /usr/local/upkg_client/
 chmod -R 777 /usr/local/upkg_client
 
 #installation de cntlm zenity et conky
+add-apt-repository -y ppa:vincent-c/conky #conky est backporté pour avoir une version récente quelque soit la distrib
+apt-get update
 apt-get install -y zenity conky #cntlm 
 
 #on lance la copie des fichiers
