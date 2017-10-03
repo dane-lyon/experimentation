@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 2.0.5 béta (+esu ubuntu)
+# version 2.0.6 béta (+esu ubuntu)
 
 # Testé & validé pour les variantes suivantes (sauf fonction esu_ubuntu) :
 ################################################
@@ -222,8 +222,10 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   mkdir /usr/local/upkg_client/
   chmod -R 777 /usr/local/upkg_client
 
-  #installation de cntlm zenity et conky
-  apt-get install -y zenity conky #cntlm 
+  #installation de zenity et conky
+  add-apt-repository -y ppa:vincent-c/conky #conky est backporté pour avoir une version récente quelque soit la distrib
+  apt-get update
+  apt-get install -y zenity conky
 
   #configuration de cntlm système pour ne pas faire d'interférence avec celui de l'utilisateur
   #echo "Username	admin
