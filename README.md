@@ -24,7 +24,7 @@ _**RAPPEL : validé/testé uniquement pour Ubuntu/Unity en 14.04)**_
 
 1. Créer un nouveau groupe ESU (via la console ESU) pour vos clients Linux, par exemple "posteslinux"
 1. Télécharger le contenu de l'archive et le décompresser dans votre nouveau groupe esu pour linux.
-Lien ici : https://github.com/dane-lyon/fichier-de-config/blob/master/dans_groupe-esu_linux.zip?raw=true
+Lien ici : https://github.com/dane-lyon/fichier-de-config/blob/0d7c70bb861e135508f57c7aaa23840926b17e5f/esubuntu_a_recuperer.zip?raw=true
 1. Ensuite sur le poste client Ubuntu, lancer la nouvelle version du Script (dans la partie expérimentation), lien direct ici : 
 https://raw.githubusercontent.com/dane-lyon/experimentation/master/ubuntu_integrdom_V2_test
 1. Une nouvelle question sera posée "voulez-vous activer esu_ubuntu" : répondre "Oui".
