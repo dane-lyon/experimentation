@@ -1,5 +1,5 @@
 #!/bin/bash
-#v0.2
+#v0.3
 
 #téléchargement des paquets
 wget http://nux87.online.fr/esu_ubuntu/esu_ubuntu.zip
