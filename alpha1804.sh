@@ -51,15 +51,6 @@ fi
 # Pour identifier le numéro de la version 
 . /etc/lsb-release
 
-# Affectation à la variable "version" suivant la variante utilisé
-if [ "$DISTRIB_RELEASE" = "14.04" ] || [ "$DISTRIB_RELEASE" = "17" ] || [ "$DISTRIB_RELEASE" = "17.1" ] || [ "$DISTRIB_RELEASE" = "17.2" ] || [ "$DISTRIB_RELEASE" = "17.3" ] || [ "$DISTRIB_RELEASE" = "0.3" ] ; then
-  version=trusty
-fi
-
-if [ "$DISTRIB_RELEASE" = "16.04" ] || [ "$DISTRIB_RELEASE" = "18" ] || [ "$DISTRIB_RELEASE" = "18.1" ] || [ "$DISTRIB_RELEASE" = "18.2" ] || [ "$DISTRIB_RELEASE" = "0.4" ] ; then
-  version=xenial
-fi
-
 ########################################################################
 #vérif
 ########################################################################
