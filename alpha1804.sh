@@ -300,6 +300,7 @@ else
   echo "prof deja dans sudo"
 fi
 
+
 ########################################################################
 #suppression de l'envoi des rapport d'erreurs
 ########################################################################
@@ -314,6 +315,23 @@ echo "user_pref(\"browser.startup.homepage\", \"$pagedemarragepardefaut\");" >> 
 
 # Suppression de notification de mise a niveau (Désactivé pour l'instant)
 #sed -r -i 's/Prompt=lts/Prompt=never/g' /etc/update-manager/release-upgrades
+
+
+########################################################################
+# NOUVEAU
+########################################################################
+# Modif GDM : désactiver la liste des utilisateurs (pour saisir manuellement le login)
+
+echo "user-db:user
+system-db:gdm
+file-db:/usr/share/gdm/greeter-dconf-defaults" > /etc/dconf/profile/gdm
+
+echo "[org/gnome/login-screen]
+# Do not show the user list
+disable-user-list=true" > /etc/dconf/db/gdm.d/00-login-screen
+
+#prise en compte du changement
+dconf update
 
 ########################################################################
 #nettoyage station avant clonage
