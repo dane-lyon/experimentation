@@ -326,6 +326,7 @@ echo "user-db:user
 system-db:gdm
 file-db:/usr/share/gdm/greeter-dconf-defaults" > /etc/dconf/profile/gdm
 
+mkdir /etc/dconf/db/gdm.d
 echo "[org/gnome/login-screen]
 # Do not show the user list
 disable-user-list=true" > /etc/dconf/db/gdm.d/00-login-screen
