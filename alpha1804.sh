@@ -55,7 +55,7 @@ fi
 #vérif
 ########################################################################
 
-if [ "$DISTRIB_RELEASE" != "18.04" ]
+if [ "$DISTRIB_RELEASE" != "17.10" ]
 then
   echo "Vous n'êtes pas sûr une version compatible !"
   exit
@@ -137,19 +137,21 @@ echo "Defaults env_keep = https_proxy" >> /etc/sudoers
 
 fi
 
-# Modification pour ne pas avoir de problème lors du rafraichissement des dépots avec un proxy
+# Modification pour ne pas avoir de problème lors du rafraichissement des dépots avec un proxy (désactivé pour l'instant)
+
 # cette ligne peut être commenté/ignoré si vous n'utilisez pas de proxy ou avec la 14.04.
-echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf
-echo "Acquire::http::Pipeline-Depth 0;" >> /etc/apt/apt.conf
+#echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf
+#echo "Acquire::http::Pipeline-Depth 0;" >> /etc/apt/apt.conf
 
 
 # Vérification que le système est bien a jour
-apt-get update ; apt-get -y dist-upgrade
+apt update
+apt-get full-upgrade -y
 
 ########################################################################
 #Mettre la station à l'heure à partir du serveur Scribe
 ########################################################################
-apt-get -y install ntpdate ;
+apt install ntpdate -y
 ntpdate $ip_scribe
 
 ########################################################################
@@ -157,7 +159,7 @@ ntpdate $ip_scribe
 #numlockx pour le verrouillage du pave numerique
 #unattended-upgrades pour forcer les mises à jour de sécurité à se faire
 ########################################################################
-apt-get install -y ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades
+apt install ldap-auth-client libpam-mount cifs-utils nscd numlockx unattended-upgrades -y
 
 ########################################################################
 # activation auto des mises à jour de sécu
