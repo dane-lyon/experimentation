@@ -1,0 +1,28 @@
+<package
+      id="Evince"
+      name="Evince : logiciel libre pour visionner les documents PDF"
+      revision="%version%.1"
+      reboot="false"
+      priority="10"> 
+
+<eoledl dl="https://download.gnome.org/binaries/win32/evince/2.32/evince-2.32.0-144.1.msi" destname="evince\evince.msi" />
+
+ <variable name="version" value="2.32.0-144.1" />    
+ <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+ <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+ <variable name="ComSpec" value="%SystemRoot%\System32\cmd.exe" architecture="x86"/>
+ <variable name="ComSpec" value="%SystemRoot%\SysWOW64\cmd.exe" architecture="x64"/>
+
+<check type="uninstall" condition="exists" path="Evince" />
+<check type="file" condition="sizeequals" path="%ProgramFiles%\Evince\......" value="14311" />
+      
+<install cmd='"%SOFTWARE%\evince\evince-%version%.msi" /S' />
+      
+<upgrade include='install' />
+
+<downgrade include='install' />
+
+<remove cmd='"%PROGRAMFILES%\Evince\uninstall.exe" /S' />
+<remove cmd='%COMSPEC% /C rmdir /S /Q "%PROGRAMFILES%\Evince"' />
+
+</package>
