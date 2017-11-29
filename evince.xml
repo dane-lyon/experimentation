@@ -5,9 +5,10 @@
       reboot="false"
       priority="10"> 
 
-<eoledl dl="https://download.gnome.org/binaries/win32/evince/2.32/evince-2.32.0-144.1.msi" destname="evince\evince.msi" />
+<eoledl dl="ftp://ftp.gnome.org/pub/gnome/binaries/win32/evince/%version_court%/evince-%version%.msi" destname="evince\evince-%version%.msi" />
 
- <variable name="version" value="2.32.0-144.1" />    
+ <variable name="version" value="2.32.0.145" />
+ <variable name="version_court" value="2.32" />
  <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
  <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
  <variable name="ComSpec" value="%SystemRoot%\System32\cmd.exe" architecture="x86"/>
