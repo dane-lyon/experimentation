@@ -10,8 +10,11 @@ date >> /home/a/admin/perso/stat_purge.txt
 df -h /home >> /home/a/admin/perso/stat_purge.txt
 
 #purge de la mort 
-rm -rf /home/*/*/perso/{config_eole,.Config}/*
+rm -rfv /home/*/*/perso/{config_eole,.Config}/*
 find /home -type f -name ".~lock.*" -exec rm -rf {} \;
+
+#pour purger seulement les dossiers cache de libreoffice :
+## rm -rfv /home/*/*/perso/config_eole/Application\ Data/LibreOffice/*
 
 # info après la purge (date+heure+taille occupé du home)
 date >> /home/a/admin/perso/stat_purge.txt
