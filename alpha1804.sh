@@ -55,7 +55,7 @@ fi
 #vérif
 ########################################################################
 
-if [ "$DISTRIB_RELEASE" != "17.10" ]
+if [ "$DISTRIB_RELEASE" != "18.04" ]
 then
   echo "Vous n'êtes pas sûr une version compatible !"
   exit
