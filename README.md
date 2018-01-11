@@ -1,7 +1,3 @@
-# EXPERIMENTATION
-
-Scripts en version Beta qui ont besoin de tests complémentaires. Merci pour les retours !
-
 ## ESUBUNTU
 
 ### Présentation du projet Esubuntu
