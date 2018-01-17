@@ -151,7 +151,7 @@ apt-get full-upgrade -y
 ########################################################################
 #Mettre la station à l'heure à partir du serveur Scribe
 ########################################################################
-apt install ntpdate -y
+apt install ntpdate net-tools -y
 ntpdate $ip_scribe
 
 ########################################################################
