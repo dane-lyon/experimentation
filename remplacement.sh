@@ -1,9 +1,9 @@
 #! /bin/bash
 
 #Script réalisé par Thibaud galloy et Raphaël Brocq de la DANE de Lyon
-#Script sous Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International
+#Script sous Licence Créative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International
 
-####début de la déclatation des variables####
+####début de la déclaration des variables####
 
 
 
@@ -12,9 +12,9 @@ important='\e[0;31m'
 calme='\e[1;32m'
 
 neutre='\e[0;m'
-####fin de la déclatation des variables####
+####fin de la déclaration des variables####
 
-####début de la déclatation des fonctions####
+####début de la déclaration des fonctions####
 ##Conserver, ou non la liste des fichiers
 Head()
 {
@@ -88,8 +88,8 @@ fichier="./liste_fichiers.txt"
 		Head
 		case $erreur in
 			1) echo "Nous n'avons pas trouvé le fichier source, l'avez vous placé à côté du script ?" ;;
-			2) echo "Nous n'avons pas trouvé de fichers à remplacer" ;;
-			3) echo "Nous n'avons pas trouvé de fichers à remplacer ni le fichier source" ;;
+			2) echo "Nous n'avons pas trouvé le fichier à remplacer" ;;
+			3) echo "Nous n'avons pas trouvé le fichier à remplacer ni le fichier source" ;;
 		esac
 		read -n1
 		MenuUn
@@ -134,7 +134,7 @@ MenuUn()
 		*)MenuUn ;;
 	esac
 }
-####Fin de la déclatation des fonctions####
+####Fin de la déclaration des fonctions####
 
 if [[ $UID -ne 0 ]]; then
 	echo -e "$important Vous devez éxécuter ce script avec les droits root !$neutre"
