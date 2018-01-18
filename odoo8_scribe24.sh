@@ -5,10 +5,10 @@
 #### Simon B, Dominique J, Jean-Philippe.P ####
 
 
-#### Version 4.0 spécifique a Odoo 8 pour Scribe 2.4 ######
+#### Version 4.0 spécifique à Odoo 8 pour Scribe 2.4 ######
 # Script modifié pour la nouvelle version par Simon.B avec l'aide de Karim.A
 
-#### on teste si le paquet est présent inutile d'aller plus loin si c'est la cas
+#### on teste si le paquet est présent inutile d'aller plus loin si c'est le cas
 dpkg -s odoo &>/dev/null
 if [ $? -eq 0 ] ; then
 	echo "odoo est déjà présent"
@@ -26,11 +26,11 @@ wget http://nightly.odoo.com/8.0/nightly/deb/odoo_8.0.20150908_all.deb
 dpkg -i odoo_8.0.20150908_all.deb
 apt-get -fy install
 
-#### ouverture des ports sur le scribe, penser au reconfigure a la fin
+#### ouverture des ports sur le scribe, penser au reconfigure à la fin
 # La méthode a changé en Scribe 2.4, il faut utiliser maintenant le fichier dico.xml déployé par Zephir
 
 #### paramétrage de postgres pour le rendre accessible depuis le réseau
-### on remplace #listen_addresses = 'localhost' par listen_addresses = '*' dans ####le fichier de conf pour que le serveur écoute
+### on remplace #listen_addresses = 'localhost' par listen_addresses = '*' dans le fichier de conf pour que le serveur écoute
 
 #sed -i.BAK  "s/^\#listen_addresses =.*/listen_addresses = '*'/g" /etc/postgresql/9.1/main/postgresql.conf
 
