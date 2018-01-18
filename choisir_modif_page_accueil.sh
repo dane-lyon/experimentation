@@ -5,12 +5,12 @@
 ###########  Virginie  Favrat  &  Jean Philippe Patrizio. ########
 
 
-########### on efface l'ecran
+########### on efface l'écran
 clear
 
 echo -e "\n\n\n\n"
 
-echo "ce script permet de modifier dans tous les groupes machines, la page d'accueil google.fr par la pages de votre choix."
+echo "ce script permet de modifier dans tous les groupes machines, la page d'accueil google.fr par la page de votre choix."
 
 #### on sauvegarde le dossier esu
 
