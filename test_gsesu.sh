@@ -201,19 +201,22 @@ apt-get update ; apt-get -y dist-upgrade
 ####################################################
 # Téléchargement + Mise en place de Esubuntu (si activé)
 ####################################################
-if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then  
+if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then 
+  # Installation de zenity et conky
+  apt-get update
+  apt-get install -y zenity conky
+  
   # Téléchargement des paquets
-  wget http://nux87.online.fr/esu_ubuntu/esu_ubuntu.zip
-  unzip esu_ubuntu.zip
+  #wget http://nux87.online.fr/esu_ubuntu/esu_ubuntu.zip
+  # TEST pour gnome
+  wget --no-check-certificate https://github.com/dane-lyon/fichier-de-config/raw/master/esu_ubuntu_GS.zip
+  #unzip esu_ubuntu.zip
+  unzip esu_ubuntu_GS.zip
   
   # Création du dossier upkg
   mkdir /usr/local/upkg_client/
   chmod -R 777 /usr/local/upkg_client
 
-  # Installation de zenity et conky
-  apt-get update
-  apt-get install -y zenity conky
-  
   # Ajout de Net-tools pour ifconfig en 18.04 et futures versions
   apt-get install -y net-tools
 
@@ -249,7 +252,7 @@ if [ "$esubuntu" = "O" ] || [ "$esubuntu" = "o" ] ; then
   sed -i -e "s/posteslinux/$salle/g" /etc/gdm3/background.sh
   
   #nettoyage
-  rm -f esu_ubuntu.zip
+  rm -f esu_ubuntu_GS.zip
 fi
 
 
